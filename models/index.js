@@ -7,6 +7,9 @@
  * 
  * Date : 11/9/2023 7:39:28 PM
  *******************************************************************/
-const User = require('./user');
+const User = require("./User");
+const Post = require("./Post");
+const Comments = require("./Comments");
+const Replies = require("./Replies");
 
-module.exports = { User };
+module.exports = { user };

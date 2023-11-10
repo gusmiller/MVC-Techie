@@ -47,6 +47,10 @@ User.init(
                     isEmail: true,
                },
           },
+          date_registered: {
+               type: DateTypes.STRING,
+               allowNull: false,
+          },
           password: {
                type: DataTypes.STRING,
                allowNull: false,
