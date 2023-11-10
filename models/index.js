@@ -7,6 +7,6 @@
  * 
  * Date : 11/9/2023 7:39:28 PM
  *******************************************************************/
-const User = require('./User');
+const User = require('./user');
 
 module.exports = { User };

@@ -13,7 +13,7 @@ const figlet = require("figlet");
 const connection = require("../config/newdb");
 const Chalk = require('chalk');
 const mysql = require('mysql2/promise');
-const messages = require("../helpers/formatter")
+const messages = require("../utils/formatter")
 const dic = require("./queries");
 
 /**
@@ -25,7 +25,8 @@ const dic = require("./queries");
 exports.validateDB = async function (value) {
      const cnn = await connection.connectmysql(); // Get connection to database
 
-     displayMessage("e-Commerce Express");
+     displayMessage("OntarioTECK");
+     displayMessage("Tech-Blog Site");
 
      const [rows, fields] = await cnn.execute(dic.sql.validateobject + `WHERE SCHEMA_NAME="${value}"`);
 
@@ -35,14 +36,8 @@ exports.validateDB = async function (value) {
           return { created: true, data: false };
 
      } else {
-          const [rows, fields] = await cnn.query(dic.sql.totalrecords)
-          if (rows[0].TotalPT !== 0) {
-               messages.msg(Chalk.bgGreen(`DATABASE ${value} ALREADY EXISTS!`));
-               return { created: true, data: true };
-          } else {
-               messages.msg(Chalk.red(`DATABASE ${value} ALREADY EXISTS!`));
-               return { created: true, data: false };
-          }
+          messages.msg(Chalk.bgGreen(`DATABASE ${value} ALREADY EXISTS!`));
+          return { created: true, data: true };
      };
 
 }

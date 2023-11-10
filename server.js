@@ -19,7 +19,6 @@ const chalk = require('chalk');
 const initializedatabase = require('./db/initdb')
 const messages = require("./utils/formatter")
 const dic = require("./db/queries");
-const seeding = require('./seeds/customseed');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -72,7 +71,6 @@ initializedatabase.validateDB(process.env.DB_NAME)
           }
           messages.apiendpoints();
 
-          app.listen(PORT, () => messages.msg(messages.msg(dic.messages.listeningdata), null, null, 80));
-          messages.msg(chalk.white('Application PORT :'), null, false);
-          messages.msg(chalk.white(`     Port number : ${PORT}`), null, true);
+          app.listen(PORT, () => messages.msg(messages.msg(dic.messages.listeningdata), null, null, 80));          
+
      });

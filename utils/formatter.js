@@ -28,12 +28,10 @@ const parseSqlFile = (sqlFile) => {
  */
 function apiendpoints() {
 
-     msg(chalk.green('Example of End points available:'), null, false);
-     msg(chalk.white('     GET localhost:3001/api/products'), null, false);
-     msg(chalk.white('     GET localhost:3001/api/products/2'), null, false);
-     msg(chalk.white('     DELETE localhost:3001/api/products/3'), null, false);
-     msg(chalk.white('     POST localhost:3001/api/products'), null, false);
-     msg(chalk.white('     PUT localhost:3001/api/products/3'));
+     msg(chalk.green('Server is ready to serve website:'), null, true);
+     msg(chalk.white('     Goto your favorite webbrowser and type'), null, false);
+     msg(chalk.white(`     localhost: ${process.env.PORT}`), null, false);
+     msg(chalk.white(`Database Name : ${process.env.DB_NAME}`));
 
 }
 
@@ -78,24 +76,4 @@ function msg(value, add, blankline, sizestring) {
      return;
 }
 
-function carletonlogo() {
-
-     process.stdout.write("\x1Bc");
-     console.log(chalk.white("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"));
-     console.log("");
-     console.log(chalk.red("                    _____           _     _____"));
-     console.log(chalk.red("                    | ___| __ _ _ __| | __|_  __|__ _ __"));
-     console.log(chalk.red("                    | |   / _  | '__| |/ _ \\| |/ _ \\ '_  \\"));
-     console.log(chalk.red("                    | |__  (_| | |  | |  __/| | (_)| | | |"))
-     console.log(chalk.red("                    |____|\\__,_|_|  |_|\\___||_|\\___/_| |_|"))
-     console.log(chalk.red("                                  _   _"))
-     console.log(chalk.red("                                 | | | |"))
-     console.log(chalk.red("                                 | | | |"))
-     console.log(chalk.red("                                 | | | |"))
-     console.log(chalk.red("                                 |_____|"))
-     console.log("");
-     console.log(chalk.white("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"));
-     console.log("");
-
-}
-module.exports = { carletonlogo, msg, parseSqlFile, apiendpoints };
+module.exports = { msg, parseSqlFile, apiendpoints };
