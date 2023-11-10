@@ -12,7 +12,7 @@
 // The destructuring assignment syntax is a JavaScript expression that makes it 
 // possible to unpack values from arrays, or properties from objects, into distinct variables
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment
-const { Model, DataTypes } = require('sequelize');  //Destructuring imported data
+const { Model, DataTypes, Sequelize } = require('sequelize');  //Destructuring imported data
 
 const sequelize = require('../config/connection');
 
@@ -36,17 +36,25 @@ Post.init(
                allowNull: false,
           },
           date_published: {
-               type: DataTypes.DATE,
+               type: DataTypes.DATEONLY,
                allowNull: false,
+               defaultValue: Sequelize.NOW,
           },
           date_edited: {
-               type: DataTypes.DATE,
+               type: DataTypes.DATEONLY,
                allowNull: false,
           },
-          user_id:{
+          category_id: {
                type: DataTypes.INTEGER,
-               references:{
-                    model: 'user',
+               references: {
+                    model: 'Category',
+                    key: 'id',
+               }
+          },
+          user_id: {
+               type: DataTypes.INTEGER,
+               references: {
+                    model: 'User',
                     key: 'id',
                }
           }

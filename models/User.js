@@ -12,7 +12,7 @@
 // The destructuring assignment syntax is a JavaScript expression that makes it 
 // possible to unpack values from arrays, or properties from objects, into distinct variables
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment
-const { Model, DataTypes } = require('sequelize');  //Destructuring imported data
+const { Model, DataTypes, Sequelize } = require('sequelize');  //Destructuring imported data
 
 // bcrypt is a password-hashing function designed by Niels Provos and David Mazières, 
 // based on the Blowfish cipher and presented at USENIX in 1999
@@ -39,6 +39,16 @@ User.init(
                type: DataTypes.STRING,
                allowNull: false,
           },
+          is_admin: {
+               type: DataTypes.BOOLEAN,
+               allowNull: false,
+               defaultValue: false,
+          },
+          status: {
+               type: DataTypes.BOOLEAN,
+               allowNull: false,
+               defaultValue: true,
+          },          
           email: {
                type: DataTypes.STRING,
                allowNull: false,
@@ -48,8 +58,9 @@ User.init(
                },
           },
           date_registered: {
-               type: DateTypes.STRING,
+               type: DateTypes.DATEONLY,
                allowNull: false,
+               defaultValue: Sequelize.NOW,
           },
           password: {
                type: DataTypes.STRING,

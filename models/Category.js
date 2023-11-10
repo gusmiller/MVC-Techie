@@ -6,7 +6,7 @@
  * Tech Blog
  * 
  * Model: Comments
- * Date : 11/9/2023 7:39:28 PM
+ * Date : 11/10/2023 6:58:33 AM
  *******************************************************************/
 
 // The destructuring assignment syntax is a JavaScript expression that makes it 
@@ -17,9 +17,9 @@ const { Model, DataTypes, Sequelize } = require('sequelize');  //Destructuring i
 const sequelize = require('../config/connection');
 
 // Initialize Post model (table) by extending off Sequelize's Model class
-class Comments extends Model { }
+class Category extends Model { }
 
-Comments.init(
+Category.init(
      {
           id: {
                type: DataTypes.INTEGER,
@@ -27,21 +27,14 @@ Comments.init(
                primaryKey: true,
                autoIncrement: true,
           },
-          comment: {
+          category_name: {
                type: DataTypes.STRING,
                allowNull: false,
           },
-          date_published: {
+          date_created: {
                type: DataTypes.DATEONLY,
                allowNull: false,
                defaultValue: Sequelize.NOW,
-          },
-          post_id:{
-               type: DataTypes.INTEGER,
-               references:{
-                    model: 'post',
-                    key: 'id',
-               }
           }
      },
      {
@@ -49,8 +42,8 @@ Comments.init(
           timestamps: false,
           freezeTableName: true,
           underscored: true,
-          modelName: 'comments',
+          modelName: 'category',
      }
 );
 
-module.exports = Comments;
+module.exports = Category;
