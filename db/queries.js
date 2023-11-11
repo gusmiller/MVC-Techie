@@ -21,6 +21,8 @@ const sql = {
 
 const messages = {
     mysqlLapps: chalk.bgRed("Carleton Universty Coding Bootcamp"),
+    userseeded: chalk.bgGreen("Carleton Universty Coding Bootcamp"),
+    categoriesseeded: chalk.bgGreen("Carleton Universty Coding Bootcamp"),
     listeningdata: chalk.bgGreen('----- LISTENING PLEASE GO TO A BROWSER TO ACCESS DATA -----'),
     createdatabase: `Run query: CREATE DATABASE IF NOT EXISTS `
 }

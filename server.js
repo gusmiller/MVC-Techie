@@ -12,8 +12,7 @@ const express = require('express');
 const exphbs = require('express-handlebars');
 const routes = require('./controllers');
 const helpers = require('./utils/helpers');
-const sequelize = require('./config/connection');
-const chalk = require('chalk');
+const seeding = require('./seeds/seeding');
 
 // OntarioTECK VBA Custom customized initialization
 const initializedatabase = require('./db/initdb')
@@ -66,11 +65,19 @@ initializedatabase.validateDB(process.env.DB_NAME)
      .then((data) => {
 
           if (data.created === true && data.data === false) {
+
                const sequelize = require('./config/connection');
-               sequelize.sync({ force: false });
+
+               sequelize.sync({ force: false })
+                    .then(() => {
+                         seeding.seedAll(sequelize)
+                              .then(() => {
+                                   messages.msg(messages.msg(dic.messages.listeningdata), null, null, 80)
+                              });
+                    });
           }
           messages.apiendpoints();
 
-          app.listen(PORT, () => messages.msg(messages.msg(dic.messages.listeningdata), null, null, 80));          
+          app.listen(PORT, () => messages.msg(messages.msg(dic.messages.listeningdata), null, null, 80));
 
      });

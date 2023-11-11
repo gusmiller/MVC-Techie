@@ -6,6 +6,9 @@
  * Tech Blog
  * 
  * Date : 11/9/2023 7:39:28 PM
+ * Purpose: This helper will validate whether the user is logged in
+ * or not. This will protect the website from users not authorized to
+ * see data
  *******************************************************************/
 const withAuth = (req, res, next) => {
      if (!req.session.logged_in) {

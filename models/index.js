@@ -7,29 +7,14 @@
  * 
  * Date : 11/9/2023 7:39:28 PM
  *******************************************************************/
-const User = require("./User");
+const Users = require("./User");
+const Category = require("./Category");
 const Post = require("./Post");
 const Comments = require("./Comments");
 const Replies = require("./Replies");
-const Category = require("./Category")
 
 Post.belongsTo(Category, {
      foreignKey: "category_id"
 })
 
-User.hasMany(Post, {
-     foreignKey: "id",
-     onDelete: "CASCADE",
-})
-
-Post.hasMany(Comments, {
-     foreignKey: "id",
-     onDelete: "CASCADE",
-})
-
-Comments.hasMany(Replies, {
-     foreignKey: "id",
-     onDelete: "CASCADE",
-})
-
-module.exports = { User, Post, Comments, Replies };
+module.exports = { Users, Category, Post, Comments, Replies };
