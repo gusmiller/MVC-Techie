@@ -11,10 +11,17 @@
  * This file is used to execute helper functions available to the 
  * formatting of the terminal
  *******************************************************************/
+const figlet = require("figlet");
 const chalk = require('chalk');
+const dic = require("../db/queries");
 
-const formatter = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', });
-
+/**
+ * This function will parse a file.sql file, it removes all uft-8 characters and makes
+ * it readable for the application. Very useful when running SQL files. NOT in use in this
+ * application
+ * @param {sqlfile} sqlFile 
+ * @returns 
+ */
 const parseSqlFile = (sqlFile) => {
      return sqlFile
           .toString()
@@ -33,6 +40,24 @@ function apiendpoints() {
      msg(chalk.white(`     localhost: ${process.env.PORT}`), null, false);
      msg(chalk.white(`Database Name : ${process.env.DB_NAME}`));
 
+     msg(msg(dic.messages.listeningdata), null, null, 80);
+
+}
+
+/**
+ * This function will display a message using figlet npm package that makes funny 
+ * slogans
+ * @param {string} message to figlet
+ */
+function figletMsg(message) {
+     figlet(message, function (err, data) {
+          if (err) {
+               console.log("Something went wrong...");
+               console.dir(err);
+               return;
+          }
+          console.log(data);
+     });
 }
 
 /**
@@ -76,4 +101,4 @@ function msg(value, add, blankline, sizestring) {
      return;
 }
 
-module.exports = { msg, parseSqlFile, apiendpoints };
+module.exports = { msg, parseSqlFile, apiendpoints, figletMsg };

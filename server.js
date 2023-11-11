@@ -17,7 +17,6 @@ const seeding = require('./seeds/seeding');
 // OntarioTECK VBA Custom customized initialization
 const initializedatabase = require('./db/initdb')
 const messages = require("./utils/formatter")
-const dic = require("./db/queries");
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -59,25 +58,42 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(routes); // Routing defined in the ./routes index.js
 process.stdout.write("\x1Bc");
 
+messages.figletMsg("OntarioTECK");
+messages.figletMsg("Tech-Blog Site");
+let showMessage = true;
+
 // Custom validation to determine whether database exists or not, which in case it 
 // does not exists then it will create.
 initializedatabase.validateDB(process.env.DB_NAME)
      .then((data) => {
 
+          // The validate whether the database exists of not and it returns some 
+          // values that determine whether we have a working database. It is possible 
+          // that database is created but there isn't any tables.
           if (data.created === true && data.data === false) {
-
+               howMessage = false;
                const sequelize = require('./config/connection');
 
+               // Make sure we have initial data since database was deemed not valid
                sequelize.sync({ force: false })
                     .then(() => {
-                         seeding.seedAll(sequelize)
-                              .then(() => {
-                                   messages.msg(messages.msg(dic.messages.listeningdata), null, null, 80)
-                              });
-                    });
-          }
-          messages.apiendpoints();
+                         
+                         try {
+                              seeding.seedAll(sequelize) // Time to seed data
+                                   .then(() => {
+                                        // This will display a message on terminal
+                                        messages.apiendpoints();
+                                        app.listen(PORT);
+                                   });
+                         } catch (err) {
+                              console.log(err);
+                         }
 
-          app.listen(PORT, () => messages.msg(messages.msg(dic.messages.listeningdata), null, null, 80));
+                    });
+          } else {
+               // This will display a message on terminal
+               messages.apiendpoints();
+               app.listen(PORT);
+          }
 
      });
