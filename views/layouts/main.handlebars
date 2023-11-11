@@ -2,33 +2,80 @@
 <html lang="en">
 
 <head>
-     <meta charset="UTF-8">
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <title>User Registry</title>
-     <link rel="stylesheet" href="/css/jass.css">
+     <meta charset="utf-8">
+     <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+     <title>Amoeba Bootstrap Template - Home</title>
+     <meta content="" name="description">
+     <meta content="" name="keywords">
+
+     <!-- Google Fonts -->
+     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Lato:400,300,700,900"
+          rel="stylesheet">
+
+     <!-- Vendor CSS Files -->
+     <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+     <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+
+     <!-- Template Main CSS File -->
+     <link href="assets/css/style.css" rel="stylesheet">
+
+     <!-- =======================================================
+  * Template Name: Amoeba - v4.10.0
+  * Template URL: https://bootstrapmade.com/free-one-page-bootstrap-template-amoeba/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
 </head>
 
 <body>
-     <header class="display-flex justify-space-between align-center p-2">
-          <h1>
-               User Registry
-          </h1>
-          {{#if logged_in}}
-          <nav>
-               <button class="btn" id="logout">logout</button>
-          </nav>
-          {{/if}}
-     </header>
-     <main class="container container-fluid mt-5">
+
+     <!-- ======= Header ======= -->
+     <header id="header" class="fixed-top d-flex align-items-center">
+          <div class="container d-flex align-items-center">
+
+               <div class="logo me-auto">
+                    <h1><a href="index.html">Carleton U</a></h1>
+                    <!-- Uncomment below if you prefer to use an image logo -->
+                    <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+               </div>
+
+               <nav id="navbar" class="navbar">
+                    <ul>
+                         <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+                         <li><a class="nav-link scrollto" href="#about">Dashboard</a></li>
+                         <li><a class="nav-link scrollto" href="#services">Login</a></li>
+                         <li><a class="nav-link scrollto" href="#portfolio">Logout</a></li>
+                    </ul>
+                    <i class="bi bi-list mobile-nav-toggle"></i>
+               </nav><!-- .navbar -->
+
+          </div>
+     </header><!-- End #header -->
+
+     <main id="main">
+
           {{{ body }}}
-     </main>
-     <footer>
+     
+     </main><!-- End #main -->
 
-     </footer>
+     <!-- ======= Footer ======= -->
+     <footer id="footer" class="fixed-bottom">
+          <div class="container">
+               <div class="copyright">
+                    &copy; Copyright <strong><span>OntarioTECK VBA Developers</span></strong>. All Rights Reserved
+               </div>
 
-     {{#if logged_in}}
-     <script src="/js/logout.js"></script>
-     {{/if}}
+          </div>
+     </footer><!-- End #footer -->
+
+     <!-- Vendor JS Files -->
+     <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+     <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+
+     <!-- Template Main JS File -->
+     <script src="assets/js/main.js"></script>
+
 </body>
 
 </html>

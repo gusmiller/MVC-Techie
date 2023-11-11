@@ -7,18 +7,18 @@
  * 
  * Date : 11/9/2023 7:39:28 PM
  *******************************************************************/
-const router = require('express').Router();
-const { Users } = require('../models');
-const withAuth = require('../utils/auth');
+const router = require("express").Router();
+const { Users } = require("../models");
+const withAuth = require("../utils/auth");
 
 router.get('/', withAuth, async (req, res) => {
      try {
-          const userData = await Users.findAll({
+          const dsData = await Users.findAll({
                attributes: { exclude: ['password'] },
                order: [['name', 'ASC']],
           });
 
-          const users = userData.map((project) => project.get({ plain: true }));
+          const users = dsData.map((project) => project.get({ plain: true }));
 
           res.render('homepage', {
                users,

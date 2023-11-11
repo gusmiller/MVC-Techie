@@ -7,16 +7,24 @@
  * 
  * Date : 11/9/2023 7:39:28 PM
  *******************************************************************/
-const path = require('path');
-const express = require('express');
-const exphbs = require('express-handlebars');
-const routes = require('./controllers');
-const helpers = require('./utils/helpers');
-const seeding = require('./seeds/seeding');
+require('dotenv').config();
+
+const express = require("express");
+const session = require("express-session");
+const exphbs = require("express-handlebars");
+const routes = require("./controllers");
+const helpers = require("./utils/helpers");
+const seeding = require("./seeds/seeding");
+const path = require("path");
 
 // OntarioTECK VBA Custom customized initialization
-const initializedatabase = require('./db/initdb')
+const initializedatabase = require("./db/initdb")
 const messages = require("./utils/formatter")
+
+const sequelize = require("./config/connection");
+
+// Create a new sequelize store using the express-session package
+const SequelizeStore = require("connect-session-sequelize")(session.Store);
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -25,16 +33,30 @@ const PORT = process.env.PORT || 3001;
 // express-handlebars library. 
 const hbs = exphbs.create({ helpers });
 
+// Configure and link a session object with the sequelize store
+const sess = {
+     secret: "OntarioTECK VBA Developers",
+     cookie: {},
+     resave: false,
+     saveUninitialized: true,
+     store: new SequelizeStore({
+          db: sequelize
+     })
+};
+
+// Add express-session and store as Express.js middleware
+app.use(session(sess));
+
 // his is an Express.js method that allows you to set up a template engine. A 
 // template engine is a tool that allows you to embed dynamic content into 
 // static templates. In the context of web development, it's often used to 
 // generate HTML dynamically.
 // hbs.engine - is the actual template engine. 
-app.engine('handlebars', hbs.engine);
+app.engine("handlebars", hbs.engine);
 
 // Configure the view engine for the Express.js application. The second argument 
 // sets the 'view engine' to 'handlebars' extension files.
-app.set('view engine', 'handlebars');
+app.set("view engine", "handlebars");
 
 // Start of middleware section ************************
 
@@ -49,9 +71,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Express.static: This is a middleware function in Express that serves static files. 
-// Static files are files that don't change frequently. In the context here it joins
+// Static files are files that don"t change frequently. In the context here it joins
 // two or more paths to the content of __dirname.
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, "public")));
 
 // End of middleware section **************************
 
@@ -60,24 +82,21 @@ process.stdout.write("\x1Bc");
 
 messages.figletMsg("OntarioTECK");
 messages.figletMsg("Tech-Blog Site");
-let showMessage = true;
 
-// Custom validation to determine whether database exists or not, which in case it 
-// does not exists then it will create.
+// Custom validation to determine whether database contains all tables required 
+// if not then it will create.
 initializedatabase.validateDB(process.env.DB_NAME)
      .then((data) => {
 
-          // The validate whether the database exists of not and it returns some 
-          // values that determine whether we have a working database. It is possible 
-          // that database is created but there isn't any tables.
+          // The validate whether the database contains all the tables required 
+          // in case there aren't the same number of tables require it forces to 
+          // sync database using the models and seeds them
           if (data.created === true && data.data === false) {
-               howMessage = false;
-               const sequelize = require('./config/connection');
 
                // Make sure we have initial data since database was deemed not valid
-               sequelize.sync({ force: false })
+               sequelize.sync({ force: true })
                     .then(() => {
-                         
+
                          try {
                               seeding.seedAll(sequelize) // Time to seed data
                                    .then(() => {

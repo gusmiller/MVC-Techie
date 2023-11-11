@@ -16,7 +16,8 @@
 const chalk = require("chalk");
 
 const sql = {
-    validateobject:`SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA `
+    validateobject:`SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA `,
+    validatetables:`SELECT count(*) TablesCount FROM information_schema.tables WHERE table_schema=`
 }
 
 const messages = {
@@ -24,6 +25,6 @@ const messages = {
     userseeded: chalk.bgGreen("Users table has been seeded"),
     categoriesseeded: chalk.bgGreen("Category table has been seeded"),
     listeningdata: chalk.bgGreen('----- LISTENING PLEASE GO TO A BROWSER TO ACCESS DATA -----'),
-    createdatabase: `Run query: CREATE DATABASE IF NOT EXISTS `
+    createdatabase: `There are missing tables in the database! Synchronize database.`
 }
 module.exports = { sql, messages };
