@@ -21,24 +21,11 @@ router.post('/create', async (req, res) => {
                {
                     title: req.body.title,
                     description: req.body.description,
-                    category_id: req.body.category_id
+                    category_id: parseInt(req.body.categoryid),
+                    user_id: parseInt(req.body.user_id),
                }
           );
-          
-          Post.create({
-               title: req.body.title,
-               description: req.body.description,
-               category_id: req.body.category_id,
-               user_id: req.body.user_id
-          })
-               .then((data) => {
-                    // Send the newly created row as a JSON object
-                    res.json(data);
-               })
-               .catch((err) => {
-                    res.json(err);
-               });
-
+          res.json(dsData);
 
      } catch (error) {
           res.status(400).json(error);

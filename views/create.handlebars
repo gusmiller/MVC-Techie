@@ -6,7 +6,7 @@
                     <div class="d-flex h-custom-2">
 
                          <form id="create-post" class="create-post">
-                              <input type="hidden" name="user_id" value="{{user_id}}">
+                              <input type="hidden" id="user_id" value="{{user_id}}">
 
                               <h3 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Create new Post</h3>
                               <p>Please enter a new post. You can use HTML tags if you know how to use them.</p>
@@ -17,12 +17,10 @@
                               </div>
                               <div class="form-outline mb-4">
                                    <select id="category_id" class="form-select form-control-lg" aria-label="Select post Category">
-                                        <option value="1">Lifestyle</option>
-                                        <option value="2" selected>Personal</option>
-                                        <option value="3">Science</option>
-                                        <option value="4">Fitness</option>
-                                        <option value="5">Beauty</option>
-                                        <option value="6">Cooking</option>
+                                        {{#each categories as | cat |}}
+                                        console.log(cat.name);
+                                        <option value="{{cat.id}}">{{cat.name}}</option>
+                                        {{/each}}
                                    </select>
                               </div>
 
@@ -44,4 +42,4 @@
      </div>
 </section>
 
-<script src="/js/post.js"></script>
+<script src="/js/create.js"></script>

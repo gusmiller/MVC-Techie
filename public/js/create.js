@@ -8,17 +8,27 @@
  * 
  * Date : 11/12/2023 8:28:41 AM
  *******************************************************************/
-const logout = async () => {
+const createpost = async (event) => {
+     event.preventDefault();
+
+     const title = document.querySelector('#title').value.trim();
+     const description = document.querySelector('#description').value.trim();
+     const categoryid = document.querySelector('#category_id').value;
+     const user_id = document.querySelector('#user_id').value;
+
      const response = await fetch('/api/posts/create', {
           method: 'POST',
+          body: JSON.stringify({ title, description, categoryid, user_id }),
           headers: { 'Content-Type': 'application/json' },
      });
 
      if (response.ok) {
-          document.location.replace('/login');
+          document.location.replace('/posts');
      } else {
           alert(response.statusText);
      }
 };
 
-document.querySelector('#create-post').addEventListener('click', logout);
+document
+     .querySelector('#create-post')
+     .addEventListener('submit', createpost);

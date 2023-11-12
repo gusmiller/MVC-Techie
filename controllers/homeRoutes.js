@@ -8,12 +8,13 @@
  * Date : 11/9/2023 7:39:28 PM
  *******************************************************************/
 const router = require("express").Router();
-const { Users } = require("../models");
+const { Users, Category } = require("../models");
 const withAuth = require("../utils/auth");
 
 router.get('/', async (req, res) => {
      res.render('hero', {
           logged_in: req.session.logged_in,
+          user_name: req.session.user_name,
      });
 });
 
@@ -33,8 +34,17 @@ router.get('/login', (req, res) => {
 /**
  * Posts route - this will allow current user to create a new post entry
  */
-router.get('/create', withAuth, (req, res) => {
+router.get('/create', withAuth, async (req, res) => {
+
+     const dbData = await Category.findAll({
+          attributes: { exclude: ['date_created'] },
+          order: [["name", "ASC"]],
+     });
+
+     const categories = dbData.map((list) => list.get({ plain: true }));
+
      res.render('create', {
+          categories,
           logged_in: req.session.logged_in,
           user_id: req.session.user_id
      });

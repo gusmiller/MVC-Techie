@@ -36,13 +36,23 @@ Replies.init(
                allowNull: false,
                defaultValue: Sequelize.NOW,
           },
-          comment_id:{
+          comment_id: {
                type: DataTypes.INTEGER,
-               references:{
+               allowNull: false,
+               references: {
                     model: 'comments',
                     key: 'id',
                }
+          },
+          user_id: {
+               type: DataTypes.INTEGER,
+               allowNull: false,
+               references: {
+                    model: 'users',
+                    key: 'id',
+               }
           }
+
      },
      {
           sequelize,
