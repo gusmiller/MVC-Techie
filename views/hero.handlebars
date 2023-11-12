@@ -1,8 +1,18 @@
 <section id="hero">
      <div class="hero-container">
+          {{#if logged_in}}
+          <h1>Hey {{user_name}}! Welcome to Tech Blog</h1>
+          {{else}}
           <h1>Welcome to Tech Blog</h1>
+          {{/if}}
+          
           <h2>Where you can post your thoughts, ideas or Recipes!</h2>
+          {{#if logged_in}}
+          <a href="/create" class="btn-get-started scrollto">New Post</a>
+          {{else}}
           <a href="/login" class="btn-get-started scrollto">Get Started</a>
-          <img src="/images/carleton-u-logo-nb.png" alt="Carleton University - Login" style="object-fit: cover; object-position: left;">
+          {{/if}}
+          <img src="/images/carleton-u-logo-nb.png" alt="Carleton University - Login"
+               style="object-fit: cover; object-position: left;">
      </div>
 </section>

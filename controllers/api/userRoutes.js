@@ -2,6 +2,7 @@
  * Carleton Bootcamp - 2023
  * Copyright 2023 Gustavo Miller
  * Licensed under Apache License
+ * 
  * Assignment # 14 Model-View-Controller (MVC)
  * Tech Blog
  * 
@@ -39,13 +40,14 @@ router.post('/login', async (req, res) => {
           // Login successfull create a session and initializer variables based data from table
           req.session.save(() => {
                req.session.user_id = dsData.id;
+               req.session.user_name = dsData.name;
                req.session.logged_in = true;
 
                res.json({ user: dsData, message: 'You are now logged in!' });
           });
 
-     } catch (err) {
-          res.status(400).json(err);
+     } catch (error) {
+          res.status(400).json(error);
      }
 });
 

@@ -36,9 +36,11 @@
                     <ul>
                          <li><a class="nav-link scrollto active" href="/">Home</a></li>
                          <li><a class="nav-link scrollto" href="/posts">Dashboard</a></li>
+
+                         {{#if logged_in}}
+                         <li><a id="logout" class="nav-link scrollto" href="#">Logout</a></li>
+                         {{else}}
                          <li><a class="nav-link scrollto" href="/login">Login</a></li>
-                         {{#if loggedIn}}
-                         <li><a class="nav-link scrollto" href="#portfolio">Logout</a></li>
                          {{/if}}
 
                     </ul>
@@ -48,7 +50,7 @@
           </div>
      </header><!-- End #header -->
 
-     <main id="main">
+     <main id="main" class="h-100">
 
           {{{ body }}}
 
@@ -65,10 +67,11 @@
      </footer><!-- End #footer -->
 
      <!-- Vendor JS Files -->
-     <script src="../../public/js/bootstrap.bundle.min.js"></script>
+     <script src="/js/bootstrap.bundle.min.js"></script>
 
      <!-- Template Main JS File -->
-     <script src="/public/js/main.js"></script>
+     <script src="/js/main.js"></script>
+     <script src="/js/logout.js"></script>
 
 </body>
 

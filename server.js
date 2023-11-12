@@ -73,7 +73,7 @@ app.use(express.urlencoded({ extended: true }));
 // Express.static: This is a middleware function in Express that serves static files. 
 // Static files are files that don"t change frequently. In the context here it joins
 // two or more paths to the content of __dirname.
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // End of middleware section **************************
 
