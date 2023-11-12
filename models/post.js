@@ -29,6 +29,7 @@ Post.init(
           },
           title: {
                type: DataTypes.STRING,
+               unique: true,
                allowNull: false,
           },
           description: {
@@ -42,17 +43,20 @@ Post.init(
           },
           date_edited: {
                type: DataTypes.DATEONLY,
-               allowNull: false,
+               allowNull: true,
+               defaultValue: null,
           },
           category_id: {
                type: DataTypes.INTEGER,
+               allowNull: false,
                references: {
-                    model: 'Category',
+                    model: 'category',
                     key: 'id',
                }
           },
           user_id: {
                type: DataTypes.INTEGER,
+               allowNull: false,
                references: {
                     model: 'users',
                     key: 'id',

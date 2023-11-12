@@ -2,6 +2,7 @@
  * Carleton Bootcamp - 2023
  * Copyright 2023 Gustavo Miller
  * Licensed under Apache License
+ * 
  * Assignment # 14 Model-View-Controller (MVC)
  * Tech Blog
  * 
@@ -10,8 +11,13 @@
 const router = require('express').Router();
 const { Users } = require('../../models');
 
+/**
+ * User Login POST endpoint - validate user login and create a session at login.
+ */
 router.post('/login', async (req, res) => {
      try {
+
+          // Retrieve user - we use the email address as the login
           const dsData = await Users.findOne({ where: { email: req.body.email } });
 
           if (!dsData) {
@@ -21,6 +27,7 @@ router.post('/login', async (req, res) => {
                return;
           }
 
+          // Compare and validate password against what user has in database
           const validPassword = await dsData.checkPassword(req.body.password);
 
           if (!validPassword) {
@@ -30,18 +37,23 @@ router.post('/login', async (req, res) => {
                return;
           }
 
+          // Login successfull create a session and initializer variables based data from table
           req.session.save(() => {
                req.session.user_id = dsData.id;
+               req.session.user_name = dsData.name;
                req.session.logged_in = true;
 
                res.json({ user: dsData, message: 'You are now logged in!' });
           });
 
-     } catch (err) {
-          res.status(400).json(err);
+     } catch (error) {
+          res.status(400).json(error);
      }
 });
 
+/**
+ * User POST endpoint logout - destroy session.
+ */
 router.post('/logout', (req, res) => {
      if (req.session.logged_in) {
           req.session.destroy(() => {

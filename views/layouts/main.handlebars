@@ -2,33 +2,77 @@
 <html lang="en">
 
 <head>
-     <meta charset="UTF-8">
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <title>User Registry</title>
-     <link rel="stylesheet" href="/css/jass.css">
+     <meta charset="utf-8">
+     <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+     <title>Carleton U - Techie Blog</title>
+     <meta content="" name="description">
+     <meta content="" name="keywords">
+
+     <!-- Google Fonts -->
+     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Lato:400,300,700,900"
+          rel="stylesheet">
+
+     <!-- CSS Files -->
+     <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+     <link rel="stylesheet" type="text/css" href="/css/bootstrap-icons.scss">
+     <link rel="stylesheet" type="text/css" href="/css/style.css">
+     <link rel="stylesheet" type="text/css" href="/css/jass.css">
 </head>
 
 <body>
-     <header class="display-flex justify-space-between align-center p-2">
-          <h1>
-               User Registry
-          </h1>
-          {{#if logged_in}}
-          <nav>
-               <button class="btn" id="logout">logout</button>
-          </nav>
-          {{/if}}
-     </header>
-     <main class="container container-fluid mt-5">
+
+     <!-- ======= Header ======= -->
+     <header id="header" class="fixed-top d-flex align-items-center">
+          <div class="container d-flex align-items-center">
+
+               <div class="logo me-auto">
+                    <h1><a href="#">Carleton U</a></h1>
+                    <!-- Uncomment below if you prefer to use an image logo -->
+                    <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+               </div>
+
+               <nav id="navbar" class="navbar">
+                    <ul>
+                         <li><a class="nav-link scrollto active" href="/">Home</a></li>
+                         <li><a class="nav-link scrollto" href="/posts">Dashboard</a></li>
+
+                         {{#if logged_in}}
+                         <li><a id="logout" class="nav-link scrollto" href="#">Logout</a></li>
+                         {{else}}
+                         <li><a class="nav-link scrollto" href="/login">Login</a></li>
+                         {{/if}}
+
+                    </ul>
+                    <i class="bi bi-list mobile-nav-toggle"></i>
+               </nav><!-- .navbar -->
+
+          </div>
+     </header><!-- End #header -->
+
+     <main id="main" class="h-100">
+
           {{{ body }}}
-     </main>
-     <footer>
 
-     </footer>
+     </main><!-- End #main -->
 
-     {{#if logged_in}}
+     <!-- ======= Footer ======= -->
+     <footer id="footer" class="fixed-bottom">
+          <div class="container">
+               <div class="copyright">
+                    &copy; Copyright <strong><span>OntarioTECK VBA Developers</span></strong>. All Rights Reserved
+               </div>
+
+          </div>
+     </footer><!-- End #footer -->
+
+     <!-- Vendor JS Files -->
+     <script src="/js/bootstrap.bundle.min.js"></script>
+
+     <!-- Template Main JS File -->
+     <script src="/js/main.js"></script>
      <script src="/js/logout.js"></script>
-     {{/if}}
+
 </body>
 
 </html>
