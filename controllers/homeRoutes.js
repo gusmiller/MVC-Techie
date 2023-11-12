@@ -11,22 +11,8 @@ const router = require("express").Router();
 const { Users } = require("../models");
 const withAuth = require("../utils/auth");
 
-router.get('/', withAuth, async (req, res) => {
-     try {
-          const dsData = await Users.findAll({
-               attributes: { exclude: ['password'] },
-               order: [['name', 'ASC']],
-          });
-
-          const users = dsData.map((project) => project.get({ plain: true }));
-
-          res.render('homepage', {
-               users,
-               logged_in: req.session.logged_in,
-          });
-     } catch (err) {
-          res.status(500).json(err);
-     }
+router.get('/', async (req, res) => {
+     res.render('hero');
 });
 
 router.get('/login', (req, res) => {
