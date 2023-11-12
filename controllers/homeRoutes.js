@@ -8,7 +8,7 @@
  * Date : 11/9/2023 7:39:28 PM
  *******************************************************************/
 const router = require("express").Router();
-const { Users, Category } = require("../models");
+const { Users, Category, Post } = require("../models");
 const withAuth = require("../utils/auth");
 
 router.get('/', async (req, res) => {
@@ -32,7 +32,8 @@ router.get('/login', (req, res) => {
 });
 
 /**
- * Posts route - this will allow current user to create a new post entry
+ * Posts route - this will allow current user to create a new post entry, we are
+ * getting the user id from the session.
  */
 router.get('/create', withAuth, async (req, res) => {
 
@@ -53,9 +54,19 @@ router.get('/create', withAuth, async (req, res) => {
 /**
  * Posts route - this will display the posts existing in the system
  */
-router.get('/posts', withAuth, (req, res) => {
+router.get('/posts', withAuth, async (req, res) => {
+         
+     const dbData = await Post.findAll({
+          attributes: { exclude: ['date_edited'] },
+          order: [["date_published", "DESC"]],
+     });
+
+     const postRecords = dbData.map((list) => list.get({ plain: true }));
+
      res.render('posts', {
+          postRecords,
           logged_in: req.session.logged_in,
+          user_name: req.session.user_name,
      });
 })
 

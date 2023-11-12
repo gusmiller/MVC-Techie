@@ -16,7 +16,7 @@ const createpost = async (event) => {
      const categoryid = document.querySelector('#category_id').value;
      const user_id = document.querySelector('#user_id').value;
 
-     const response = await fetch('/api/posts/create', {
+     const response = await fetch('api/posts/create', {
           method: 'POST',
           body: JSON.stringify({ title, description, categoryid, user_id }),
           headers: { 'Content-Type': 'application/json' },

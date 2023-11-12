@@ -1,20 +1,22 @@
 [
-     {
-          "name": "Lifestyle"
-     },
-     {
-          "name": "Personal"
-     },
-     {
-          "name": "Science"
-     },
-     {
-          "name": "Fitness"
-     },
-     {
-          "name": "Beauty"
-     },
-     {
-          "name": "Cooking"
-     }
+     {"name": "SQLServer"},
+     {"name": "Personal"},
+     {"name": "Science"},
+     {"name": "ASP/Net"},
+     {"name": "Javascript"},
+     {"name": "C#Sharp"},
+     {"name": "Television - Fantasy"},
+     {"name": "Movies - Marvel"},
+     {"name": "Comic Book Shows"},
+     {"name": "Television Animation"},
+     {"name": "Comics Indies"},
+     {"name": "Movies Dc Universe"},
+     {"name": "Corporate Culture"},
+     {"name": "Science Health"},
+     {"name": "Science Spaceflight"},
+     {"name": "Tech News Artificial Intelligence"},
+     {"name": "Trailer Frenzy"},
+     {"name": "Lifestyle"},
+     {"name": "Beauty & Health"},
+     {"name": "Advertisement"}
 ]

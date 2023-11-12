@@ -37,7 +37,7 @@ Post.init(
                allowNull: false,
           },
           date_published: {
-               type: DataTypes.DATEONLY,
+               type: DataTypes.DATE,
                allowNull: false,
                defaultValue: Sequelize.NOW,
           },
@@ -45,6 +45,11 @@ Post.init(
                type: DataTypes.DATEONLY,
                allowNull: true,
                defaultValue: null,
+          },
+          number_replies: {
+               type: DataTypes.INTEGER,
+               allowNull: false,
+               defaultValue: 0,
           },
           category_id: {
                type: DataTypes.INTEGER,

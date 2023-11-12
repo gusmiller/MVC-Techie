@@ -4,5 +4,11 @@
           "email": "gustavo.miller@miller-hs.com",
           "is_admin": true,
           "password": "CarletonUCoding"
+     },
+     {
+          "name": "Guest User",
+          "email": "guest@hotmail.com",
+          "is_admin": true,
+          "password": "password12345"
      }
 ]
