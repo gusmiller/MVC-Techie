@@ -33,4 +33,13 @@ router.get('/posts', (req, res) => {
      res.render('posts');
 })
 
+router.get('/reply', (req, res) => {
+     if (req.session.logged_in) {
+          res.redirect('/login');
+          return;
+     }
+
+     res.render('reply');
+})
+
 module.exports = router;
