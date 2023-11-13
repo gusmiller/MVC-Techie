@@ -12,6 +12,13 @@ const { Users, Category, Post, Comments } = require("../models");
 const withAuth = require("../utils/auth");
 const dic = require("../db/queries");
 
+router.get('/comments', (req, res) =>{
+     res.render('hero', {
+          logged_in: req.session.logged_in,
+          user_name: req.session.user_name,
+     });
+})
+
 router.get('/', async (req, res) => {
      res.render('hero', {
           logged_in: req.session.logged_in,
@@ -56,7 +63,7 @@ router.get('/create', withAuth, async (req, res) => {
  * Article route - this will display the articles existing in the system. It includes the 
  * category and comments information.
  */
-router.get('/posts', withAuth, async (req, res) => {
+router.get('/articles', withAuth, async (req, res) => {
 
      const sequelize = require('../config/connection');
      const { QueryTypes } = require('sequelize');
@@ -73,7 +80,7 @@ router.get('/posts', withAuth, async (req, res) => {
 
      // const postRecords = dbData.map((list) => list.get({ plain: true }));
 
-     res.render('posts', {
+     res.render('articles', {
           postRecords,
           logged_in: req.session.logged_in,
           user_name: req.session.user_name,
@@ -98,7 +105,7 @@ router.get('/reply', withAuth, (req, res) => {
  */
 router.get('/register', (req, res) => {
      if (req.session.logged_in) {
-          res.redirect('/login');
+          alert(dic.messages.registernot);
           return;
      }
 

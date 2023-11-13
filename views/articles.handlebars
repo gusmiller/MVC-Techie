@@ -8,8 +8,10 @@
                               <div class="card-title card-post-background">
                                    <div style="display: flex;justify-content: space-between;">
                                         <div>{{post.title}}</div>
-                                        <div>{{post.users.name}}</div>                                        
-                                        <button id="postreply{{post.id}}" data-postid="{{post.id}}" class="btn btn-primary-post" style="margin-right:15px;">Post a comment!</button>
+                                        <div>{{post.users.name}}</div>
+                                        <button id="postreply{{post.id}}" data-postid="{{post.id}}"
+                                             class="btn btn-primary-post" style="margin-right:15px;">
+                                             <i class="bi bi-send"></i> Post a comment!</button>
                                    </div>
                               </div>
                               <p class="pl-2">Category: <span class="category-color">{{post.category.name}}</span></p>
@@ -20,12 +22,12 @@
                     {{#if post.comments.length}}
                     {{#each post.comments as | row |}}
 
-                    <div class="h-custom-2 px-5 ms-xl-4 pt-xl-0 mt-xl-n5" style="margin-top:15px;">
+                    <div class="h-custom-2 px-5 ms-xl-4 pt-xl-0 mt-xl-n5 comment-user">
                          <div class="card-block">
                               <div class="card-body">
                                    <div class="card-title card-post-background" style="background-color: #5c6d6b">
                                         <div style="display: flex;justify-content: space-between;">
-                                             <div>{{row.user.name}}</div>
+                                             <div>{{row.date_published}}</div>
                                         </div>
                                    </div>
                                    <p class="pl-2 card-text">{{row.comment}}</p>

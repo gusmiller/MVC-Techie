@@ -7,7 +7,6 @@
  * 
  * Date : 11/9/2023 7:39:28 PM
  *******************************************************************/
-
 $(document).ready(function () {
 
      // Add a click event listener to each matching element. User will click on the button when sending 
