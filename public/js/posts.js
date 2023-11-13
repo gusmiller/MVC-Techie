@@ -59,6 +59,8 @@ $(document).ready(function () {
           $(".card-block").on("mouseover", revealButton);
           $(".card-block").on("mouseleave", removeButton);
 
+          $("#postreply").on("click", loadRepliesForm);
+
      }
 
      init();

@@ -33,7 +33,7 @@ router.get('/login', (req, res) => {
 });
 
 /**
- * Posts route - this will allow current user to create a new post entry, we are
+ * Article route - this will allow current user to create a new article entry, we are
  * getting the user id from the session.
  */
 router.get('/create', withAuth, async (req, res) => {
@@ -53,7 +53,7 @@ router.get('/create', withAuth, async (req, res) => {
 })
 
 /**
- * Posts route - this will display the posts existing in the system. It includes the 
+ * Article route - this will display the articles existing in the system. It includes the 
  * category and comments information.
  */
 router.get('/posts', withAuth, async (req, res) => {

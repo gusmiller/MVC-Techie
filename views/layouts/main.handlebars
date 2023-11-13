@@ -37,10 +37,13 @@
                          <li><a class="nav-link scrollto active" href="/">Home</a></li>
                          <li><a class="nav-link scrollto" href="/posts">Dashboard</a></li>
 
+                         <!-- This is done this way because when element is not rendered in the DOM the Javascript fails -->
                          {{#if logged_in}}
-                         <li><a id="logout" class="nav-link scrollto" href="/logout">Logout</a></li>
+                         <li><a id="logout" class="nav-link scrollto" href="#">Logout</a></li>
+                         <li><a id="login" class="nav-link scrollto" href="#" hidden>Login</a></li>
                          {{else}}
-                         <li><a class="nav-link scrollto" href="/login">Login</a></li>
+                         <li><a id="logout" class="nav-link scrollto" href="#" hidden>Logout</a></li>
+                         <li><a id="login" class="nav-link scrollto" href="#">Login</a></li>                         
                          {{/if}}
 
                     </ul>
@@ -65,6 +68,13 @@
 
           </div>
      </footer><!-- End #footer -->
+
+     <!-- JQuery: fast, small, and feature-rich JavaScript library -->
+     <!-- https://jquery.com/ -->
+     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
+     <!-- jQuery UI <script> tag -->
+     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
      <!-- Vendor JS Files -->
      <script src="/js/bootstrap.bundle.min.js"></script>

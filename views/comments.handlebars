@@ -8,13 +8,11 @@
                               <div class="card-title card-post-background">
                                    <div style="display: flex;justify-content: space-between;">
                                         <div>{{post.title}}</div>
-                                        <div>{{post.users.name}}</div>
-                                        <a id="post1" href="/reply" class="btn btn-primary-post"
-                                             style="margin-right:15px;">Post a reply!</a>
+                                        <div>{{post.users.name}}</div>                                        
+                                        <button id="postreply{{post.id}}" data-postid="{{post.id}}" class="btn btn-primary-post" style="margin-right:15px;">Post a comment!</button>
                                    </div>
                               </div>
-                              <p class="pl-2">Category: <strong><span
-                                             style="color:rgb(9, 50, 163);">{{post.category.name}}</span></strong></p>
+                              <p class="pl-2">Category: <span class="category-color">{{post.category.name}}</span></p>
                               <p class="pl-2 card-text">{{post.description}}</p>
                          </div>
                     </div>
@@ -43,5 +41,3 @@
           {{/each}}
      </div>
 </section>
-
-<script src="/public/js/posts.js"></script>

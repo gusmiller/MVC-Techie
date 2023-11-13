@@ -52,7 +52,8 @@ router.post('/login', async (req, res) => {
 });
 
 /**
- * User POST endpoint logout - destroy session.
+ * User POST endpoint logout - destroy session. Returns back to Javscript on main.js to 
+ * continue with process. It will redirect user to the main portal
  */
 router.post('/logout', (req, res) => {
      if (req.session.logged_in) {
