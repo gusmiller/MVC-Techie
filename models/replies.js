@@ -32,9 +32,9 @@ Replies.init(
                allowNull: false,
           },
           date_published: {
-               type: DataTypes.DATEONLY,
+               type: DataTypes.DATE,
                allowNull: false,
-               defaultValue: Sequelize.NOW,
+               defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
           },
           comment_id: {
                type: DataTypes.INTEGER,

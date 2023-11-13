@@ -33,13 +33,13 @@ Post.init(
                allowNull: false,
           },
           description: {
-               type: DataTypes.STRING,
+               type: DataTypes.TEXT,
                allowNull: false,
           },
           date_published: {
                type: DataTypes.DATE,
                allowNull: false,
-               defaultValue: Sequelize.NOW,
+               defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
           },
           date_edited: {
                type: DataTypes.DATEONLY,

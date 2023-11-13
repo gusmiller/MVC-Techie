@@ -55,10 +55,11 @@ router.get('/create', withAuth, async (req, res) => {
  * Posts route - this will display the posts existing in the system
  */
 router.get('/posts', withAuth, async (req, res) => {
-         
+
      const dbData = await Post.findAll({
           attributes: { exclude: ['date_edited'] },
           order: [["date_published", "DESC"]],
+          include: [{ model: Category }],
      });
 
      const postRecords = dbData.map((list) => list.get({ plain: true }));
