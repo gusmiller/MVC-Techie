@@ -10,5 +10,35 @@
           "email": "guest@hotmail.com",
           "is_admin": true,
           "password": "password12345"
+     },
+     {
+          "name": "Kevin Miller",
+          "email": "Kevin.Miller@hotmail.com",
+          "is_admin": true,
+          "password": "password12345"
+     },
+     {
+          "name": "Christina Miller",
+          "email": "Christina.Miller@hotmail.com",
+          "is_admin": true,
+          "password": "password12345"
+     },
+     {
+          "name": "Felipe Miller",
+          "email": "Felipe.Miller@hotmail.com",
+          "is_admin": true,
+          "password": "password12345"
+     },
+     {
+          "name": "Camelia Miller",
+          "email": "Camelia.Miller@hotmail.com",
+          "is_admin": true,
+          "password": "password12345"
+     },
+     {
+          "name": "Sebastian Echegoyen",
+          "email": "Sebastian.Echegoyen@hotmail.com",
+          "is_admin": true,
+          "password": "password12345"
      }
 ]
