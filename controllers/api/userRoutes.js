@@ -20,7 +20,7 @@ router.post('/register', async (req, res) => {
                     password: req.body.userpassword,
                }
           );
-          res.json(dsData);
+          res.status(200).json(dsData);
 
      } catch (error) {
           res.status(400).json(error);

@@ -15,6 +15,8 @@ const figlet = require("figlet");
 const chalk = require('chalk');
 const dic = require("../db/queries");
 
+const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
 /**
  * This function will parse a file.sql file, it removes all uft-8 characters and makes
  * it readable for the application. Very useful when running SQL files. NOT in use in this
@@ -101,4 +103,13 @@ function msg(value, add, blankline, sizestring) {
      return;
 }
 
-module.exports = { msg, parseSqlFile, apiendpoints, figletMsg };
+// Returns today's date as a formatted string.
+// Example: "August 2, 2022"
+function formatDate(date) {
+     const month = months[date.getMonth()];
+     const day = date.getDay();
+     const year = date.getFullYear();
+     return `${month} ${day}, ${year}`;
+}
+
+module.exports = { msg, parseSqlFile, apiendpoints, figletMsg, formatDate };

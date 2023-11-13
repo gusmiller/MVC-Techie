@@ -12,11 +12,20 @@ const { Users, Category, Post, Comments } = require("../models");
 const withAuth = require("../utils/auth");
 const dic = require("../db/queries");
 
-router.get('/comments', (req, res) =>{
-     res.render('hero', {
-          logged_in: req.session.logged_in,
-          user_name: req.session.user_name,
-     });
+router.get('/reply', withAuth, async (req, res) => {
+     res.render('reply', { logged_in: req.session.logged_in, user_name: req.session.user_name });
+})
+
+router.get('/reply/:id', withAuth, async (req, res) => {
+     res.render('reply', { logged_in: req.session.logged_in, user_name: req.session.user_name });
+})
+
+router.get('/reviews/', withAuth, async (req, res) => {
+     res.render('review', { logged_in: req.session.logged_in, user_name: req.session.user_name });
+})
+
+router.get('/reviews/:id', withAuth, async (req, res) => {
+     res.render('review', { logged_in: req.session.logged_in, user_name: req.session.user_name });
 })
 
 router.get('/', async (req, res) => {
@@ -69,7 +78,10 @@ router.get('/articles', withAuth, async (req, res) => {
      const { QueryTypes } = require('sequelize');
      const queryData = await sequelize.query(dic.sql.retrievesql, { type: QueryTypes.SELECT });
 
-     const allLevels = await Post.findAll({ include: { all: true, nested: true }});
+     const allLevels = await Post.findAll({ 
+          include: { all: true, nested: true },
+          order: [["date_published", "DESC"]],
+     });
      const postRecords = allLevels.map((list) => list.get({ plain: true }));
 
      // const dbData = await Post.findAll({

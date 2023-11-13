@@ -8,20 +8,12 @@
                          <form id="create-post" class="create-post">
                               <input type="hidden" id="user_id" value="{{user_id}}">
 
-                              <h3 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Create new Post</h3>
-                              <p>Please enter a new post. You can use HTML tags if you know how to use them.</p>
+                              <h3 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Post a Comment</h3>
+                              <p>Please enter your reviews or comments to the Article published. Be aware that comments are monitored and we do not tolerate the use curse words and foul language against the authors. Account would be close in those circumstances.</p>
 
                               <div class="form-outline mb-4">
-                                   <label class="form-label" for="email-login">Post Title</label>
+                                   <label class="form-label" for="email-login">Article</label>
                                    <input type="text" id="title" class="form-control form-control-lg" />
-                              </div>
-                              <div class="form-outline mb-4">
-                                   <select id="category_id" class="form-select form-control-lg" aria-label="Select post Category">
-                                        {{#each categories as | cat |}}
-                                        console.log(cat.name);
-                                        <option value="{{cat.id}}">{{cat.name}}</option>
-                                        {{/each}}
-                                   </select>
                               </div>
 
                               <div class="form-outline mb-4">

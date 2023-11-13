@@ -16,14 +16,14 @@ const createpost = async (event) => {
      const categoryid = document.querySelector('#category_id').value;
      const user_id = document.querySelector('#user_id').value;
 
-     const response = await fetch('api/posts/create', {
+     const response = await fetch('api/articles/create', {
           method: 'POST',
           body: JSON.stringify({ title, description, categoryid, user_id }),
           headers: { 'Content-Type': 'application/json' },
      });
 
      if (response.ok) {
-          document.location.replace('/posts');
+          document.location.replace('/articles');
      } else {
           alert(response.statusText);
      }

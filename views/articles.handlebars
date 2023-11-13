@@ -2,20 +2,25 @@
      <div class="row">
           {{#each postRecords as | post |}}
           <div class="col-sm-10 text-black mb-3">
-               <div class="h-custom-2 px-5 ms-xl-4 pt-xl-0 mt-xl-n5">
+               <div class="h-custom-2 ms-xl-4 pt-xl-0 mt-xl-n5">
                     <div class="card-block">
                          <div class="card-body">
                               <div class="card-title card-post-background">
-                                   <div style="display: flex;justify-content: space-between;">
-                                        <div>{{post.title}}</div>
-                                        <div>{{post.users.name}}</div>
-                                        <button id="postreply{{post.id}}" data-postid="{{post.id}}"
-                                             class="btn btn-primary-post" style="margin-right:15px;">
-                                             <i class="bi bi-send"></i> Post a comment!</button>
+
+                                   <div class="row">
+                                        <div class="col-sm-6">
+                                             <i class="bi bi-chat-heart" style="color: rgb(235, 175, 185);"></i>  {{post.title}}
+                                        </div>
+                                        <div class="col-sm-4">{{post.user.name}}</div>
+                                        <div class="col-sm-2 text-right">
+                                             <a class="btn btn-primary-post" href="/comments/{{post.id}}" 
+                                                  style="margin-right:5px;"><i 
+                                                  class="bi bi-send"></i> Post a comment!</a>
+                                        </div>
                                    </div>
                               </div>
                               <p class="pl-2">Category: <span class="category-color">{{post.category.name}}</span></p>
-                              <p class="pl-2 card-text">{{post.description}}</p>
+                              <p class="pl-2 px-2 card-text">{{post.description}}</p>
                          </div>
                     </div>
 
@@ -27,11 +32,12 @@
                               <div class="card-body">
                                    <div class="card-title card-post-background" style="background-color: #5c6d6b">
                                         <div style="display: flex;justify-content: space-between;">
-                                             <div>{{row.date_published}}</div>
+                                             <div>{{row.user.name}} - Commented on {{row.date_published}}</div>
                                         </div>
                                    </div>
                                    <p class="pl-2 card-text">{{row.comment}}</p>
                               </div>
+                              <p class="pl-2 card-text">Test</p>
                          </div>
                     </div>
 
