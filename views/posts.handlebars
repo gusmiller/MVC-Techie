@@ -9,15 +9,36 @@
                                    <div style="display: flex;justify-content: space-between;">
                                         <div>{{post.title}}</div>
                                         <div>Gustavo Miller</div>
-                                        <a id="post1" href="/reply" class="btn btn-success"
+                                        <a id="post1" href="/reply" class="btn btn-primary-post"
                                              style="margin-right:15px;">Post a reply!</a>
                                    </div>
                               </div>
-                              <p class="pl-2">Category: Sports</p>
+                              <p class="pl-2">Category: <strong><span
+                                             style="color:rgb(9, 50, 163);">{{post.category.name}}</span></strong></p>
                               <p class="pl-2 card-text">{{post.description}}</p>
                          </div>
                     </div>
+
+                    {{#if post.comments.length}}
+                    {{#each post.comments as | row |}}
+
+                    <div class="h-custom-2 px-5 ms-xl-4 pt-xl-0 mt-xl-n5" style="margin-top:15px;">
+                         <div class="card-block">
+                              <div class="card-body">
+                                   <div class="card-title card-post-background" style="background-color: #5c6d6b">
+                                        <div style="display: flex;justify-content: space-between;">
+                                             <div>Owner</div>
+                                        </div>
+                                   </div>
+                                   <p class="pl-2 card-text">{{row.comment}}</p>
+                              </div>
+                         </div>
+                    </div>
+
+                    {{/each}}
+                    {{/if}}
                </div>
+
           </div>
           {{/each}}
      </div>

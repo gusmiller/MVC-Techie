@@ -8,7 +8,7 @@
  * Date : 11/9/2023 7:39:28 PM
  *******************************************************************/
 const router = require("express").Router();
-const { Users, Category, Post } = require("../models");
+const { Users, Category, Post, Comments } = require("../models");
 const withAuth = require("../utils/auth");
 
 router.get('/', async (req, res) => {
@@ -52,14 +52,21 @@ router.get('/create', withAuth, async (req, res) => {
 })
 
 /**
- * Posts route - this will display the posts existing in the system
+ * Posts route - this will display the posts existing in the system. It includes the 
+ * category and comments information.
  */
 router.get('/posts', withAuth, async (req, res) => {
+
+     const sSql = `SELECT post.id, title, description, category_id, category.name, post.user_id, comment from post	join category on category.id=post.category_id left join comments on comments.post_id=post.id;`
+
+     const sequelize = require('../config/connection');
+     const { QueryTypes } = require('sequelize');
+     const users = await sequelize.query(sSql, { type: QueryTypes.SELECT });
 
      const dbData = await Post.findAll({
           attributes: { exclude: ['date_edited'] },
           order: [["date_published", "DESC"]],
-          include: [{ model: Category }],
+          include: [{ model: Category }, { model: Comments }],
      });
 
      const postRecords = dbData.map((list) => list.get({ plain: true }));

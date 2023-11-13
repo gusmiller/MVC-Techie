@@ -381,18 +381,18 @@ section {
 /*--------------------------------------------------------------
 * OntarioTECK Custom styling
 --------------------------------------------------------------*/
-.card-post-background {     
+.card-post-background {
     padding-bottom: 10px;
     padding-top: 10px;
     padding-left: 5px;
-    background-color: #2d6760;
+    background-color: #5176ae;
     color:whitesmoke;
     font-size: 1.15rem;
     font-family: "Lato", sans-serif;
 }
 
 .card-block{
-     border: 1px solid #055160;
+     border: 1px solid #64a5b2;
 }
 
 /*--------------------------------------------------------------
