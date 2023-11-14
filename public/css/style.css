@@ -381,6 +381,16 @@ section {
 /*--------------------------------------------------------------
 * OntarioTECK Custom styling
 --------------------------------------------------------------*/
+.form-flush-left{
+     margin-left: 0 !important;
+}
+
+.tuck-parragraph{
+     margin: 10px 25px 0;
+     font-style: italic;
+     color: rgb(89, 89, 149)
+}
+
 .carleton-image {
      object-fit: cover;
      object-position: left;

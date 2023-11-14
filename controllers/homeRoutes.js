@@ -12,20 +12,64 @@ const { Users, Category, Post, Comments } = require("../models");
 const withAuth = require("../utils/auth");
 const dic = require("../db/queries");
 
-router.get('/reply', withAuth, async (req, res) => {
-     res.render('reply', { logged_in: req.session.logged_in, user_name: req.session.user_name });
-})
+/**
+ * Replies GET route retrieves just one record. This is used in the Reply view to present
+ * information to the user. Condition: user must be registered and loged in.
 
+ */
 router.get('/reply/:id', withAuth, async (req, res) => {
-     res.render('reply', { logged_in: req.session.logged_in, user_name: req.session.user_name });
+
+     try {
+
+          const getRecord = await Comments.findOne({
+               where: { id: req.params.id },
+               include: { all: true, nested: true },
+          });
+
+          // This will serialize the data prior to send to handlebar. Notice we are not using 
+          // list as we don't have a bunch of records. Just one, but this object has connection 
+          // with other tables that contain many.
+          const dsData = getRecord.get({ plain: true });
+
+          res.render('reply', {
+               dsData,
+               logged_in: req.session.logged_in,
+               user_name: req.session.user_name
+          });
+
+     } catch (error) {
+          console.log(error.stack);
+     }
 })
 
-router.get('/reviews/', withAuth, async (req, res) => {
-     res.render('review', { logged_in: req.session.logged_in, user_name: req.session.user_name });
-})
-
+/**
+ * Reviews GET route retrieves just one record. This is used in the Review view to present
+ * information to the user. Condition: user must be registered and loged in.
+ */
 router.get('/reviews/:id', withAuth, async (req, res) => {
-     res.render('review', { logged_in: req.session.logged_in, user_name: req.session.user_name });
+
+     try {
+
+          const getRecord = await Post.findOne({
+               where: { id: req.params.id },
+               include: { all: true, nested: true },
+          });
+
+          // This will serialize the data prior to send to handlebar. Notice we are not using 
+          // list as we don't have a bunch of records. Just one, but this object has connection 
+          // with other tables that contain many.
+          const dsData = getRecord.get({ plain: true });
+
+          res.render('reviews', {
+               dsData,
+               logged_in: req.session.logged_in,
+               user_name: req.session.user_name
+          });
+
+     } catch (error) {
+          console.log(error.stack);
+     }
+
 })
 
 router.get('/', async (req, res) => {
@@ -59,6 +103,8 @@ router.get('/create', withAuth, async (req, res) => {
           order: [["name", "ASC"]],
      });
 
+     // This will serialize the data prior to send to handlebar. We are using list 
+     // in this case as we are dealing with a bunch of records. 
      const categories = dbData.map((list) => list.get({ plain: true }));
 
      res.render('create', {
@@ -78,7 +124,7 @@ router.get('/articles', withAuth, async (req, res) => {
      const { QueryTypes } = require('sequelize');
      const queryData = await sequelize.query(dic.sql.retrievesql, { type: QueryTypes.SELECT });
 
-     const allLevels = await Post.findAll({ 
+     const allLevels = await Post.findAll({
           include: { all: true, nested: true },
           order: [["date_published", "DESC"]],
      });

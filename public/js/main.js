@@ -9,6 +9,21 @@
  *******************************************************************/
 $(document).ready(function () {
 
+     function handleRespondLink() {
+          const postbuttons = document.querySelectorAll('[id^="commentblock"]');
+
+          postbuttons.forEach(function (element) {
+               element.addEventListener('mouseover', async function () {
+                    const linkElement = element.children[1]
+                    linkElement.removeAttribute('hidden');
+               });
+               element.addEventListener('mouseout', async function () {
+                    const linkElement = element.children[1]
+                    linkElement.setAttribute('hidden', true);
+               });
+          });
+     }
+
      // Add a click event listener to each matching element. User will click on the button when sending 
      // a commment to the post
      function commentEvents() {
@@ -60,6 +75,7 @@ $(document).ready(function () {
           logoutControl.addEventListener('click', logUserOut);
 
           commentEvents();
+          handleRespondLink();
      }
 
 

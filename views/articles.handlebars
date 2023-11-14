@@ -9,13 +9,14 @@
 
                                    <div class="row">
                                         <div class="col-sm-6">
-                                             <i class="bi bi-chat-heart" style="color: rgb(235, 175, 185);"></i>  {{post.title}}
+                                             <i class="bi bi-chat-heart" style="color: rgb(235, 175, 185);"></i>
+                                             {{post.title}}
                                         </div>
-                                        <div class="col-sm-4">{{post.user.name}}</div>
+                                        <div class="col-sm-4">Author: {{post.user.name}}</div>
                                         <div class="col-sm-2 text-right">
-                                             <a class="btn btn-primary-post" href="/comments/{{post.id}}" 
-                                                  style="margin-right:5px;"><i 
-                                                  class="bi bi-send"></i> Post a comment!</a>
+                                             <a class="btn btn-primary-post" href="/reviews/{{post.id}}"
+                                                  style="margin-right:5px;"><i class="bi bi-send"></i> Post a
+                                                  comment!</a>
                                         </div>
                                    </div>
                               </div>
@@ -25,10 +26,10 @@
                     </div>
 
                     {{#if post.comments.length}}
+                    {{!-- {{> replies post.comments}} --}}
                     {{#each post.comments as | row |}}
-
                     <div class="h-custom-2 px-5 ms-xl-4 pt-xl-0 mt-xl-n5 comment-user">
-                         <div class="card-block">
+                         <div id="commentblock{{row.id}}" class="card-block">
                               <div class="card-body">
                                    <div class="card-title card-post-background" style="background-color: #5c6d6b">
                                         <div style="display: flex;justify-content: space-between;">
@@ -37,12 +38,16 @@
                                    </div>
                                    <p class="pl-2 card-text">{{row.comment}}</p>
                               </div>
-                              <p class="pl-2 card-text">Test</p>
+                              <div id="replycomment" hidden>
+                                   <p class="pl-2 card-text">Would you like to reply?
+                                        <a href="/reply/{{row.id}}" class="link-info">Click here</a>
+                                   </p>
+                              </div>
                          </div>
                     </div>
-
                     {{/each}}
                     {{/if}}
+
                </div>
 
           </div>
