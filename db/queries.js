@@ -25,6 +25,7 @@ const messages = {
      mysqlLapps: chalk.bgRed("Carleton Universty Coding Bootcamp"),
      userseeded: chalk.bgGreen("Users table has been seeded"),
      postsseeded: chalk.bgGreen("Post table has been seeded with testing data"),
+     commentsseeded: chalk.bgGreen("Comments table has been seeded with testing data"),
      customseedingfailed: chalk.red("Custom seeding process has failed!"),
      executefailed: chalk.red("SQL Execute failed!"),
      commentsseeded: chalk.bgGreen("Comments table has been seeded with testing data"),

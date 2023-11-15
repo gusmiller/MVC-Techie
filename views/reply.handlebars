@@ -20,7 +20,7 @@
           </div>
           
           <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 text-black mb-3">
-               <form id="create-post" class="create-post form-flush-left">
+               <form id="create-post" action="/reviews/reply" method="post" class="create-post form-flush-left">
                     <input type="hidden" id="user_id" value="{{logged_in}}">
                     <input type="hidden" id="comment_id" value="{{dsData.id}}">
 

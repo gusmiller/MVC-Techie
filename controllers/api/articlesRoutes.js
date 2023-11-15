@@ -9,7 +9,48 @@
  * Date : 11/12/2023 8:31:03 AM
  *******************************************************************/
 const router = require('express').Router();
-const { Post } = require('../../models');
+const { Post, Category } = require('../../models');
+
+router.get('/categories/:id', async (req, res) => {
+     try {
+
+          // This will retrieve all Posts including all data from tables related. 
+          const allLevels = await Post.findAll({
+               where: { category_id: req.params.id },
+               include: { all: true, nested: true },
+               order: [["date_published", "DESC"]],
+          });
+          const postRecords = allLevels.map((list) => list.get({ plain: true }));
+
+          if (postRecords.length <= 0) {
+               res.render('articles', {
+                    postRecords,
+                    logged_in: req.session.logged_in,
+                    user_id: req.session.user_id,
+                    user_name: req.session.user_name,
+               });
+          }
+
+
+     } catch (error) {
+          res.status(400).json(error);
+     }
+});
+
+router.get('/categories', async (req, res) => {
+     try {
+
+          const dsData = await Category.findAll({
+               attributes: { exclude: ['date_created'] },
+               order: [["name", "ASC"]],
+          });
+
+          res.json(dsData);
+
+     } catch (error) {
+          res.status(400).json(error);
+     }
+});
 
 /**
  * User Create POST route - creates a new post for logged in user

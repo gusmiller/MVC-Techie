@@ -14,7 +14,7 @@ const { Post, Comments, Replies } = require('../../models');
 /**
  * User Create POST route - creates a new post for logged in user
  */
-router.get('/reviews/create', async (req, res) => {
+router.post('/reviews/create', async (req, res) => {
      try {
 
           const dsData = await Post.create(
@@ -35,7 +35,7 @@ router.get('/reviews/create', async (req, res) => {
 /**
  * User Create POST route - creates a new post for logged in user
  */
-router.get('/reviews/reply', async (req, res) => {
+router.post('/reviews/reply', async (req, res) => {
      try {
 
           const dsData = await Replies.create(

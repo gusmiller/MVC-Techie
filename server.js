@@ -35,8 +35,10 @@ const hbs = exphbs.create({ helpers });
 
 // Configure and link a session object with the sequelize store
 const sess = {
-     secret: "OntarioTECK VBA Developers",
-     cookie: {},
+     secret: "pmaC ytisrevinU notelraC",
+     cookie: {
+          maxAge: 60 * 60 * 1000,
+     },
      resave: false,
      saveUninitialized: true,
      store: new SequelizeStore({
