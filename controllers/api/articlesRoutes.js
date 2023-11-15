@@ -10,6 +10,8 @@
  *******************************************************************/
 const router = require('express').Router();
 const { Post, Category } = require('../../models');
+const sequelize = require('../../config/connection');
+const dic = require("../../db/queries");
 
 router.get('/categories/:id', async (req, res) => {
      try {
@@ -22,15 +24,12 @@ router.get('/categories/:id', async (req, res) => {
           });
           const postRecords = allLevels.map((list) => list.get({ plain: true }));
 
-          if (postRecords.length <= 0) {
-               res.render('articles', {
-                    postRecords,
-                    logged_in: req.session.logged_in,
-                    user_id: req.session.user_id,
-                    user_name: req.session.user_name,
-               });
-          }
-
+          res.render('articles', {
+               postRecords,
+               logged_in: req.session.logged_in,
+               user_id: req.session.user_id,
+               user_name: req.session.user_name,
+          });
 
      } catch (error) {
           res.status(400).json(error);
@@ -40,12 +39,8 @@ router.get('/categories/:id', async (req, res) => {
 router.get('/categories', async (req, res) => {
      try {
 
-          const dsData = await Category.findAll({
-               attributes: { exclude: ['date_created'] },
-               order: [["name", "ASC"]],
-          });
-
-          res.json(dsData);
+          const [results, metadata] = await sequelize.query(dic.sql.getcategories);
+          res.json(results);
 
      } catch (error) {
           res.status(400).json(error);

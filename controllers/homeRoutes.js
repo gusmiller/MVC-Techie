@@ -175,6 +175,7 @@ router.get('/articles', withAuth, async (req, res) => {
           postRecords,
           logged_in: req.session.logged_in,
           user_id: req.session.user_id,
+          logged_user_id: req.session.user_id,
           user_name: req.session.user_name,
      });
 })
