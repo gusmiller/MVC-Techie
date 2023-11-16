@@ -5,10 +5,11 @@
 
                     <div class="d-flex h-custom-2">
 
-                         <form id="create-post" class="create-post">
-                              <input type="hidden" id="user_id" value="{{user_id}}">
+                         <form id="review-post" class="review-post">
+                              <input type="hidden" id="user_id" value="{{dsData.user_id}}">
+                              <input type="hidden" id="post_id" value="{{dsData.id}}">
 
-                              <h3 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Post a Comment</h3>
+                              <h3 class="fw-normal mb-3 pb-3" style="letter-    spacing: 1px;">Post a Comment</h3>
                               <p>Please enter your reviews or comments to the Article published. Be aware that comments
                                    are monitored and we do not tolerate the use curse words and foul language against
                                    the authors. Account would be close in those circumstances.</p>
@@ -16,27 +17,24 @@
                               <div class="form-outline mb-4">
                                    <label class="form-label" for="email-login">Article written by user
                                         <strong>{{dsData.user.name}}</strong> </label>
-                                        <p class="tuck-parragraph">
-                                             "{{dsData.description}}"
-                                        </p>
-                                   
+                                        <p class="tuck-parragraph">"{{dsData.description}}"</p>                                   
                               </div>
 
                               <p class="pl-2">Category: <span class="category-color">{{dsData.category.name}}</span>
                               </p>
 
                               <div class="form-outline mb-4">
-                                   <textarea class="form-control" id="description" rows="8"></textarea>
+                                   <textarea class="form-control" id="replycomment" rows="8"></textarea>
                               </div>
 
                               <div class="pt-1 mb-2">
-                                   <button class="btn btn-info" type="submit" style="width:150px;">
+                                   <button class="btn btn-info wide-button" type="submit">
                                         <i class="bi bi-send" style="color: rgb(52, 52, 238);"></i>
                                         Submit Article
                                    </button>
-                                   <button class="btn btn-dark" style="width:150px;">
+                                   <a class="btn btn-dark wide-button" href="/articles">
                                         <i class="bi bi-x-square-fill" style="color: rgb(102, 61, 61);"></i>
-                                        Cancel</button>
+                                        Cancel</a>
                               </div>
 
                          </form>
@@ -48,4 +46,4 @@
      </div>
 </section>
 
-<script src="/js/create.js"></script>
+<script src="/js/reply.js"></script>

@@ -19,6 +19,7 @@
 -- Table structure for table `category`
 --
 
+/* Database create by Heroku */
 use iaion967f9hcfjj4;
 
 DROP TABLE IF EXISTS `category`;
