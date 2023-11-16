@@ -43,6 +43,7 @@ document.addEventListener("DOMContentLoaded", function () {
       * only categories that have been used. This way we avoid empty screens.
       */
      const loadCategory = async () => {
+         
           const response = await fetch('api/articles/categories', {
                method: 'GET',
                headers: { 'Content-Type': 'application/json' },

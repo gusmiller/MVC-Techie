@@ -9,6 +9,34 @@
  *******************************************************************/
 $(document).ready(function () {
 
+     /**
+      * This functon will validate each of the post and hide/show them 
+      * based on selected category. It select all the comments block and it 
+      * compares with logged in user
+      */
+     function handleRespondLink() {
+          const postbuttons = document.querySelectorAll('[id^="articlespost"]');
+
+          postbuttons.forEach(function (posttag) {
+               posttag.addEventListener('mouseover', async function () {
+                    const currentUser = document.getElementById("dashboard").getAttribute('data-user');
+                    const postidnumber = posttag.getAttribute('data-post');
+                    const userLoggedIn = posttag.getAttribute('data-owner');
+                    const linkElement = document.getElementById("edit" + postidnumber)
+
+                    if (userLoggedIn === currentUser) {
+                         linkElement.removeAttribute('hidden');
+                    }
+
+               });
+               posttag.addEventListener('mouseout', async function () {
+                    const postidnumber = posttag.getAttribute('data-post');
+                    const linkElement = document.getElementById("edit" + postidnumber)
+                    linkElement.setAttribute('hidden', true);
+               });
+          });
+     }
+
      // Add a click event listener to each matching element. User will click on the button when sending 
      // a commment to the post
      function commentEvents() {
@@ -61,6 +89,7 @@ $(document).ready(function () {
           logoutControl.addEventListener('click', logUserOut);
 
           commentEvents();
+          handleRespondLink(); //Initialize events for editable article
      }
 
 

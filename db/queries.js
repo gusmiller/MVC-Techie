@@ -19,7 +19,8 @@ const sql = {
      validateobject: `SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA `,
      validatetables: `SELECT count(*) TablesCount FROM information_schema.tables WHERE table_schema=`,
      retrievesql: `SELECT post.id, title, description, category_id, category.name, post.user_id, comment from post	join category on category.id=post.category_id left join comments on comments.post_id=post.id;`,
-     getcategories: `select distinctrow category.id, name from category join post on post.category_id=category.id`
+     getcategories: `select distinctrow category.id, name from category join post on post.category_id=category.id`,
+     editpost: `select id,title,description from post where id=`
 }
 
 const messages = {

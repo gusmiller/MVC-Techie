@@ -1,4 +1,5 @@
-<section id="dashboard" class="h-100" data-user="{{user_id}}">
+{{log userid}}
+<section id="dashboard" class="h-100" data-user="{{userid}}">
      <div class="row">
           <div class="col-xs-12 col-md-3 col-xl-2 text-black mb-2">
                <select id="category_id" class="h-custom-2 ms-xl-4 form-select form-control-lg"
@@ -10,26 +11,29 @@
 
      <div class="row">
           {{#each postRecords as | post |}}
-          <div id="articlespost{{post.id}}" data-category="{{post.category.id}}" data-owner="{{post.user_id}}" class="col-sm-10 text-black mb-3">
+          <div id="articlespost{{post.id}}" data-post="{{post.id}}" data-category="{{post.category.id}}" data-owner="{{post.user_id}}"
+               class="col-sm-10 text-black mb-3">
                <div class="h-custom-2 ms-xl-4 pt-xl-0 mt-xl-n5" style="margin-bottom: 25px">
                     <div class="card-block">
                          <div class="card-body">
                               <div class="card-title card-post-background">
 
                                    <div class="row">
-                                        <div class="col-sm-6">
+                                        <div class="col-sm-5">
                                              <i class="bi bi-chat-heart" style="color: rgb(235, 175, 185);"></i>
                                              {{post.title}}
                                         </div>
-                                        <div class="col-sm-4">Author: {{post.user.name}}</div>
-                                        <div class="col-sm-2 text-right">
-                                             <a class="btn btn-primary-post" href="/reviews/{{post.id}}"
-                                                  style="margin-right:5px;"><i class="bi bi-send"></i> Post a
-                                                  comment!</a>
+                                        <div class="col-sm-3">Author: {{post.user.name}}</div>
+                                        <div class="col-sm-4 text-right">
+                                             <a id="edit{{post.id}}" 
+                                                  class="btn btn-success action-buttons" hidden 
+                                                  href="/articles/edit/{{post.id}}"><i class="bi bi-pencil"></i> Edit Post!</a>
+                                             <a class="btn btn-primary-post action-buttons" 
+                                                  href="/reviews/{{post.id}}"><i class="bi bi-send"></i> Post a comment!</a>
                                         </div>
                                    </div>
                               </div>
-                              <p class="pl-2">Category: <span class="category-color">{{post.category.name}}</span></p>
+                              <p id="categoryid{{post.category.id}}" class="pl-2" data-category-id="{{post.category.id}}">Category: <span class="category-color">{{post.category.name}}</span></p>
                               <p class="pl-2 px-2 card-text">{{post.description}}</p>
                          </div>
                     </div>

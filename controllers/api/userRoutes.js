@@ -11,6 +11,10 @@
 const router = require('express').Router();
 const { Users } = require('../../models');
 
+/**
+ * User Registration POST endpoint - creates a new user and a new session
+ * cookie.
+ */
 router.post('/register', async (req, res) => {
      try {
           const dsData = await Users.create(
@@ -55,7 +59,7 @@ router.post('/login', async (req, res) => {
 
           // Login successfull create a session and initializer variables based data from table
           req.session.save(() => {
-               req.session.user_id = dsData.id;
+               req.session.userid = dsData.id;
                req.session.user_name = dsData.name;
                req.session.logged_in = true;
 

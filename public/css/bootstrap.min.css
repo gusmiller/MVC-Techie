@@ -3385,7 +3385,7 @@ fieldset:disabled .btn {
 .btn-success {
      --bs-btn-color: #fff;
      --bs-btn-bg: #198754;
-     --bs-btn-border-color: #198754;
+     --bs-btn-border-color: #09111d;
      --bs-btn-hover-color: #fff;
      --bs-btn-hover-bg: #157347;
      --bs-btn-hover-border-color: #146c43;

@@ -42,7 +42,7 @@ Post.init(
                defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
           },
           date_edited: {
-               type: DataTypes.DATEONLY,
+               type: DataTypes.DATE,
                allowNull: true,
                defaultValue: null,
           },
@@ -69,6 +69,12 @@ Post.init(
           }
      },
      {
+          hooks: {
+               beforeUpdate: async (instance, options) => {
+                    instance.date_edited =
+                          Sequelize.literal('CURRENT_TIMESTAMP');
+               },
+          },
           sequelize,
           timestamps: false,
           freezeTableName: true,

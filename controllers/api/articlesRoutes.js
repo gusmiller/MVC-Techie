@@ -27,7 +27,7 @@ router.get('/categories/:id', async (req, res) => {
           res.render('articles', {
                postRecords,
                logged_in: req.session.logged_in,
-               user_id: req.session.user_id,
+               userid: req.session.userid,
                user_name: req.session.user_name,
           });
 
@@ -36,6 +36,29 @@ router.get('/categories/:id', async (req, res) => {
      }
 });
 
+/**
+ * This API Endpoint will update the Post information, this comes from the 
+ * editarticles script that is attached to the edithandlebars. 
+ */
+router.put('/update/:id', async (req, res) => {
+
+     try {
+          const dsData = await Post.update(req.body, {
+               where: {
+                    id: req.params.id
+               }
+          });
+          res.status(200).json(dsData);
+
+     } catch (error) {
+          res.status(400).json(error);
+     }
+})
+
+/**
+ * This API Endpoint will retrieve a list of categories which is used to manipulate
+ * the DOM. This is called from the categories.js (api/articles/categories)
+ */
 router.get('/categories', async (req, res) => {
      try {
 
@@ -48,7 +71,7 @@ router.get('/categories', async (req, res) => {
 });
 
 /**
- * User Create POST route - creates a new post for logged in user
+ * User calls a POST endpoint - creates a new articles for logged in user
  */
 router.post('/create', async (req, res) => {
      try {
