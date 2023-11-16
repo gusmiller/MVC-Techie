@@ -71,6 +71,21 @@ router.get('/categories', async (req, res) => {
 });
 
 /**
+ * This API Endpoint will retrieve a list of all members which is used to manipulate
+ * the DOM. This is called from the categories.js (api/articles/members)
+ */
+router.get('/members', async (req, res) => {
+     try {
+
+          const [results, metadata] = await sequelize.query(dic.sql.getmembers);
+          res.json(results);
+
+     } catch (error) {
+          res.status(400).json(error);
+     }
+});
+
+/**
  * User calls a POST endpoint - creates a new articles for logged in user
  */
 router.post('/create', async (req, res) => {
