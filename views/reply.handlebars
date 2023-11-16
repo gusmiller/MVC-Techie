@@ -1,3 +1,4 @@
+{{log dsData}}
 <section class="h-100">
      <div class="row">
           <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 text-black mb-3">
@@ -20,8 +21,8 @@
           </div>
           
           <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 text-black mb-3">
-               <form id="create-post" action="/reviews/reply" method="post" class="create-post form-flush-left">
-                    <input type="hidden" id="user_id" value="{{logged_in}}">
+               <form id="create-reply" class="create-post form-flush-left">
+                    <input type="hidden" id="userid" value="{{dsData.post.user_id}}">
                     <input type="hidden" id="comment_id" value="{{dsData.id}}">
 
                     <div class="d-flex flex-column">
@@ -33,7 +34,7 @@
                               </div>
                          </div>
                          <div class="d-flex flex-column h-custom-2">
-                              <button type="button" class="btn btn-success">Submit</button>
+                              <button type="submit" class="btn btn-success">Submit</button>
                          </div>
 
                     </div>
@@ -41,3 +42,5 @@
           </div>
      </div>
 </section>
+
+<script src="/js/reply.js"></script>

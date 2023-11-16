@@ -64,7 +64,8 @@ router.get('/reply/:id', withAuth, async (req, res) => {
           res.render('reply', {
                dsData,
                logged_in: req.session.logged_in,
-               user_name: req.session.user_name
+               user_name: req.session.user_name,
+               userid: req.session.user_id,
           });
 
      } catch (error) {
