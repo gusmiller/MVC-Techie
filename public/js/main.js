@@ -9,32 +9,6 @@
  *******************************************************************/
 $(document).ready(function () {
 
-     /**
-      * This functon will validate each of the post and hide/show them 
-      * based on selected category. It select all the comments block and it 
-      * compares with logged in user
-      */
-     function handleRespondLink() {
-          const postbuttons = document.querySelectorAll('[id^="commentblock"]');
-
-          postbuttons.forEach(function (element) {
-               element.addEventListener('mouseover', async function () {
-                    const currentUser = document.getElementById("dashboard").getAttribute('data-user');
-                    const userLoggedIn = element.parentElement.parentElement.parentElement.getAttribute('data-owner');
-
-                    if (userLoggedIn === currentUser) {
-                         const linkElement = element.children[1]
-                         linkElement.removeAttribute('hidden');
-                    }
-
-               });
-               element.addEventListener('mouseout', async function () {
-                    const linkElement = element.children[1]
-                    linkElement.setAttribute('hidden', true);
-               });
-          });
-     }
-
      // Add a click event listener to each matching element. User will click on the button when sending 
      // a commment to the post
      function commentEvents() {
@@ -87,7 +61,6 @@ $(document).ready(function () {
           logoutControl.addEventListener('click', logUserOut);
 
           commentEvents();
-          handleRespondLink();
      }
 
 

@@ -47,7 +47,7 @@ router.get('/filter/:id', withAuth, async (req, res) => {
  * information to the user. Condition: user must be registered and loged in.
 
  */
-router.get('/reply/:id', withAuth, async (req, res) => {
+router.get('/replies/:id', withAuth, async (req, res) => {
 
      try {
 
@@ -179,18 +179,6 @@ router.get('/articles', withAuth, async (req, res) => {
           logged_user_id: req.session.user_id,
           user_name: req.session.user_name,
      });
-})
-
-/**
- * Reply route - will offer the user the option to reply to selected
- * post. User must be signed before accessing this route
- */
-router.get('/reply', withAuth, (req, res) => {
-
-     res.render('reply', {
-          logged_in: req.session.logged_in,
-     });
-
 })
 
 /**

@@ -12,6 +12,8 @@
 /**
  * This call back will call the reply create API. It will pass in its 
  * body the information to save.
+ * It was giving me a hard time; it concatenate with the current URL
+ * fixe by entering: http://localhost:3001/api/replies/create
  * @param {event form} event 
  */
 const createReply = async (event) => {
@@ -23,7 +25,8 @@ const createReply = async (event) => {
      const user_id = document.getElementById('userid').value;
 
      if (replycomment && comment_id && user_id) {
-          const response = await fetch('api/replies/create', {
+          console.log(document.location);
+          const response = await fetch(`${document.location.origin}/api/replies/create`, {
                method: 'POST',
                body: JSON.stringify({ replycomment, comment_id, user_id }),
                headers: { 'Content-Type': 'application/json' },
