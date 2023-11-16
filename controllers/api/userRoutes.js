@@ -11,6 +11,22 @@
 const router = require('express').Router();
 const { Users } = require('../../models');
 
+router.post('/register', async (req, res) => {
+     try {
+          const dsData = await Users.create(
+               {
+                    name: req.body.username,
+                    email: req.body.useremail,
+                    password: req.body.userpassword,
+               }
+          );
+          res.status(200).json(dsData);
+
+     } catch (error) {
+          res.status(400).json(error);
+     }
+})
+
 /**
  * User Login POST endpoint - validate user login and create a session at login.
  */
@@ -52,7 +68,8 @@ router.post('/login', async (req, res) => {
 });
 
 /**
- * User POST endpoint logout - destroy session.
+ * User POST endpoint logout - destroy session. Returns back to Javscript on main.js to 
+ * continue with process. It will redirect user to the main portal
  */
 router.post('/logout', (req, res) => {
      if (req.session.logged_in) {
@@ -61,6 +78,28 @@ router.post('/logout', (req, res) => {
           });
      } else {
           res.status(404).end();
+     }
+});
+
+/**
+ * User Registration validation POST endpoint - validate email does not already exists 
+ * we dont tell the user that information
+ */
+router.post('/validate', async (req, res) => {
+     try {
+
+          // Retrieve user - we use the email address as the login
+          const dsData = await Users.findOne({ where: { email: req.body.email } });
+
+          if (dsData) {
+               res
+                    .status(400)
+                    .json({ message: 'Incorrect email or password, please try again' });
+               return;
+          }
+
+     } catch (error) {
+          res.status(400).json(error);
      }
 });
 

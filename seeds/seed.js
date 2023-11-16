@@ -5,10 +5,11 @@
  * Assignment # 14 Model-View-Controller (MVC)
  * Tech Blog
  * 
- * Date : 11/9/2023 7:39:28 PM
+ * Date : 11/15/2023 5:46:58 AM
  *******************************************************************/
-const db = require("../config/mysqlconnection")
+const sequelize = require('../config/connection');
 const { Users, Category } = require('../models');
+const db = require("../config/mysqlconnection")
 const dic = require("../db/queries");
 
 const messages = require("../utils/formatter");
@@ -49,7 +50,13 @@ async function executeSQL(value) {
      }
 }
 
-exports.seedAll = async () => {
+// This is where the process starts it forces a database/tables regeneration (force: true), then
+// it uses the data.json files which contain data array that is created in table using the bulkcCreate
+// but the heavy data cannot be created in .json files; these are created using .sql files (UTF-8). But 
+// these cannot be created using sequelize therefore it uses MySQL2 npm package which allows the execution
+// of named queries.
+const seedDatabase = async () => {
+     await sequelize.sync({ force: true }); // Connect to sequelize 
 
      await Category.bulkCreate(categoryData);
      messages.msg(dic.messages.categoriesseeded, null, null, 80);
@@ -57,17 +64,14 @@ exports.seedAll = async () => {
      await Users.bulkCreate(userData, { individualHooks: true, returning: true, });
      messages.msg(dic.messages.userseeded, null, null, 80);
 
-     // These two lines show the paths using the path express api
-     // console.log(path.resolve(__dirname, '../db/scripts/postdata.sql'));
-     // console.log(process.cwd());
-
      // The fs.readFileSync() method is an inbuilt application programming interface of 
      // the fs module which is used to read the file and return its content. 
      // https://www.geeksforgeeks.org/node-js-fs-readfilesync-method/
      let postsData = fs.readFileSync(path.resolve(__dirname, '../db/scripts/postdata.sql'), 'utf-8');
 
-     // Import data directly from database. This uses a connection using MySQL npm package to 
-     // connect database. The sql script needs to be parsed to avoid errors in syntax.
+     // Import data directly from .sql files. This uses a connection using MySQL npm package to 
+     // connect database - not the same as sequelize. We rather have the control. The sql script needs 
+     // to be parsed to avoid errors in syntax.
      // Important note: not all commands are supported, for example "use {database}" is not recognize
      parsedSQL = messages.parseSqlFile(postsData);
 
@@ -80,9 +84,13 @@ exports.seedAll = async () => {
                postsData = fs.readFileSync(path.resolve(__dirname, '../db/scripts/populateComments.sql'), 'utf-8');
                parsedSQL = messages.parseSqlFile(postsData)
                await executeSQL(parsedSQL); // Import all testing comment post  
+               messages.msg(dic.messages.postsseeded, null, null, 80);
           }
 
      } catch (error) {
           console.log(dic.messages.customseedingfailed + ` Error: ${error.stack}`);
      }
+     process.exit(0);
 };
+
+seedDatabase();

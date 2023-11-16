@@ -15,6 +15,22 @@ const Replies = require("./Replies");
 
 Post.belongsTo(Category, {
      foreignKey: "category_id"
-})
+});
+
+Post.belongsTo(Users,{
+     foreignKey: "user_id"
+});
+
+Post.hasMany(Comments, {
+     foreignKey: 'post_id',
+   });
+
+Comments.belongsTo(Post, {
+     foreignKey: "post_id",
+});
+
+Comments.belongsTo(Users, {
+     foreignKey: "user_id",
+});
 
 module.exports = { Users, Category, Post, Comments, Replies };

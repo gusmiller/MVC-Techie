@@ -8,7 +8,7 @@
  * Date : 11/9/2023 7:39:28 PM
  *******************************************************************/
 const logout = async () => {
-     const response = await fetch('/api/users/logout', {
+     const response = await fetch('api/users/logout', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
      });

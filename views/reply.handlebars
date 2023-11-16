@@ -1,3 +1,4 @@
+{{log dsData}}
 <section class="h-100">
      <div class="row">
           <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 text-black mb-3">
@@ -6,35 +7,40 @@
                          <div class="card-body">
                               <div class="card-title card-post-background">
                                    <div style="display: flex;justify-content: space-between;">
-                                        <div>Special title treatment</div>
-                                        <div style="padding-right:25px;">Gustavo Miller</div>
+                                        <div>{{dsData.post.title}}</div>
+                                        <div style="padding-right:25px;">{{dsData.user.name}}</div>
                                    </div>
                               </div>
-                              <p class="pl-2">Category: Sports</p>
-                              <p class="pl-2 card-text">With supporting text below as a natural lead-in to additional
-                                   Lorem
-                                   ipsum dolor sit amet consectetur adipisicing elit. Dignissimos tenetur praesentium
-                                   officiis ea nobis ipsa ipsum tempore nulla magni incidunt quam eaque consectetur quia
-                                   dolor similique, ad totam itaque illo?
-                                   content.</p>
+                              <p class="pl-2">Category : <strong>{{dsData.post.category.name}}</strong></p>
+                              <p class="pl-2 card-text tuck-parragraph">{{dsData.post.description}}</p>
+                              <p class="mt-4 pl-2 card-text">Comment:</p>
+                              <p class="pl-2 card-text">{{dsData.comment}}</p>
                          </div>
                     </div>
                </div>
           </div>
+          
           <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 text-black mb-3">
-               <div class="d-flex flex-column">
-                    <div class="d-flex flex-column h-custom-2">
-                         <div class="card-title card-post-background">Pleae enter your reply</div>
+               <form id="create-reply" class="create-post form-flush-left">
+                    <input type="hidden" id="userid" value="{{dsData.post.user_id}}">
+                    <input type="hidden" id="comment_id" value="{{dsData.id}}">
 
-                         <div class="mb-3">
-                              <textarea class="form-control" id="exampleFormControlTextarea1" rows="12"></textarea>
+                    <div class="d-flex flex-column">
+                         <div class="d-flex flex-column h-custom-2">
+                              <div class="card-title card-post-background">Pleae enter your reply</div>
+
+                              <div class="mb-3">
+                                   <textarea class="form-control" id="replycomment" rows="18"></textarea>
+                              </div>
                          </div>
-                    </div>
-                    <div class="d-flex flex-column h-custom-2">
-                         <button type="button" class="btn btn-success">Submit</button>
-                    </div>
+                         <div class="d-flex flex-column h-custom-2">
+                              <button type="submit" class="btn btn-success">Submit</button>
+                         </div>
 
-               </div>
+                    </div>
+               </form>
           </div>
      </div>
 </section>
+
+<script src="/js/reply.js"></script>

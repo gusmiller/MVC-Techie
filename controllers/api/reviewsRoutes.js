@@ -6,15 +6,15 @@
  * Assignment # 14 Model-View-Controller (MVC)
  * Tech Blog
  * 
- * Date : 11/12/2023 8:31:03 AM
+ * Date : 11/13/2023 8:13:05 AM
  *******************************************************************/
 const router = require('express').Router();
-const { Post } = require('../../models');
+const { Post, Comments, Replies } = require('../../models');
 
 /**
  * User Create POST route - creates a new post for logged in user
  */
-router.post('/create', async (req, res) => {
+router.post('/reviews/create', async (req, res) => {
      try {
 
           const dsData = await Post.create(

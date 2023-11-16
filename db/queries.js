@@ -16,15 +16,23 @@
 const chalk = require("chalk");
 
 const sql = {
-    validateobject:`SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA `,
-    validatetables:`SELECT count(*) TablesCount FROM information_schema.tables WHERE table_schema=`
+     validateobject: `SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA `,
+     validatetables: `SELECT count(*) TablesCount FROM information_schema.tables WHERE table_schema=`,
+     retrievesql: `SELECT post.id, title, description, category_id, category.name, post.user_id, comment from post	join category on category.id=post.category_id left join comments on comments.post_id=post.id;`,
+     getcategories: `select distinctrow category.id, name from category join post on post.category_id=category.id`
 }
 
 const messages = {
-    mysqlLapps: chalk.bgRed("Carleton Universty Coding Bootcamp"),
-    userseeded: chalk.bgGreen("Users table has been seeded"),
-    categoriesseeded: chalk.bgGreen("Category table has been seeded"),
-    listeningdata: chalk.bgGreen('----- LISTENING PLEASE GO TO A BROWSER TO ACCESS DATA -----'),
-    createdatabase: `There are missing tables in the database! Synchronize database.`
+     mysqlLapps: chalk.bgRed("Carleton Universty Coding Bootcamp"),
+     userseeded: chalk.bgGreen("Users table has been seeded"),
+     postsseeded: chalk.bgGreen("Post table has been seeded with testing data"),
+     commentsseeded: chalk.bgGreen("Comments table has been seeded with testing data"),
+     customseedingfailed: chalk.red("Custom seeding process has failed!"),
+     executefailed: chalk.red("SQL Execute failed!"),
+     commentsseeded: chalk.bgGreen("Comments table has been seeded with testing data"),
+     categoriesseeded: chalk.bgGreen("Category table has been seeded"),
+     listeningdata: chalk.bgGreen('----- LISTENING PLEASE GO TO A BROWSER TO ACCESS DATA -----'),
+     createdatabase: `There are missing tables in the database! Synchronize database.`,
+     registernot: `You cannot register! It looks like you are already signed in!`
 }
 module.exports = { sql, messages };
