@@ -9,37 +9,52 @@
  * Date : 11/15/2023 3:12:44 PM
  *******************************************************************/
 
-/**
- * This call back will call the reply create API. It will pass in its 
- * body the information to save.
- * It was giving me a hard time; it concatenate with the current URL
- * fixe by entering: http://localhost:3001/api/replies/create
- * @param {event form} event 
- */
-const createReply = async (event) => {
-     event.preventDefault(); // Prevent the rendering of the form
+document.addEventListener("DOMContentLoaded", function () {
 
-     // Retrieve fields collected
-     const replycomment = document.getElementById('replycomment').value.trim();
-     const comment_id = document.getElementById('comment_id').value;
-     const user_id = document.getElementById('userid').value;
+     /**
+      * This call back will call the reply create API. It will pass in its 
+      * body the information to save.
+      * It was giving me a hard time; it concatenate with the current URL
+      * fixe by entering: http://localhost:3001/api/replies/create
+      * @param {event form} event 
+      */
+     const createReply = async (event) => {
+          event.preventDefault(); // Prevent the rendering of the form
 
-     if (replycomment && comment_id && user_id) {
-          console.log(document.location);
-          const response = await fetch(`${document.location.origin}/api/replies/create`, {
-               method: 'POST',
-               body: JSON.stringify({ replycomment, comment_id, user_id }),
-               headers: { 'Content-Type': 'application/json' },
-          });
+          // This is a tough one. This script is called from a URL that already contains
+          // an href in this case http://localhost:3001/articles/edit/## this causes the API
+          // call to append to the already existing URL. As a result the call fails; this hack
+          // fixes this.
+          const newURL = new URL(window.location.href); //Create new instance
+          newURL.origin = ""; //Clear the origin -which only removes the tail end
 
-          if (response.ok) {
-               document.location.replace('/articles'); // redirect to articles
-          } else {
-               alert(response.statusText);
+          // Retrieve fields collected
+          const replycomment = document.getElementById('replycomment').value.trim();
+          const post_id = document.getElementById('post_id').value;
+          const user_id = document.getElementById('user_id').value;
+
+          if (replycomment && post_id && user_id) {
+               console.log(document.location);
+               const response = await fetch(`${newURL.origin}/api/replies/create`, {
+                    method: 'POST',
+                    body: JSON.stringify({ replycomment, post_id, user_id }),
+                    headers: { 'Content-Type': 'application/json' },
+               });
+
+               if (response.ok) {
+                    document.location.replace('/articles'); // redirect to articles
+               } else {
+                    alert(response.statusText);
+               }
           }
-     }
-};
+     };
+     
+     // Entry point start process
+     function initialize() {
 
-document
-     .querySelector('#create-reply')
-     .addEventListener('submit', createReply);
+          document.getElementById('review-post').addEventListener('submit', createReply);
+     }
+
+     initialize();
+
+})

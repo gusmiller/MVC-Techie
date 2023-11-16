@@ -9,7 +9,7 @@
  * Date : 11/15/2023 7:03:29 PM
  *******************************************************************/
 const router = require('express').Router();
-const { Replies } = require('../../models');
+const { Comments } = require('../../models');
 
 /**
  * User Create POST route - creates a new post for logged in user
@@ -17,10 +17,10 @@ const { Replies } = require('../../models');
 router.post('/create', async (req, res) => {
      try {
 
-          const dsData = await Replies.create(
+          const dsData = await Comments.create(
                {
-                    reply: req.body.replycomment,
-                    comment_id: parseInt(req.body.comment_id),
+                    comment: req.body.replycomment,
+                    post_id: parseInt(req.body.post_id),
                     user_id: parseInt(req.body.user_id),
                }
           );
