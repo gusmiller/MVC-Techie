@@ -17,13 +17,13 @@ Post.belongsTo(Category, {
      foreignKey: "category_id"
 });
 
-Post.belongsTo(Users,{
+Post.belongsTo(Users, {
      foreignKey: "user_id"
 });
 
 Post.hasMany(Comments, {
      foreignKey: 'post_id',
-   });
+});
 
 Comments.belongsTo(Post, {
      foreignKey: "post_id",
@@ -32,5 +32,13 @@ Comments.belongsTo(Post, {
 Comments.belongsTo(Users, {
      foreignKey: "user_id",
 });
+
+Replies.belongsTo(Comments, {
+     foreignKey: "comment_id",
+})
+
+Replies.belongsTo(Users, {
+     foreignKey: "user_id",
+})
 
 module.exports = { Users, Category, Post, Comments, Replies };
