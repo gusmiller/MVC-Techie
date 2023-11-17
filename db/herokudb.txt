@@ -1,8 +1,0 @@
-mysql://hdstv28ch3irfwrx:fzedmw2p8qqi8m1a@j8oay8teq9xaycnm.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/iaion967f9hcfjj4
-
-User name : hdstv28ch3irfwrx
-Pwd       : fzedmw2p8qqi8m1a
-Database  : iaion967f9hcfjj4
-Domain: 8oay8teq9xaycnm.cbetxkdyhwsb.us-east-1.rds.amazonaws.com
-
-mysql://hdstv28ch3irfwrx:fzedmw2p8qqi8m1a@j8oay8teq9xaycnm.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/iaion967f9hcfjj4
