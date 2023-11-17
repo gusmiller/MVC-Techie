@@ -8,7 +8,7 @@
  * Date : 11/9/2023 7:39:28 PM
  *******************************************************************/
 const router = require("express").Router();
-const { Users, Category, Post, Comments } = require("../models");
+const { Users, Category, Posts, Comments } = require("../models");
 const withAuth = require("../utils/auth");
 const dic = require("../db/queries");
 
@@ -62,7 +62,7 @@ router.get('/articles/edit/:id', withAuth, async (req, res) => {
      
      try {
 
-          const getRecord = await Post.findOne({
+          const getRecord = await Posts.findOne({
                where: { id: req.params.id },
                include: { all: true, nested: true },
           });
@@ -92,7 +92,7 @@ router.get('/reviews/:id', withAuth, async (req, res) => {
 
      try {
 
-          const getRecord = await Post.findOne({
+          const getRecord = await Posts.findOne({
                where: { id: req.params.id },
                include: { all: true, nested: true },
           });
@@ -180,7 +180,7 @@ router.get('/articles', withAuth, async (req, res) => {
      const postCat = dsCat.map((list) => list.get({ plain: true }));
 
      // This will retrieve all Posts including all data from tables related. 
-     const allLevels = await Post.findAll({
+     const allLevels = await Posts.findAll({
           include: { all: true, nested: true },
           order: [["date_published", "DESC"]],
      });

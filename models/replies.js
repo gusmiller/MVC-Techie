@@ -16,7 +16,7 @@ const { Model, DataTypes, Sequelize } = require('sequelize');  //Destructuring i
 
 const sequelize = require('../config/connection');
 
-// Initialize Post model (table) by extending off Sequelize's Model class
+// Initialize Replies model (table) by extending off Sequelize's Model class
 class Replies extends Model { }
 
 Replies.init(

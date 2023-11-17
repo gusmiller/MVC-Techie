@@ -12,7 +12,7 @@ const router = require('express').Router();
 const { Comments } = require('../../models');
 
 /**
- * User Create POST route - creates a new post for logged in user
+ * User Create POST route - creates a new posts for logged in user
  */
 router.post('/create', async (req, res) => {
      try {

@@ -9,7 +9,7 @@
  * Date : 11/12/2023 8:31:03 AM
  *******************************************************************/
 const router = require('express').Router();
-const { Post, Category } = require('../../models');
+const { Posts, Category } = require('../../models');
 const sequelize = require('../../config/connection');
 const dic = require("../../db/queries");
 
@@ -17,7 +17,7 @@ router.get('/categories/:id', async (req, res) => {
      try {
 
           // This will retrieve all Posts including all data from tables related. 
-          const allLevels = await Post.findAll({
+          const allLevels = await Posts.findAll({
                where: { category_id: req.params.id },
                include: { all: true, nested: true },
                order: [["date_published", "DESC"]],
@@ -37,13 +37,13 @@ router.get('/categories/:id', async (req, res) => {
 });
 
 /**
- * This API Endpoint will update the Post information, this comes from the 
+ * This API Endpoint will update the Posts information, this comes from the 
  * editarticles script that is attached to the edithandlebars. 
  */
 router.put('/update/:id', async (req, res) => {
 
      try {
-          const dsData = await Post.update(req.body, {
+          const dsData = await Posts.update(req.body, {
                where: {
                     id: req.params.id
                }
@@ -91,7 +91,7 @@ router.get('/members', async (req, res) => {
 router.post('/create', async (req, res) => {
      try {
 
-          const dsData = await Post.create(
+          const dsData = await Posts.create(
                {
                     title: req.body.title,
                     description: req.body.description,

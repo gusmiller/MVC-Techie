@@ -16,7 +16,7 @@ const { Model, DataTypes, Sequelize } = require('sequelize');  //Destructuring i
 
 const sequelize = require('../config/connection');
 
-// Initialize Post model (table) by extending off Sequelize's Model class
+// Initialize Comments model (table) by extending off Sequelize's Model class
 class Comments extends Model { }
 
 Comments.init(
@@ -40,7 +40,7 @@ Comments.init(
                type: DataTypes.INTEGER,
                allowNull: false,
                references:{
-                    model: 'post',
+                    model: 'posts',
                     key: 'id',
                }
           },

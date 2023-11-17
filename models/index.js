@@ -9,23 +9,23 @@
  *******************************************************************/
 const Users = require("./User");
 const Category = require("./Category");
-const Post = require("./Post");
+const Posts = require("./posts");
 const Comments = require("./Comments");
 const Replies = require("./Replies");
 
-Post.belongsTo(Category, {
+Posts.belongsTo(Category, {
      foreignKey: "category_id"
 });
 
-Post.belongsTo(Users, {
+Posts.belongsTo(Users, {
      foreignKey: "user_id"
 });
 
-Post.hasMany(Comments, {
+Posts.hasMany(Comments, {
      foreignKey: 'post_id',
 });
 
-Comments.belongsTo(Post, {
+Comments.belongsTo(Posts, {
      foreignKey: "post_id",
 });
 
@@ -41,4 +41,4 @@ Replies.belongsTo(Users, {
      foreignKey: "user_id",
 })
 
-module.exports = { Users, Category, Post, Comments, Replies };
+module.exports = { Users, Category, Posts, Comments, Replies };

@@ -83,7 +83,7 @@ const seedDatabase = async () => {
                // Retrieve next file: testing data for comments.
                postsData = fs.readFileSync(path.resolve(__dirname, '../db/scripts/populateComments.sql'), 'utf-8');
                parsedSQL = messages.parseSqlFile(postsData)
-               await executeSQL(parsedSQL); // Import all testing comment post  
+               await executeSQL(parsedSQL); // Import all testing comment posts
                messages.msg(dic.messages.postsseeded, null, null, 80);
           }
 

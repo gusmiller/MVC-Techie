@@ -16,10 +16,10 @@ const { Model, DataTypes, Sequelize } = require('sequelize');  //Destructuring i
 
 const sequelize = require('../config/connection');
 
-// Initialize Post model (table) by extending off Sequelize's Model class
-class Post extends Model { }
+// Initialize Posts model (table) by extending off Sequelize's Model class
+class Posts extends Model { }
 
-Post.init(
+Posts.init(
      {
           id: {
                type: DataTypes.INTEGER,
@@ -79,8 +79,8 @@ Post.init(
           timestamps: false,
           freezeTableName: true,
           underscored: true,
-          modelName: 'post',
+          modelName: 'posts',
      }
 );
 
-module.exports = Post;
+module.exports = Posts;

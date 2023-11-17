@@ -12,7 +12,6 @@
      "license": "ISC",
      "dependencies": {
           "bcrypt": "^5.0.0",
-          "bootstrap-icons": "^1.11.1",
           "chalk": "^4.1.2",
           "connect-session-sequelize": "^7.0.4",
           "dotenv": "^8.2.0",

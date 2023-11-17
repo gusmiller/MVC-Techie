@@ -2,7 +2,7 @@
      <div class="row">
           <div class="col-xs-6 col-md-3 col-xl-2 text-black mb-2">
                <select id="category_id" class="h-custom-2 ms-xl-4 form-select form-control-lg"
-                    aria-label="Select post Category">
+                    aria-label="Select Article Category">
 
                </select>
           </div>
@@ -13,9 +13,9 @@
      </div>
 
      <div class="row">
-          {{#each postRecords as | post |}}
-          <div id="articlespost{{post.id}}" data-post="{{post.id}}" data-memberid="{{post.user.id}}" data-category="{{post.category.id}}"
-               data-owner="{{post.user_id}}" class="col-sm-10 text-black mb-3">
+          {{#each postRecords as | item |}}
+          <div id="articlespost{{item.id}}" data-post="{{item.id}}" data-memberid="{{item.user.id}}" data-category="{{item.category.id}}"
+               data-owner="{{item.user_id}}" class="col-sm-10 text-black mb-3">
                <div class="h-custom-2 ms-xl-4 pt-xl-0 mt-xl-n5" style="margin-bottom: 25px">
                     <div class="card-block">
                          <div class="card-body">
@@ -24,29 +24,29 @@
                                    <div class="row">
                                         <div class="col-sm-5">
                                              <i class="bi bi-chat-heart" style="color: rgb(235, 175, 185);"></i>
-                                             {{post.title}}
+                                             {{item.title}}
                                         </div>
-                                        <div class="col-sm-3">Author: {{post.user.name}}</div>
+                                        <div class="col-sm-3">Author: {{item.user.name}}</div>
                                         <div class="col-sm-4 text-right">
-                                             <a id="edit{{post.id}}" class="btn btn-success action-buttons" hidden
-                                                  href="/articles/edit/{{post.id}}"><i class="bi bi-pencil"></i> Edit
+                                             <a id="edit{{item.id}}" class="btn btn-success action-buttons" hidden
+                                                  href="/articles/edit/{{item.id}}"><i class="bi bi-pencil"></i> Edit
                                                   Post!</a>
                                              <a class="btn btn-primary-post action-buttons"
-                                                  href="/reviews/{{post.id}}"><i class="bi bi-send"></i> Post a
+                                                  href="/reviews/{{item.id}}"><i class="bi bi-send"></i> Post a
                                                   comment!</a>
                                         </div>
                                    </div>
                               </div>
-                              <p id="categoryid{{post.category.id}}" class="pl-2"
-                                   data-category-id="{{post.category.id}}">Category: <span
-                                        class="category-color">{{post.category.name}}</span></p>
-                              <p class="pl-2 px-2 card-text">{{post.description}}</p>
+                              <p id="categoryid{{item.category.id}}" class="pl-2"
+                                   data-category-id="{{item.category.id}}">Category: <span
+                                        class="category-color">{{item.category.name}}</span></p>
+                              <p class="pl-2 px-2 card-text">{{item.description}}</p>
                          </div>
                     </div>
 
-                    {{#if post.comments.length}}
-                    {{!-- {{> replies post.comments}} --}}
-                    {{#each post.comments as | row |}}
+                    {{#if item.comments.length}}
+                    {{!-- {{> replies item.comments}} --}}
+                    {{#each item.comments as | row |}}
                     <div class="h-custom-2 px-5 ms-xl-4 pt-xl-0 mt-xl-n5 comment-user">
                          <div id="commentblock{{row.id}}" class="card-block">
                               <div class="card-body">

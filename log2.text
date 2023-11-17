@@ -1,0 +1,100 @@
+2023-11-17T04:59:06.645632+00:00 app[web.1]: npm notice Run `npm install -g npm@10.2.4` to update!
+2023-11-17T04:59:06.645656+00:00 app[web.1]: npm notice
+2023-11-17T04:59:06.751969+00:00 heroku[web.1]: Process exited with status 1
+2023-11-17T04:59:06.772982+00:00 heroku[web.1]: State changed from starting to crashed
+2023-11-17T05:20:49.000000+00:00 app[api]: Build started by user gustavo.miller@miller-hs.com
+2023-11-17T05:21:10.372549+00:00 app[api]: Deploy 022e07b7 by user gustavo.miller@miller-hs.com
+2023-11-17T05:21:10.372549+00:00 app[api]: Release v11 created by user gustavo.miller@miller-hs.com
+2023-11-17T05:21:10.584403+00:00 heroku[web.1]: State changed from crashed to starting
+2023-11-17T05:21:11.000000+00:00 app[api]: Build succeeded
+2023-11-17T05:21:13.251300+00:00 heroku[web.1]: Starting process with command `npm start`
+2023-11-17T05:21:14.279494+00:00 app[web.1]: 
+2023-11-17T05:21:14.279533+00:00 app[web.1]: > MVC-Tech.blog@1.0.0 start
+2023-11-17T05:21:14.279533+00:00 app[web.1]: > node server.js
+2023-11-17T05:21:14.279534+00:00 app[web.1]: 
+2023-11-17T05:21:14.614899+00:00 app[web.1]: node:internal/modules/cjs/loader:1051
+2023-11-17T05:21:14.614920+00:00 app[web.1]: throw err;
+2023-11-17T05:21:14.614920+00:00 app[web.1]: ^
+2023-11-17T05:21:14.614921+00:00 app[web.1]: 
+2023-11-17T05:21:14.614921+00:00 app[web.1]: Error: Cannot find module './Post'
+2023-11-17T05:21:14.614921+00:00 app[web.1]: Require stack:
+2023-11-17T05:21:14.614922+00:00 app[web.1]: - /app/models/index.js
+2023-11-17T05:21:14.614922+00:00 app[web.1]: - /app/controllers/api/userRoutes.js
+2023-11-17T05:21:14.614923+00:00 app[web.1]: - /app/controllers/api/index.js
+2023-11-17T05:21:14.614923+00:00 app[web.1]: - /app/controllers/index.js
+2023-11-17T05:21:14.614923+00:00 app[web.1]: - /app/server.js
+2023-11-17T05:21:14.614930+00:00 app[web.1]: at Module._resolveFilename (node:internal/modules/cjs/loader:1048:15)
+2023-11-17T05:21:14.614930+00:00 app[web.1]: at Module._load (node:internal/modules/cjs/loader:901:27)
+2023-11-17T05:21:14.614931+00:00 app[web.1]: at Module.require (node:internal/modules/cjs/loader:1115:19)
+2023-11-17T05:21:14.614931+00:00 app[web.1]: at require (node:internal/modules/helpers:130:18)
+2023-11-17T05:21:14.614931+00:00 app[web.1]: at Object.<anonymous> (/app/models/index.js:12:14)
+2023-11-17T05:21:14.614931+00:00 app[web.1]: at Module._compile (node:internal/modules/cjs/loader:1241:14)
+2023-11-17T05:21:14.614931+00:00 app[web.1]: at Module._extensions..js (node:internal/modules/cjs/loader:1295:10)
+2023-11-17T05:21:14.614932+00:00 app[web.1]: at Module.load (node:internal/modules/cjs/loader:1091:32)
+2023-11-17T05:21:14.614932+00:00 app[web.1]: at Module._load (node:internal/modules/cjs/loader:938:12)
+2023-11-17T05:21:14.614932+00:00 app[web.1]: at Module.require (node:internal/modules/cjs/loader:1115:19) {
+2023-11-17T05:21:14.614932+00:00 app[web.1]: code: 'MODULE_NOT_FOUND',
+2023-11-17T05:21:14.614932+00:00 app[web.1]: requireStack: [
+2023-11-17T05:21:14.614933+00:00 app[web.1]: '/app/models/index.js',
+2023-11-17T05:21:14.614933+00:00 app[web.1]: '/app/controllers/api/userRoutes.js',
+2023-11-17T05:21:14.614933+00:00 app[web.1]: '/app/controllers/api/index.js',
+2023-11-17T05:21:14.614933+00:00 app[web.1]: '/app/controllers/index.js',
+2023-11-17T05:21:14.614934+00:00 app[web.1]: '/app/server.js'
+2023-11-17T05:21:14.614934+00:00 app[web.1]: ]
+2023-11-17T05:21:14.614934+00:00 app[web.1]: }
+2023-11-17T05:21:14.614934+00:00 app[web.1]: 
+2023-11-17T05:21:14.614934+00:00 app[web.1]: Node.js v20.9.0
+2023-11-17T05:21:14.624539+00:00 app[web.1]: npm notice
+2023-11-17T05:21:14.624664+00:00 app[web.1]: npm notice New minor version of npm available! 10.1.0 -> 10.2.4
+2023-11-17T05:21:14.624749+00:00 app[web.1]: npm notice Changelog: <https://github.com/npm/cli/releases/tag/v10.2.4>
+2023-11-17T05:21:14.624853+00:00 app[web.1]: npm notice Run `npm install -g npm@10.2.4` to update!
+2023-11-17T05:21:14.624870+00:00 app[web.1]: npm notice
+2023-11-17T05:21:14.731856+00:00 heroku[web.1]: Process exited with status 1
+2023-11-17T05:21:14.753389+00:00 heroku[web.1]: State changed from starting to crashed
+2023-11-17T05:21:14.756657+00:00 heroku[web.1]: State changed from crashed to starting
+2023-11-17T05:21:17.402388+00:00 heroku[web.1]: Starting process with command `npm start`
+2023-11-17T05:21:18.274650+00:00 app[web.1]: 
+2023-11-17T05:21:18.274687+00:00 app[web.1]: > MVC-Tech.blog@1.0.0 start
+2023-11-17T05:21:18.274687+00:00 app[web.1]: > node server.js
+2023-11-17T05:21:18.274687+00:00 app[web.1]: 
+2023-11-17T05:21:18.615550+00:00 app[web.1]: node:internal/modules/cjs/loader:1051
+2023-11-17T05:21:18.615582+00:00 app[web.1]: throw err;
+2023-11-17T05:21:18.615583+00:00 app[web.1]: ^
+2023-11-17T05:21:18.615583+00:00 app[web.1]: 
+2023-11-17T05:21:18.615583+00:00 app[web.1]: Error: Cannot find module './Post'
+2023-11-17T05:21:18.615584+00:00 app[web.1]: Require stack:
+2023-11-17T05:21:18.615588+00:00 app[web.1]: - /app/models/index.js
+2023-11-17T05:21:18.615589+00:00 app[web.1]: - /app/controllers/api/userRoutes.js
+2023-11-17T05:21:18.615593+00:00 app[web.1]: - /app/controllers/api/index.js
+2023-11-17T05:21:18.615594+00:00 app[web.1]: - /app/controllers/index.js
+2023-11-17T05:21:18.615594+00:00 app[web.1]: - /app/server.js
+2023-11-17T05:21:18.615598+00:00 app[web.1]: at Module._resolveFilename (node:internal/modules/cjs/loader:1048:15)
+2023-11-17T05:21:18.615599+00:00 app[web.1]: at Module._load (node:internal/modules/cjs/loader:901:27)
+2023-11-17T05:21:18.615599+00:00 app[web.1]: at Module.require (node:internal/modules/cjs/loader:1115:19)
+2023-11-17T05:21:18.615600+00:00 app[web.1]: at require (node:internal/modules/helpers:130:18)
+2023-11-17T05:21:18.615600+00:00 app[web.1]: at Object.<anonymous> (/app/models/index.js:12:14)
+2023-11-17T05:21:18.615601+00:00 app[web.1]: at Module._compile (node:internal/modules/cjs/loader:1241:14)
+2023-11-17T05:21:18.615601+00:00 app[web.1]: at Module._extensions..js (node:internal/modules/cjs/loader:1295:10)
+2023-11-17T05:21:18.615601+00:00 app[web.1]: at Module.load (node:internal/modules/cjs/loader:1091:32)
+2023-11-17T05:21:18.615602+00:00 app[web.1]: at Module._load (node:internal/modules/cjs/loader:938:12)
+2023-11-17T05:21:18.615602+00:00 app[web.1]: at Module.require (node:internal/modules/cjs/loader:1115:19) {
+2023-11-17T05:21:18.615602+00:00 app[web.1]: code: 'MODULE_NOT_FOUND',
+2023-11-17T05:21:18.615602+00:00 app[web.1]: requireStack: [
+2023-11-17T05:21:18.615602+00:00 app[web.1]: '/app/models/index.js',
+2023-11-17T05:21:18.615603+00:00 app[web.1]: '/app/controllers/api/userRoutes.js',
+2023-11-17T05:21:18.615603+00:00 app[web.1]: '/app/controllers/api/index.js',
+2023-11-17T05:21:18.615603+00:00 app[web.1]: '/app/controllers/index.js',
+2023-11-17T05:21:18.615603+00:00 app[web.1]: '/app/server.js'
+2023-11-17T05:21:18.615604+00:00 app[web.1]: ]
+2023-11-17T05:21:18.615604+00:00 app[web.1]: }
+2023-11-17T05:21:18.615604+00:00 app[web.1]: 
+2023-11-17T05:21:18.615604+00:00 app[web.1]: Node.js v20.9.0
+2023-11-17T05:21:18.624814+00:00 app[web.1]: npm notice
+2023-11-17T05:21:18.624884+00:00 app[web.1]: npm notice New minor version of npm available! 10.1.0 -> 10.2.4
+2023-11-17T05:21:18.625048+00:00 app[web.1]: npm notice Changelog: <https://github.com/npm/cli/releases/tag/v10.2.4>
+2023-11-17T05:21:18.625257+00:00 app[web.1]: npm notice Run `npm install -g npm@10.2.4` to update!
+2023-11-17T05:21:18.625287+00:00 app[web.1]: npm notice
+2023-11-17T05:21:18.703836+00:00 heroku[web.1]: Process exited with status 1
+2023-11-17T05:21:18.725319+00:00 heroku[web.1]: State changed from starting to crashed
+2023-11-17T05:21:19.416830+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/" host=mvc-techieblog-28a9a4a397c0.herokuapp.com request_id=d1f56267-1487-42d4-977d-2ecebcda63f7 fwd="69.70.204.94" dyno= connect= service= status=503 bytes= protocol=https
+2023-11-17T05:21:19.598106+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/favicon.ico" host=mvc-techieblog-28a9a4a397c0.herokuapp.com request_id=3b05a7ce-3385-4d12-b678-1e82bdb9b252 fwd="69.70.204.94" dyno= connect= service= status=503 bytes= protocol=https

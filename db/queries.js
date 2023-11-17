@@ -18,16 +18,16 @@ const chalk = require("chalk");
 const sql = {
      validateobject: `SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA `,
      validatetables: `SELECT count(*) TablesCount FROM information_schema.tables WHERE table_schema=`,
-     retrievesql: `SELECT post.id, title, description, category_id, category.name, post.user_id, comment from post	join category on category.id=post.category_id left join comments on comments.post_id=post.id;`,
-     getcategories: `select distinctrow category.id, name from category join post on post.category_id=category.id`,
+     retrievesql: `SELECT posts.id, title, description, category_id, category.name, posts.user_id, comment from posts join category on category.id=posts.category_id left join comments on comments.post_id=posts.id;`,
+     getcategories: `select distinctrow category.id, name from category join posts on posts.category_id=category.id`,
      getmembers: `select id, name from users`,
-     editpost: `select id,title,description from post where id=`
+     editpost: `select id,title,description from posts where id=`
 }
 
 const messages = {
      mysqlLapps: chalk.bgRed("Carleton Universty Coding Bootcamp"),
      userseeded: chalk.bgGreen("Users table has been seeded"),
-     postsseeded: chalk.bgGreen("Post table has been seeded with testing data"),
+     postsseeded: chalk.bgGreen("Posts table has been seeded with testing data"),
      commentsseeded: chalk.bgGreen("Comments table has been seeded with testing data"),
      customseedingfailed: chalk.red("Custom seeding process has failed!"),
      executefailed: chalk.red("SQL Execute failed!"),
