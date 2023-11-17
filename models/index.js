@@ -8,7 +8,7 @@
  * Date : 11/9/2023 7:39:28 PM
  *******************************************************************/
 const Users = require('./users');
-const Category = require('./category');
+const Category = require('./categories');
 const Posts = require('./posts');
 const Comments = require('./comments');
 const Replies = require('./replies');
