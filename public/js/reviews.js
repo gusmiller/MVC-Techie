@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
       * This call back will call the reply create API. It will pass in its 
       * body the information to save.
       * It was giving me a hard time; it concatenate with the current URL
-      * fixe by entering: http://localhost:3001/api/replies/create
+      * fixe by entering: http://localhost:3001/api/reviews/create
       * @param {event form} event 
       */
      const createReply = async (event) => {
@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
           if (replycomment && post_id && user_id) {
                console.log(document.location);
-               const response = await fetch(`${newURL.origin}/api/replies/create`, {
+               const response = await fetch(`${newURL.origin}/api/reviews/create`, {
                     method: 'POST',
                     body: JSON.stringify({ replycomment, post_id, user_id }),
                     headers: { 'Content-Type': 'application/json' },

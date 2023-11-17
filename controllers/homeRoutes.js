@@ -43,37 +43,6 @@ router.get('/filter/:id', withAuth, async (req, res) => {
      }
 })
 
-/**
- * Replies GET route retrieves just one record. This is used in the Reply view to present
- * information to the user. Condition: user must be registered and loged in.
-
- */
-router.get('/replies/:id', withAuth, async (req, res) => {
-
-     try {
-
-          const getRecord = await Comments.findOne({
-               where: { id: req.params.id },
-               include: { all: true, nested: true },
-          });
-
-          // This will serialize the data prior to send to handlebar. Notice we are not using 
-          // list as we don't have a bunch of records. Just one, but this object has connection 
-          // with other tables that contain many.
-          const dsData = getRecord.get({ plain: true });
-
-          res.render('reply', {
-               dsData,
-               logged_in: req.session.logged_in,
-               user_name: req.session.user_name,
-               userid: req.session.userid,
-          });
-
-     } catch (error) {
-          console.log(error.stack);
-     }
-})
-
 router.get('/edit/category', withAuth, async (req, res) => {
      try {
 
