@@ -155,7 +155,6 @@ router.get('/create', withAuth, async (req, res) => {
           categories,
           userid: req.session.userid,
           logged_in: req.session.logged_in,
-          userid: req.session.userid
      });
 })
 
