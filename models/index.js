@@ -7,11 +7,11 @@
  * 
  * Date : 11/9/2023 7:39:28 PM
  *******************************************************************/
-const Users = require("./User");
-const Category = require("./Category");
+const Users = require("./user");
+const Category = require("./category");
 const Posts = require("./posts");
-const Comments = require("./Comments");
-const Replies = require("./Replies");
+const Comments = require("./comments");
+const Replies = require("./replies");
 
 Posts.belongsTo(Category, {
      foreignKey: "category_id"
