@@ -39,11 +39,13 @@
 
                          <!-- This is done this way because when element is not rendered in the DOM the Javascript fails -->
                          {{#if logged_in}}
+                         <li><a class="nav-link scrollto text-danger" href="/create">New Article!</a></li>
                          <li><a id="logout" class="nav-link scrollto" href="#">Logout</a></li>
                          <li><a id="login" class="nav-link scrollto" href="#" hidden>Login</a></li>
                          {{else}}
-                         <li><a id="logout" class="nav-link scrollto" href="#" hidden>Logout</a></li>
-                         <li><a id="login" class="nav-link scrollto" href="#">Login</a></li>                         
+                         <li><a class="nav-link scrollto text-danger" hidden>New Article!</a></li>
+                         <li><a id="logout" class="nav-link scrollto" hidden>Logout</a></li>
+                         <li><a id="login" class="nav-link scrollto" href="/login">Login</a></li>
                          {{/if}}
 
                     </ul>

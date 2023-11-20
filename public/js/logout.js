@@ -7,17 +7,26 @@
  * 
  * Date : 11/9/2023 7:39:28 PM
  *******************************************************************/
-const logout = async () => {
-     const response = await fetch('api/users/logout', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-     });
+document.addEventListener("DOMContentLoaded", function () {
+     const logout = async () => {
+          const response = await fetch('api/users/logout', {
+               method: 'POST',
+               headers: { 'Content-Type': 'application/json' },
+          });
 
-     if (response.ok) {
-          document.location.replace('/login');
-     } else {
-          alert(response.statusText);
+          if (response.ok) {
+               document.location.reload(true);
+               document.location.replace('/');
+               document.location.reload(true);
+          } else {
+               alert(response.statusText);
+          }
+     };
+
+     const initApplication = () => {
+          document.querySelector('#logout').addEventListener('click', logout);
      }
-};
 
-document.querySelector('#logout').addEventListener('click', logout);
+     initApplication();
+
+});

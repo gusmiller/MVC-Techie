@@ -1,4 +1,29 @@
 <section class="h-75">
+
+     <!-- Modal -->
+     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+          aria-labelledby="staticBackdropLabel" aria-hidden="true">
+          <div class="modal-dialog">
+               <div class="modal-content">
+                    <div class="modal-header">
+                         <h5 class="modal-title" id="staticBackdropLabel">Delete Article</h5>
+                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                         <p>You are about to delete the selected article! Are you sure you want to do this?</p><br/>
+                         <span class="text-danger">There is no way to restore information and if the article has some reviews they will all be deleted as well</span>
+                    </div>
+                    <div class="modal-footer">
+                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                         <a type="button" class="btn btn-danger" href="/articles/delete/{{dsData.id}}">
+                              <i class="bi bi-trash-fill" style="color: rgb(238, 227, 227);"></i>
+                              Yes! Delete it!</a>
+                    </div>
+               </div>
+          </div>
+     </div>
+
+
      <div class="container-fluid">
           <div class="row">
                <div class="col-12 text-black">
@@ -11,27 +36,31 @@
                               <input type="hidden" id="categoryid" value="{{dsData.category_id}}">
 
                               <h3 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Edit / Amend Post</h3>
-                              <p>This is the original post you published. You can use HTML tags if you know how to use them.</p>
+                              <p>This is the original post you published. You can use HTML tags if you know how to use
+                                   them.</p>
 
                               <div class="form-outline mb-4">
                                    <label class="form-label" for="email-login">Post Title</label>
-                                   <input type="text" id="title" class="form-control form-control-lg" value="{{dsData.title}}"/>
+                                   <input type="text" id="title" class="form-control form-control-lg"
+                                        value="{{dsData.title}}" />
                               </div>
                               <div class="form-outline mb-4">
-                                   <select id="category_id" 
-                                        class="form-select form-control-lg" 
+                                   <select id="category_id" class="form-select form-control-lg"
                                         aria-label="Select post Category">
                                    </select>
                               </div>
 
                               <div class="form-outline mb-4">
-                                   <textarea class="form-control" id="description" rows="12">{{dsData.description}}</textarea>
+                                   <textarea class="form-control" id="description"
+                                        rows="12">{{dsData.description}}</textarea>
                               </div>
 
                               <div class="pt-1 mb-2">
                                    <button class="btn btn-info wide-button" type="submit">
                                         <i class="bi bi-send" style="color: rgb(52, 52, 238);"></i> Submit Article
                                    </button>
+                                   <a class="btn btn-danger wide-button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                        <i class="bi bi-trash-fill" style="color: rgb(238, 227, 227);"></i> Delete</a>
                                    <a class="btn btn-dark wide-button" href="/articles">
                                         <i class="bi bi-x-square-fill" style="color: rgb(102, 61, 61);"></i> Cancel</a>
                               </div>

@@ -12,6 +12,15 @@ const { Users, Category, Posts, Comments } = require("../models");
 const withAuth = require("../utils/auth");
 const dic = require("../db/queries");
 
+router.get('/', async (req, res) => {
+     res.render('hero', {
+          logged_in: req.session.logged_in,
+          userid: req.session.userid,
+          user_name: req.session.user_name,
+     });
+
+});
+
 /**
  * Replies GET route retrieves just one record. This is used in the Reply view to present
  * information to the user. Condition: user must be registered and loged in.
@@ -59,7 +68,7 @@ router.get('/edit/category', withAuth, async (req, res) => {
  * information to the user. Condition: user must be registered and loged in.
  */
 router.get('/articles/edit/:id', withAuth, async (req, res) => {
-     
+
      try {
 
           const getRecord = await Posts.findOne({
@@ -79,7 +88,7 @@ router.get('/articles/edit/:id', withAuth, async (req, res) => {
                user_name: req.session.user_name
           });
 
-     }catch (error){
+     } catch (error) {
           console.log(error.stack);
      }
 })
@@ -91,7 +100,6 @@ router.get('/articles/edit/:id', withAuth, async (req, res) => {
 router.get('/reviews/:id', withAuth, async (req, res) => {
 
      try {
-
           const getRecord = await Posts.findOne({
                where: { id: req.params.id },
                include: { all: true, nested: true },
@@ -115,14 +123,6 @@ router.get('/reviews/:id', withAuth, async (req, res) => {
 
 })
 
-router.get('/', async (req, res) => {
-     res.render('hero', {
-          logged_in: req.session.logged_in,
-          userid: req.session.userid,
-          user_name: req.session.user_name,
-     });
-});
-
 /**
  * Login route - user will be presented with login screen to 
  * enter their credentials
@@ -134,6 +134,7 @@ router.get('/login', (req, res) => {
      }
 
      res.render('login');
+
 });
 
 /**

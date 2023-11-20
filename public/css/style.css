@@ -486,6 +486,7 @@ section {
 }
 
 #hero .btn-get-started {
+     background-color: rgb(148, 37, 37);
      font-family: "Lato", sans-serif;
      font-weight: 400;
      font-size: 16px;
@@ -500,7 +501,7 @@ section {
 
 #hero .btn-get-started:hover {
      background: #fff;
-     color: #70b9b0;
+     color: rgb(148, 37, 37);
      border: 1px solid #70b9b0;
 }
 
