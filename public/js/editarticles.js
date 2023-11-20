@@ -90,7 +90,6 @@ document.addEventListener("DOMContentLoaded", function () {
      function initialize() {
 
           document.querySelector('#edit-post').addEventListener('submit', updatepost);
-          console.log(selectedcat);
           loadCategory();
 
      }

@@ -23,7 +23,6 @@ document.addEventListener("DOMContentLoaded", function () {
                });
 
                if (response.ok) {
-                    document.location.reload(true);
                     document.location.replace('/');
                     document.location.reload(true);
                } else {

@@ -126,7 +126,6 @@ document.addEventListener("DOMContentLoaded", function () {
      // Entry point start process
      function initialize() {
 
-          console.log(selectedcat);
           loadCategory();
           loadMembers()
 
