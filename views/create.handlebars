@@ -1,5 +1,22 @@
-{{log userid}}
 <section class="h-75">
+
+     <!-- Modal Confirmation -->
+     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+          aria-labelledby="staticBackdropLabel" aria-hidden="false">
+          <div class="modal-dialog">
+               <div class="modal-content">
+                    <div class="modal-header">
+                         <h5 class="modal-title" id="staticBackdropLabel">Creating a New Article</h5>
+                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div id="errormessage" class="modal-body text-danger"></div>
+                    <div class="modal-footer">
+                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Ok</button>                         
+                    </div>
+               </div>
+          </div>
+     </div>
+
      <div class="container-fluid">
           <div class="row">
                <div class="col-12 text-black">
@@ -17,9 +34,9 @@
                                    <input type="text" id="title" class="form-control form-control-lg" />
                               </div>
                               <div class="form-outline mb-4">
-                                   <select id="category_id" class="form-select form-control-lg" aria-label="Select post Category">
+                                   <select id="category_id" class="form-select form-control-lg"
+                                        aria-label="Select post Category">
                                         {{#each categories as | cat |}}
-                                        console.log(cat.name);
                                         <option value="{{cat.id}}">{{cat.name}}</option>
                                         {{/each}}
                                    </select>
@@ -33,6 +50,7 @@
                                    <button class="btn btn-info wide-button" type="submit">
                                         <i class="bi bi-send" style="color: rgb(52, 52, 238);"></i> Submit Article
                                    </button>
+                                   <button id="triggersave" class="btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop" hidden>Modal</button>
                                    <a class="btn btn-dark wide-button" href="/articles">
                                         <i class="bi bi-x-square-fill" style="color: rgb(102, 61, 61);"></i> Cancel</a>
                               </div>

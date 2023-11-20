@@ -13,23 +13,19 @@ const { Posts, Category } = require('../../models');
 const sequelize = require('../../config/connection');
 const dic = require("../../db/queries");
 
-router.delete('/categories/:id', async (req, res) => {
+router.delete('/delete/id', async (req, res) => {
      try {
 
           // This will retrieve all Posts including all data from tables related. 
-          const allLevels = await Posts.findAll({
-               where: { category_id: req.params.id },
-               include: { all: true, nested: true },
-               order: [["date_published", "DESC"]],
+          const delId = await Posts.destroy({
+               where: { id: req.params.id },
           });
-          const postRecords = allLevels.map((list) => list.get({ plain: true }));
 
-          res.render('articles', {
-               postRecords,
-               logged_in: req.session.logged_in,
-               userid: req.session.userid,
-               user_name: req.session.user_name,
-          });
+          if (delId) {
+               return res.status(200).json({ delId });
+          } else {
+               return res.status(404).json(err);
+          }
 
      } catch (error) {
           res.status(400).json(error);

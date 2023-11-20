@@ -10,9 +10,34 @@
 $(document).ready(function () {
 
      /**
-      * This functon will validate each of the post and hide/show them 
-      * based on selected category. It select all the comments block and it 
-      * compares with logged in user
+      * This function will configure all the eventes for the delete buttons. This is similar to
+      * oter functions. The event linked is a Delete API/Endpoint. The id of the article to delete
+      * is stored in the button.
+      */
+     function configureDelete() {
+          const deleteButtons = document.querySelectorAll('[id^="delete"]');
+
+          deleteButtons.forEach(function (deleteArticle) {
+               // Attach callback function to each button
+               deleteArticle.addEventListener('click', async function () {
+                    const postidnumber = deleteArticle.getAttribute('data-post');
+
+                    // call Delete api/endpoint
+                    const response = await fetch(`api/articles/delete/${postidnumber}`, {
+                         method: 'DELETE',
+                         headers: { 'Content-Type': 'application/json' },
+                    });
+
+                    if (response) {
+                         document.location.reload(true);
+                    }
+               });
+          });
+     }
+
+     /**
+      * This functon will validate each of the post and hide/show them based on selected category.
+      * It select all the comments block and it compares with logged in user
       */
      function handleRespondLink() {
           const postbuttons = document.querySelectorAll('[id^="articlespost"]');
@@ -23,22 +48,28 @@ $(document).ready(function () {
                     const postidnumber = posttag.getAttribute('data-post');
                     const userLoggedIn = posttag.getAttribute('data-owner');
                     const linkElement = document.getElementById("edit" + postidnumber)
+                    const deleteElement = document.getElementById("delete" + postidnumber)
 
                     if (userLoggedIn === currentUser) {
                          linkElement.removeAttribute('hidden');
+                         deleteElement.removeAttribute('hidden');
                     }
 
                });
                posttag.addEventListener('mouseout', async function () {
                     const postidnumber = posttag.getAttribute('data-post');
                     const linkElement = document.getElementById("edit" + postidnumber)
+                    const deleteElement = document.getElementById("delete" + postidnumber)
                     linkElement.setAttribute('hidden', true);
+                    deleteElement.setAttribute('hidden', true);
                });
           });
      }
 
-     // Add a click event listener to each matching element. User will click on the button when sending 
-     // a commment to the post
+     /**
+      * Add a click event listener to each matching element. User will click on the button when 
+      * sending a commment to the post
+      */
      function commentEvents() {
 
           const postbuttons = document.querySelectorAll('[id^="postreply"]');
@@ -90,6 +121,7 @@ $(document).ready(function () {
 
           commentEvents();
           handleRespondLink(); //Initialize events for editable article
+          configureDelete(); //Initializes event for all Delete buttons
      }
 
 
