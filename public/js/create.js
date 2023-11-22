@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                submitButton.click();
           } else {
-               const response = await fetch('api/articles/create', {
+               const response = await fetch('/api/articles/create', {
                     method: 'POST',
                     body: JSON.stringify({ title, description, categoryid, user_id }),
                     headers: { 'Content-Type': 'application/json' },

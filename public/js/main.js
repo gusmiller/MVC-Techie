@@ -14,26 +14,26 @@ $(document).ready(function () {
       * oter functions. The event linked is a Delete API/Endpoint. The id of the article to delete
       * is stored in the button.
       */
-     // function configureDelete() {
-     //      const deleteButtons = document.querySelectorAll('[id^="delete"]');
+     function configureDelete() {
+          const deleteButtons = document.querySelectorAll('[id^="delete"]');
 
-     //      deleteButtons.forEach(function (deleteArticle) {
-     //           // Attach callback function to each button
-     //           deleteArticle.addEventListener('click', async function () {
-     //                const postidnumber = deleteArticle.getAttribute('data-post');
+          deleteButtons.forEach(function (deleteArticle) {
+               // Attach callback function to each button
+               deleteArticle.addEventListener('click', async function () {
+                    const postidnumber = deleteArticle.getAttribute('data-post');
 
-     //                // call Delete api/endpoint
-     //                const response = await fetch(`api/articles/delete/${postidnumber}`, {
-     //                     method: 'DELETE',
-     //                     headers: { 'Content-Type': 'application/json' },
-     //                });
+                    // call Delete api/endpoint
+                    const response = await fetch(`/api/articles/delete/${postidnumber}`, {
+                         method: 'DELETE',
+                         headers: { 'Content-Type': 'application/json' },
+                    });
 
-     //                if (response) {
-     //                     document.location.reload(true);
-     //                }
-     //           });
-     //      });
-     // }
+                    if (response) {
+                         document.location.reload(true);
+                    }
+               });
+          });
+     }
 
      /**
       * This functon will validate each of the post and hide/show them based on selected category.
@@ -80,7 +80,7 @@ $(document).ready(function () {
                     const postbuttons = document.getElementById(element.id);
                     const postid = parseInt(postbuttons.getAttribute("data-postid"), 10)
 
-                    await fetch(`api/posts/create/${postid}`, {
+                    await fetch(`/api/posts/create/${postid}`, {
                          method: 'GET',
                          headers: {
                               'Content-Type': 'application/json',

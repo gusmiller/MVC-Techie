@@ -16,7 +16,7 @@ const validateEmailAddress = async (event) => {
           const useremail = document.querySelector('#useremail').value.trim();
           const errorSpan = document.querySelector('#errorMessage');
 
-          const response = await fetch('api/users/validate', {
+          const response = await fetch('/api/users/validate', {
                method: 'POST',
                body: JSON.stringify({ useremail }),
                headers: { 'Content-Type': 'application/json' },
@@ -48,7 +48,7 @@ const registerUser = async (event) => {
      }
 
      if (username && useremail) {
-          const response = await fetch('api/users/register', {
+          const response = await fetch('/api/users/register', {
                method: 'POST',
                body: JSON.stringify({ username, useremail, userpassword }),
                headers: { 'Content-Type': 'application/json' },
