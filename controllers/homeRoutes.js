@@ -12,6 +12,24 @@ const { Users, Category, Posts, Comments } = require("../models");
 const withAuth = require("../utils/auth");
 const dic = require("../db/queries");
 
+// router.delete('/delete/:id'), withAuth, async (req, res) => {
+//      try {
+//           // This will retrieve all Posts including all data from tables related. 
+//           const delId = await Posts.destroy({
+//                where: { id: req.params.id },
+//           });
+
+//           if (delId) {
+//                return res.status(200).json({ delId });
+//           } else {
+//                return res.status(404).json(err);
+//           }
+
+//      } catch {
+//           console.log(error.stack);
+//      }
+// }
+
 router.get('/', async (req, res) => {
      res.render('hero', {
           logged_in: req.session.logged_in,

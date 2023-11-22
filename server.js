@@ -27,17 +27,18 @@ const sequelize = require("./config/connection");
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 
 const app = express();
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3002;
 
 // Instance of an Express Handlebars engine in a Node.js application using 
 // express-handlebars library. 
 const hbs = exphbs.create({ helpers });
 
 // Configure and link a session object with the sequelize store
+// maxAge: 60 * 60 * 1000,
 const sess = {
      secret: "pmaC ytisrevinU notelraC",
-     cookie: {
-          maxAge: 60 * 60 * 1000,
+     cookie: {          
+          maxAge: 150000,
      },
      resave: false,
      saveUninitialized: true,
