@@ -20,7 +20,6 @@ const path = require("path");
 // OntarioTECK VBA Custom customized initialization
 const initializedatabase = require("./db/initdb")
 const messages = require("./utils/formatter")
-
 const sequelize = require("./config/connection");
 
 // Create a new sequelize store using the express-session package
@@ -35,10 +34,11 @@ const hbs = exphbs.create({ helpers });
 
 // Configure and link a session object with the sequelize store
 // maxAge: 60 * 60 * 1000,
+// maxAge: 150000,
 const sess = {
      secret: "pmaC ytisrevinU notelraC",
      cookie: {          
-          maxAge: 150000,
+          maxAge: 60 * 60 * 1000,
      },
      resave: false,
      saveUninitialized: false,
@@ -71,6 +71,10 @@ app.use(express.json());
 // Returns middleware that only parses urlencoded bodies and only looks at requests 
 // where the Content-Type header matches the type option. This parser accepts only 
 // UTF-8 encoding of the body.
+//
+// We could store this into a const and apply this middleware on a specific routes
+//        const middle = express.urlencoded({ extended: true }));
+//        app.post('/upload', middle, function(req, res)...
 app.use(express.urlencoded({ extended: true }));
 
 // Express.static: This is a middleware function in Express that serves static files. 

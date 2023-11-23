@@ -48,6 +48,8 @@ const registerUser = async (event) => {
      }
 
      if (username && useremail) {
+          debugger;
+          
           const response = await fetch('/api/users/register', {
                method: 'POST',
                body: JSON.stringify({ username, useremail, userpassword }),
@@ -55,7 +57,12 @@ const registerUser = async (event) => {
           });
 
           if (response.ok) {
+
                document.location.replace('/');
+               setInterval(function () {
+                    document.location.reload(true);
+              }, 1000);
+
           } else {
                errorSpan.removeAttribute("hidden");
                errorSpan.textContent = 'Oh boy! Something went wrong. I am sorry please contact me. Urgh... hate when this happens';

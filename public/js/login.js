@@ -9,6 +9,7 @@
  * Date : 11/9/2023 7:39:28 PM
  *******************************************************************/
 document.addEventListener("DOMContentLoaded", function () {
+
      const loginFormHandler = async (event) => {
           event.preventDefault();
 
@@ -22,8 +23,10 @@ document.addEventListener("DOMContentLoaded", function () {
                     headers: { 'Content-Type': 'application/json' },
                });
 
-               if (response.ok) {
+               if (response.ok) {    
+
                     document.location.replace('/');
+
                } else {
                     alert('Failed to log in');
                }
@@ -31,7 +34,9 @@ document.addEventListener("DOMContentLoaded", function () {
      };
 
      const initApplication = () => {
-          document.querySelector('.login-form').addEventListener('submit', loginFormHandler);
+
+          const dataentry =document.getElementById('.login-form');
+          document.getElementById('.login-form').addEventListener('submit', loginFormHandler);
      }
 
      initApplication();

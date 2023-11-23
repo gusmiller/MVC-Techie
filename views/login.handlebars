@@ -5,7 +5,7 @@
 
                     <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 pt-xl-0 mt-xl-n5">
 
-                         <form class="login-form" style="width: 23rem;">
+                         <form id="login-form" enctype="multipart/form-data" class="login-form" style="width: 23rem;" method="post" action="/login">
 
                               <h3 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Log in</h3>
 
@@ -20,7 +20,7 @@
                               </div>
 
                               <div class="pt-1 mb-2">
-                                   <button class="btn btn-info btn-lg btn-block" type="submit" style="width:150px;">Login</button>
+                                   <button type="submit" class="btn btn-info btn-lg btn-block" style="width:150px;">Login</button>
                               </div>
 
                               <p>Don't have an account? <a href="/register" class="link-info">Register here</a></p>
