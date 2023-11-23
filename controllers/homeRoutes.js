@@ -151,9 +151,56 @@ router.get('/login', (req, res) => {
           return;
      }
 
-     res.render('login');
+     res.render('login', {
+          logged_in: req.session.logged_in,
+          userid: req.session.userid,
+          user_name: req.session.user_name,
+     });
 
 });
+
+/**
+ * This is the post from the form -which is sent on submit. It was handled before on 
+ * javascript but i believe that this is better.
+ */
+router.post('/login', async (req, res) => {
+
+     // Retrieve user - we use the email address as the login
+     const dsData = await Users.findOne({ where: { email: req.email } });
+
+     if (!dsData) {
+          res
+               .status(400)
+               .json({ message: 'Incorrect email or password, please try again' });
+          return;
+     }
+
+     // Compare and validate password against what user has in database
+     const validPassword = await dsData.checkPassword(req.body.password);
+
+     if (!validPassword) {
+          res
+               .status(400)
+               .json({ message: 'Incorrect email or password, please try again' });
+          return;
+     }
+
+     // Login successfull create a session and initializer variables based data from table
+     req.session.save(() => {
+          req.session.userid = dsData.id;
+          req.session.user_name = dsData.name;
+          req.session.logged_in = true;
+
+          res.json({ user: dsData, message: 'You are now logged in!' });
+     });
+
+     res.render('hero', {
+          logged_in: req.session.logged_in,
+          userid: req.session.userid,
+          user_name: req.session.user_name,
+     });
+
+})
 
 /**
  * Article route - this will allow current user to create a new article entry, we are

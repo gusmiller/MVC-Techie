@@ -91,10 +91,6 @@ $(document).ready(function () {
           });
      }
 
-     const logUserIn = async () => {
-          document.location.replace('/login');
-     }
-
      /**
       * This function will log the user out of the system - it calls the lgout api and 
       * destroy the session cookie. Then it returns to the main page portal.
@@ -116,7 +112,7 @@ $(document).ready(function () {
      const initApplication = () => {
 
           const logoutControl = document.querySelector("#logout");
-          document.querySelector("#login").addEventListener('click', logUserIn);
+          //document.querySelector("#login").addEventListener('click', logUserIn);
           logoutControl.addEventListener('click', logUserOut);
 
           commentEvents();

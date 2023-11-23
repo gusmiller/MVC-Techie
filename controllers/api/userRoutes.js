@@ -24,6 +24,16 @@ router.post('/register', async (req, res) => {
                     password: req.body.userpassword,
                }
           );
+
+          // Login successfull create a session and initializer variables based data from table
+          req.session.save(() => {
+               req.session.userid = dsData.id;
+               req.session.user_name = dsData.name;
+               req.session.logged_in = true;
+
+               res.json({ user: dsData, message: 'You are now logged in!' });
+          });
+
           res.status(200).json(dsData);
 
      } catch (error) {
