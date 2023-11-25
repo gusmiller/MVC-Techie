@@ -5,7 +5,7 @@
  * Assignment # 14 Model-View-Controller (MVC)
  * Tech Blog
  * 
- * Date : 11/25/2023 10:25:28 AM
+ * Date : 11/9/2023 7:39:28 PM
  * gustavo.miller@miller-hs.com CarletonUCoding
  *******************************************************************/
 require('dotenv').config();
@@ -63,13 +63,7 @@ app.engine("handlebars", hbs.engine);
 // Express.static: This is a middleware function in Express that serves static files. 
 // Static files are files that don"t change frequently. In the context here it joins
 // two or more paths to the content of __dirname.
-const publicDir = path.join(__dirname, './public');
-app.use(express.static(publicDir));
-
-// This is a built-in middleware function in Express. It parses incoming requests 
-// with JSON payloads and is based on body-parser.
-// https://expressjs.com/en/5x/api.html
-app.use(express.json());
+app.use(express.static(path.join(__dirname, './public')));
 
 // Returns middleware that only parses urlencoded bodies and only looks at requests 
 // where the Content-Type header matches the type option. This parser accepts only 
@@ -78,25 +72,35 @@ app.use(express.json());
 // We could store this into a const and apply this middleware on a specific routes
 //        const middle = express.urlencoded({ extended: true }));
 //        app.post('/upload', middle, function(req, res)...
-app.use(express.urlencoded({ extended: 'false' }))
+app.use(express.urlencoded({ extended: 'false' }));
+// const middle = express.urlencoded({ extended: 'false' });
 
 // This is a built-in middleware function in Express. It parses incoming requests 
 // with JSON payloads and is based on body-parser.
-// https://expressjs.com/en/5x/api.htmlapp.use(express.json())
-app.set('view engine', 'handlebars')
+// https://expressjs.com/en/5x/api.html
+app.use(express.json());
+
+// Configure the view engine for the Express.js application. The second argument 
+// sets the 'view engine' to 'handlebars' extension files.
+app.set("view engine", "handlebars");
 
 // End of middleware section **************************
-app.use(routes);
 
+app.use(routes); // Routing defined in the ./routes index.js
 process.stdout.write("\x1Bc");
 
+messages.figletMsg("OntarioTECK");
+messages.figletMsg("Tech-Blog Site");
+
+// Custom validation to determine whether database contains all tables required 
+// if not then it will create.
 initializedatabase.validateDB(process.env.DB_NAME)
      .then((data) => {
 
           // The validate whether the database contains all the tables required 
           // in case there aren't the same number of tables require it forces to 
           // sync database using the models and seeds them
-          if (data.created === true && data.data === false) {
+          if (data.created === true && data.data === false ) {
 
                // Make sure we have initial data since database was deemed not valid
                sequelize.sync({ force: true })
@@ -105,7 +109,8 @@ initializedatabase.validateDB(process.env.DB_NAME)
                          try {
                               seeding.seedAll(sequelize) // Time to seed data
                                    .then(() => {
-                                        messages.apiendpoints(); // Message on terminal
+                                        // This will display a message on terminal
+                                        messages.apiendpoints();
                                         app.listen(PORT);
                                    });
                          } catch (err) {
@@ -114,8 +119,9 @@ initializedatabase.validateDB(process.env.DB_NAME)
 
                     });
           } else {
+               // This will display a message on terminal
+               messages.apiendpoints();
                app.listen(PORT);
-               messages.apiendpoints(); // Message on terminal
           }
 
      });

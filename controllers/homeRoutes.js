@@ -164,9 +164,10 @@ router.get('/login', (req, res) => {
  * javascript but i believe that this is better.
  */
 router.post('/login', async (req, res) => {
-
+     const { email, password} = req.body;
+     
      // Retrieve user - we use the email address as the login
-     const dsData = await Users.findOne({ where: { email: req.email } });
+     const dsData = await Users.findOne({ where: { email: email } });
 
      if (!dsData) {
           res
@@ -190,15 +191,14 @@ router.post('/login', async (req, res) => {
           req.session.userid = dsData.id;
           req.session.user_name = dsData.name;
           req.session.logged_in = true;
-
-          res.json({ user: dsData, message: 'You are now logged in!' });
      });
 
-     res.render('hero', {
-          logged_in: req.session.logged_in,
-          userid: req.session.userid,
-          user_name: req.session.user_name,
-     });
+     res.redirect('/articles');
+     // res.render('hero', {
+     //      logged_in: req.session.logged_in,
+     //      userid: req.session.userid,
+     //      user_name: req.session.user_name,
+     // });
 
 })
 

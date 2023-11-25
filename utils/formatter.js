@@ -41,6 +41,7 @@ function apiendpoints() {
      msg(chalk.white('     Goto your favorite webbrowser and type'), null, false);
      msg(chalk.white(`     localhost: ${process.env.PORT}`), null, false);
      msg(chalk.white(`Database Name : ${process.env.DB_NAME}`));
+     msg(chalk.white(`Credentials   : gustavo.miller@miller-hashSync.com CarletonUCoding`));
 
      msg(msg(dic.messages.listeningdata), null, null, 80);
 

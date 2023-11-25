@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", function () {
       */
      const loadCategory = async () => {
 
-          const response = await fetch('/api/articles/categories', {
+          const response = await fetch('/api/categories/categories', {
                method: 'GET',
                headers: { 'Content-Type': 'application/json' },
           });
