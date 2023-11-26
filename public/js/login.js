@@ -13,20 +13,20 @@ document.addEventListener("DOMContentLoaded", function () {
      const loginFormHandler = async (event) => {
           event.preventDefault();
 
-          const email = document.querySelector('#email-login').value.trim();
-          const password = document.querySelector('#password-login').value.trim();
+          const email = document.getElementById('email').value.trim();
+          const password = document.getElementById('password').value.trim();
 
           if (email && password) {
+               debugger;
                const response = await fetch('/api/users/login', {
                     method: 'POST',
                     body: JSON.stringify({ email, password }),
                     headers: { 'Content-Type': 'application/json' },
                });
 
+               console.log(response);
                if (response.ok) {    
-
-                    document.location.replace('/');
-
+                    location.replace("/articles");
                } else {
                     alert('Failed to log in');
                }
@@ -35,8 +35,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
      const initApplication = () => {
 
-          const dataentry =document.getElementById('.login-form');
-          document.getElementById('.login-form').addEventListener('submit', loginFormHandler);
+          const dataentry =document.getElementById('login-form');
+          document.getElementById('login-form').addEventListener('submit', loginFormHandler);
      }
 
      initApplication();

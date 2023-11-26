@@ -31,6 +31,7 @@ const dic = require("../db/queries");
 // }
 
 router.get('/', async (req, res) => {
+     console.log(req.session.logged_in);
      res.render('hero', {
           logged_in: req.session.logged_in,
           userid: req.session.userid,
@@ -163,44 +164,44 @@ router.get('/login', (req, res) => {
  * This is the post from the form -which is sent on submit. It was handled before on 
  * javascript but i believe that this is better.
  */
-router.post('/login', async (req, res) => {
-     const { email, password} = req.body;
-     
-     // Retrieve user - we use the email address as the login
-     const dsData = await Users.findOne({ where: { email: email } });
+// router.post('/login', async (req, res) => {
+//      const { email, password } = req.body;
 
-     if (!dsData) {
-          res
-               .status(400)
-               .json({ message: 'Incorrect email or password, please try again' });
-          return;
-     }
+//      // Retrieve user - we use the email address as the login
+//      const dsData = await Users.findOne({ where: { email: email } });
 
-     // Compare and validate password against what user has in database
-     const validPassword = await dsData.checkPassword(req.body.password);
+//      if (!dsData) {
+//           res
+//                .status(400)
+//                .json({ message: 'Incorrect email or password, please try again' });
+//           return;
+//      }
 
-     if (!validPassword) {
-          res
-               .status(400)
-               .json({ message: 'Incorrect email or password, please try again' });
-          return;
-     }
+//      // Compare and validate password against what user has in database
+//      const validPassword = await dsData.checkPassword(req.body.password);
 
-     // Login successfull create a session and initializer variables based data from table
-     req.session.save(() => {
-          req.session.userid = dsData.id;
-          req.session.user_name = dsData.name;
-          req.session.logged_in = true;
-     });
+//      if (!validPassword) {
+//           res
+//                .status(400)
+//                .json({ message: 'Incorrect email or password, please try again' });
+//           return;
+//      }
 
-     res.redirect('/articles');
-     // res.render('hero', {
-     //      logged_in: req.session.logged_in,
-     //      userid: req.session.userid,
-     //      user_name: req.session.user_name,
-     // });
+//      // Login successfull create a session and initializer variables based data from table
+//      req.session.save(() => {
+//           req.session.user_id = dsData.id;
+//           req.session.user_name = dsData.name;
+//           req.session.logged_in = true;
+//           req.session.origin_call = "/"
+//      });
 
-})
+//      res.render('hero', {
+//           logged_in: req.session.logged_in,
+//           userid: req.session.userid,
+//           user_name: req.session.user_name,
+//      });
+
+// })
 
 /**
  * Article route - this will allow current user to create a new article entry, we are
