@@ -17,7 +17,9 @@ const chalk = require("chalk");
 
 const sql = {
      validateobject: `SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA `,
-     validatetables: `SELECT count(*) TablesCount FROM information_schema.tables WHERE table_schema=`,
+     validatetables: `SELECT count(*) TablesCount FROM information_schema.tables WHERE `,
+     getmembers: `select id, name from users`,
+     totalusers: `select COUNT(*) as TotalUsers from users`,
      retrievesql: `SELECT posts.id, title, description, category_id, category.name, posts.user_id, comment from posts join category on category.id=posts.category_id left join comments on comments.post_id=posts.id;`,
      getcategories: `select distinctrow category.id, name from category join posts on posts.category_id=category.id`,
      getmembers: `select id, name from users`,

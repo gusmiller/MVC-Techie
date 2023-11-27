@@ -7,43 +7,58 @@
  * 
  * Date : 11/9/2023 7:39:28 PM
  *******************************************************************/
-const router = require("express").Router();
+const router = require('express').Router();
 const { Users, Category, Posts, Comments } = require("../models");
 const withAuth = require("../utils/auth");
 const dic = require("../db/queries");
 
-// router.delete('/delete/:id'), withAuth, async (req, res) => {
-//      try {
-//           // This will retrieve all Posts including all data from tables related. 
-//           const delId = await Posts.destroy({
-//                where: { id: req.params.id },
-//           });
+//****************************** LOGIN ROUTES **************************************/
 
-//           if (delId) {
-//                return res.status(200).json({ delId });
-//           } else {
-//                return res.status(404).json(err);
-//           }
-
-//      } catch {
-//           console.log(error.stack);
-//      }
-// }
-
+/**
+ * Root landing page - show presentation
+ */
 router.get('/', async (req, res) => {
-     console.log(req.session.logged_in);
+
      res.render('hero', {
           logged_in: req.session.logged_in,
           userid: req.session.userid,
+          is_admin: req.session.is_admin,
           user_name: req.session.user_name,
      });
 
 });
 
 /**
+ * If a session exists, redirect the request to the website portal
+ */
+router.get('/login', (req, res) => {
+
+     if (req.session.logged_in) {
+          res.redirect('/');
+          return;
+     }
+
+     res.render('login');
+});
+
+/**
+ * Register route - this will allow new users to register into our blog
+ * database.
+ */
+router.get('/register', (req, res) => {
+     if (req.session.logged_in) {
+          alert(dic.messages.registernot);
+          return;
+     }
+
+     res.render('register');
+})
+
+//*************************** END OF LOGIN ROUTES **********************************/
+
+/**
  * Replies GET route retrieves just one record. This is used in the Reply view to present
  * information to the user. Condition: user must be registered and loged in.
-
  */
 router.get('/filter/:id', withAuth, async (req, res) => {
 
@@ -71,6 +86,10 @@ router.get('/filter/:id', withAuth, async (req, res) => {
      }
 })
 
+/**
+ * This home route is used to retrieve the categories to be used from the 
+ * Posts Dashboard to filer the contents by category.
+ */
 router.get('/edit/category', withAuth, async (req, res) => {
      try {
 
@@ -143,67 +162,6 @@ router.get('/reviews/:id', withAuth, async (req, res) => {
 })
 
 /**
- * Login route - user will be presented with login screen to 
- * enter their credentials
- */
-router.get('/login', (req, res) => {
-     if (req.session.logged_in) {
-          res.redirect('/');
-          return;
-     }
-
-     res.render('login', {
-          logged_in: req.session.logged_in,
-          userid: req.session.userid,
-          user_name: req.session.user_name,
-     });
-
-});
-
-/**
- * This is the post from the form -which is sent on submit. It was handled before on 
- * javascript but i believe that this is better.
- */
-// router.post('/login', async (req, res) => {
-//      const { email, password } = req.body;
-
-//      // Retrieve user - we use the email address as the login
-//      const dsData = await Users.findOne({ where: { email: email } });
-
-//      if (!dsData) {
-//           res
-//                .status(400)
-//                .json({ message: 'Incorrect email or password, please try again' });
-//           return;
-//      }
-
-//      // Compare and validate password against what user has in database
-//      const validPassword = await dsData.checkPassword(req.body.password);
-
-//      if (!validPassword) {
-//           res
-//                .status(400)
-//                .json({ message: 'Incorrect email or password, please try again' });
-//           return;
-//      }
-
-//      // Login successfull create a session and initializer variables based data from table
-//      req.session.save(() => {
-//           req.session.user_id = dsData.id;
-//           req.session.user_name = dsData.name;
-//           req.session.logged_in = true;
-//           req.session.origin_call = "/"
-//      });
-
-//      res.render('hero', {
-//           logged_in: req.session.logged_in,
-//           userid: req.session.userid,
-//           user_name: req.session.user_name,
-//      });
-
-// })
-
-/**
  * Article route - this will allow current user to create a new article entry, we are
  * getting the user id from the session.
  */
@@ -258,19 +216,6 @@ router.get('/articles', withAuth, async (req, res) => {
           userid: req.session.userid,
           user_name: req.session.user_name,
      });
-})
-
-/**
- * Register route - this will allow new users to register into our blog
- * database.
- */
-router.get('/register', (req, res) => {
-     if (req.session.logged_in) {
-          alert(dic.messages.registernot);
-          return;
-     }
-
-     res.render('register');
 })
 
 module.exports = router;

@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                console.log(response);
                if (response.ok) {    
-                    location.replace("/articles");
+                    location.replace("/");
                } else {
                     alert('Failed to log in');
                }
