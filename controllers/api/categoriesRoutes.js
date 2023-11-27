@@ -32,7 +32,7 @@ router.get('/categories/:id', async (req, res) => {
           res.render('articles', {
                postRecords,
                logged_in: req.session.logged_in,
-               userid: req.session.userid,
+               userid: req.session.user_id,
                user_name: req.session.user_name,
           });
 

@@ -40,8 +40,9 @@ function apiendpoints() {
      msg(chalk.green('Server is ready to serve website:'), null, true);
      msg(chalk.white('     Goto your favorite webbrowser and type'), null, false);
      msg(chalk.white(`     localhost: ${process.env.PORT}`), null, false);
-     msg(chalk.white(`Database Name : ${process.env.DB_NAME}`));
-     msg(chalk.white(`Credentials   : gustavo.miller@miller-hashSync.com CarletonUCoding`));
+     msg(chalk.white(`Database Name : ${process.env.DB_NAME}`), null, false);
+     msg(chalk.white(`Credentials   : gustavo.miller@miller-hs.com CarletonUCoding`), null, false);
+     msg(chalk.white(`Date          : ${new Date().toLocaleString()}`));
 
      msg(msg(dic.messages.listeningdata), null, null, 80);
 
@@ -104,13 +105,4 @@ function msg(value, add, blankline, sizestring) {
      return;
 }
 
-// Returns today's date as a formatted string.
-// Example: "August 2, 2022"
-function formatDate(date) {
-     const month = months[date.getMonth()];
-     const day = date.getDay();
-     const year = date.getFullYear();
-     return `${month} ${day}, ${year}`;
-}
-
-module.exports = { msg, parseSqlFile, apiendpoints, figletMsg, formatDate };
+module.exports = { msg, parseSqlFile, apiendpoints, figletMsg };
