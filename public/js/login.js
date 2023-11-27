@@ -25,8 +25,9 @@ document.addEventListener("DOMContentLoaded", function () {
                });
 
                console.log(response);
-               if (response.ok) {    
-                    location.replace("/");
+               if (response.ok) {
+                    window.location.replace("/");
+                    setTimeout(function () { location.reload(); }, 6000);
                } else {
                     alert('Failed to log in');
                }
@@ -35,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
      const initApplication = () => {
 
-          const dataentry =document.getElementById('login-form');
+          const dataentry = document.getElementById('login-form');
           document.getElementById('login-form').addEventListener('submit', loginFormHandler);
      }
 

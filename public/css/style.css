@@ -277,6 +277,13 @@ section {
 /*--------------------------------------------------------------
 * OntarioTECK Custom styling
 --------------------------------------------------------------*/
+@media (max-width: 1147.98px) {
+     .vertical-buttons {
+          display: flex !important;
+          flex-direction: column;
+     }
+}
+
 .formlog {
      width: 23rem;
 }
