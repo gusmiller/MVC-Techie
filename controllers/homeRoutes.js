@@ -21,7 +21,7 @@ router.get('/', async (req, res) => {
 
      res.render('hero', {
           logged_in: req.session.logged_in,
-          userid: req.session.userid,
+          userid: req.session.user_id,
           is_admin: req.session.is_admin,
           user_name: req.session.user_name,
      });
@@ -76,7 +76,7 @@ router.get('/filter/:id', withAuth, async (req, res) => {
 
           res.render('articles', {
                dsData,
-               userid: req.session.userid,
+               userid: req.session.user_id,
                logged_in: req.session.logged_in,
                user_name: req.session.user_name
           });
@@ -122,7 +122,7 @@ router.get('/articles/edit/:id', withAuth, async (req, res) => {
           res.render('edit', {
                dsData,
                logged_in: req.session.logged_in,
-               userid: req.session.userid,
+               userid: req.session.user_id,
                user_name: req.session.user_name
           });
 
@@ -150,7 +150,7 @@ router.get('/reviews/:id', withAuth, async (req, res) => {
 
           res.render('reviews', {
                dsData,
-               userid: req.session.userid,
+               userid: req.session.user_id,
                logged_in: req.session.logged_in,
                user_name: req.session.user_name
           });
@@ -178,7 +178,7 @@ router.get('/create', withAuth, async (req, res) => {
 
      res.render('create', {
           categories,
-          userid: req.session.userid,
+          userid: req.session.user_id,
           logged_in: req.session.logged_in,
      });
 })
@@ -213,7 +213,7 @@ router.get('/articles', withAuth, async (req, res) => {
      res.render('articles', {
           postRecords,
           logged_in: req.session.logged_in,
-          userid: req.session.userid,
+          userid: req.session.user_id,
           user_name: req.session.user_name,
      });
 })
