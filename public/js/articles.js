@@ -13,6 +13,10 @@ document.addEventListener("DOMContentLoaded", function () {
      const selectedcat = document.getElementById("category_id");
      const selectedmem = document.getElementById("memberslist");
      const articles = document.querySelectorAll('[id^="articlespost"]');
+     const recycle = document.getElementById("refresharticles");
+
+     const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+     const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
 
      /**
       * This function will iterate through all the post elements and hide
@@ -29,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
                // data-attributes. This allows me to compare with what has been selected
                const value = articles[i].getAttribute('data-category');
 
-               if (value != selectedValue) {
+               if (value != selectedValue && selectedValue != 0) {
                     articles[i].setAttribute('hidden', true)
                } else {
                     if (articles[i].hasAttribute("hidden")) {
@@ -54,7 +58,7 @@ document.addEventListener("DOMContentLoaded", function () {
                // data-attributes. This allows me to compare with what has been selected
                const value = articles[i].getAttribute('data-memberid');
 
-               if (value != selectedValue) {
+               if (value != selectedValue && selectedValue != 0) {
                     articles[i].setAttribute('hidden', true)
                } else {
                     if (articles[i].hasAttribute("hidden")) {
@@ -89,7 +93,13 @@ document.addEventListener("DOMContentLoaded", function () {
                }
 
           } else {
-               alert(response.statusText);
+               Swal.fire({
+                    icon: 'error',
+                    title: 'Yiakes!',
+                    text: `Something went wrong! we could not load the categories. ${response}`,
+                    timer: 3500
+                  })
+
           }
      };
 
@@ -123,6 +133,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
      }
 
+     const refreshData = async () => {
+          window.location.reload();
+     }
+
      // Entry point start process
      function initialize() {
 
@@ -131,6 +145,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
           selectedcat.addEventListener("change", filterCategory);
           selectedmem.addEventListener("change", filterMembers);
+          recycle.addEventListener("click", refreshData)
 
      }
 

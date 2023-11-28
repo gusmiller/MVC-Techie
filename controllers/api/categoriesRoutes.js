@@ -52,7 +52,7 @@ router.get('/categories', async (req, res) => {
           res.json(results);
 
      } catch (error) {
-          res.status(400).json(error);
+          res.status(400).json(error.message);
      }
 });
 

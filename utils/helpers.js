@@ -10,7 +10,7 @@
  *******************************************************************/
 
 const dateFormatted = (date) => {
-     return date.toLocalTimeString();
+     return `${new Date(date).getMonth() + 1}/${new Date(date).getDate()}/${new Date(date).getFullYear()}`;
 };
 
 const compareequal = (v1, v2) => {
