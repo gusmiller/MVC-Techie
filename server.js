@@ -30,7 +30,12 @@ const PORT = process.env.PORT || 3001;
 
 // Instance of an Express Handlebars engine in a Node.js application using 
 // express-handlebars library. 
-const hbs = exphbs.create({ helpers });
+
+const hbs = exphbs.create({
+     helpers: helpers,
+     defaultLayout: 'main',
+     noCache : true,
+});
 
 // Configure and link a session object with the sequelize store
 const sess = {

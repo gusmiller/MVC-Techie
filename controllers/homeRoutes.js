@@ -42,7 +42,7 @@ router.get('/', async (req, res) => {
 /**
  * If a session exists, redirect the request to the website portal
  */
-router.get('/login', (req, res) => {
+router.get('/login', async (req, res) => {
 
      if (req.session.logged_in) {
           res.redirect('/');
@@ -52,6 +52,7 @@ router.get('/login', (req, res) => {
      res.render('login', {
           form_name: req.session.form_name,
      });
+
 });
 
 /**
@@ -65,6 +66,13 @@ router.get('/register', (req, res) => {
      }
 
      res.render('register');
+})
+
+router.get('/logout', (req, res) =>{
+     if (req.session.logged_in) {
+          req.session.destroy();
+     }    
+     res.render('hero');
 })
 
 //*************************** END OF LOGIN ROUTES **********************************/

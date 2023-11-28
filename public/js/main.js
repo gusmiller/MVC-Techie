@@ -11,10 +11,23 @@ $(document).ready(function () {
 
      let postidnumber = 0;
 
+     const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+               toast.addEventListener('mouseenter', Swal.stopTimer)
+               toast.addEventListener('mouseleave', Swal.resumeTimer)
+          }
+     })
+
      /**
       * This function will configure all the eventes for the delete buttons. This is similar to
       * oter functions. The event linked is a Delete API/Endpoint. The id of the article to delete
-      * is stored in the button.
+      * is stored in the button. This function uses the Sweet Alert dialog box to prompt user 
+      * for confirmation and it uses a async method, which waits for the fetch to return a value.
       */
      function configureDelete() {
           const deleteButtons = document.querySelectorAll('[id^="delete"]');
@@ -25,25 +38,34 @@ $(document).ready(function () {
                deleteArticle.addEventListener('click', async function () {
                     const postidnumber = deleteArticle.getAttribute('data-post');
 
-                    if (confirmDelete === true) {
-
-                         // call Delete api/endpoint
-                         const response = await fetch(`/api/articles/delete/${postidnumber}`, {
-                              method: 'DELETE',
-                              headers: { 'Content-Type': 'application/json' },
-                         });
-
-
-                         if (response.ok) {
+                    Swal.fire({
+                         title: 'Are you sure?', text: "You won't be able to revert this!", icon: 'warning',
+                         showCancelButton: true,
+                         confirmButtonColor: '#d33',
+                         cancelButtonColor: '#3085d6',
+                         confirmButtonText: 'Yes, delete it!',
+                         preConfirm: () => {
+                              return fetch(`/api/articles/delete/${postidnumber}`, {
+                                   method: 'DELETE',
+                                   headers: { 'Content-Type': 'application/json' },
+                              }).then(response => {
+                                   if (!response.ok) {
+                                        throw new Error(response.statusText)
+                                   }
+                                   return response.json()
+                              }).catch(error => {
+                                   Swal.showValidationMessage(`Request failed: ${error}`)
+                              })
+                         },
+                         allowOutsideClick: () => !Swal.isLoading()
+                    }).then((result) => {
+                         debugger;
+                         if (result.isConfirmed) {
+                              showConfirmed('Your article has been deleted!', 'success');
                               document.location.reload(true);
-                              showConfirmed('Your article has been deleted!','success');
-                         } else {
-                              showConfirmed('Something went wrong!','error');
                          }
+                    })
 
-                    } else {
-
-                    }
                });
 
           });
@@ -54,35 +76,13 @@ $(document).ready(function () {
       * @param {string} value - Mesage to display
       * @param {string} severity - message type
       */
-     function showConfirmed(value, severity) {
-          Swal.fire({
-               position: 'top-end',
-               icon: severity,
-               title: value,
-               showConfirmButton: false,
-               timer: 1500
-          })
-     }
+     function showConfirmed(value, severity, closein = 2500) {
 
-     /**
-      * 
-      */
-     function confirmDelete() {
-          Swal.fire({
-               title: 'Are you sure?',
-               text: "You won't be able to revert this!",
-               icon: 'warning',
-               showCancelButton: true,
-               confirmButtonColor: '#3085d6',
-               cancelButtonColor: '#d33',
-               confirmButtonText: 'Yes, delete it!'
-          }).then((result) => {
-               if (result.isConfirmed) {
-                    return true;
-               } else {
-                    return false;
-               }
+          Toast.fire({
+               icon: severity,
+               title: value
           })
+
      }
 
      /**
@@ -147,16 +147,19 @@ $(document).ready(function () {
       * destroy the session cookie. Then it returns to the main page portal.
       */
      const logUserOut = async () => {
-          const response = await fetch('/api/users/logout', {
-               method: 'POST',
-               headers: { 'Content-Type': 'application/json' },
-          });
 
-          if (response.ok) {
-               document.location.replace('/');
-          } else {
-               alert(response.statusText);
-          }
+          Swal.fire({
+               position: 'top-end',
+               icon: 'success',
+               title: 'Your have been logged out!',
+               showConfirmButton: false,
+               timer: 2500
+          }).then((result) => {
+               const response = fetch('/api/users/logout', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+               });
+          })
      }
 
      // Script entry point - start process
@@ -164,7 +167,7 @@ $(document).ready(function () {
 
           const logoutControl = document.querySelector("#logout");
           //document.querySelector("#login").addEventListener('click', logUserIn);
-          logoutControl.addEventListener('click', logUserOut);
+          //logoutControl.addEventListener('click', logUserOut);
 
           commentEvents();
           handleRespondLink(); //Initialize events for editable article
