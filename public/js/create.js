@@ -67,22 +67,24 @@ document.addEventListener("DOMContentLoaded", function () {
                          showCancelButton: false,
                          confirmButtonColor: '#3085d6',
                          confirmButtonText: 'Ok!',
-                         timer: 3500
-                    }).then((result) => {
+                         timer: 3500,
+                    }).then((result) => {                         
                          if (result.isConfirmed) {
-                              document.location.replace('/articles');
+                              document.location.replace('/articles')
+                         } else if (result.isDenied) {
+                              document.location.replace('/articles')
                          }
                     })
 
                } else {
-                    
+
                     Toast.fire({
                          icon: 'error',
                          showConfirmButton: true,
                          confirmButtonText: "Got it!",
                          title: 'Something went wrong!'
                     })
-               
+
                }
           }
      };
@@ -120,7 +122,7 @@ document.addEventListener("DOMContentLoaded", function () {
                showConfirmButton: false,
                title: 'Welcome to New Article Page!'
           })
-     
+
      }
 
      initialize();

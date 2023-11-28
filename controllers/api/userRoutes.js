@@ -113,4 +113,20 @@ router.post('/validate', async (req, res) => {
      }
 });
 
+/**
+ * The root `/api/categories` endpoint. We return all records. Notice that we are 
+ * returning related information; using advantage of the relationships. Proper status is
+ * returned upon completion -either successfull or with error
+ */
+router.get('/list', async (req, res) => {
+     try {
+          
+         const data = await Users.findAll();
+         res.status(200).json(data); // Successfull transaction
+
+     } catch (error) {
+         res.status(500).json(error); // Fail process
+     }
+ });
+
 module.exports = router;
