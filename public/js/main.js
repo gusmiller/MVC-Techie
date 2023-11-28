@@ -9,6 +9,8 @@
  *******************************************************************/
 $(document).ready(function () {
 
+     let postidnumber = 0;
+
      /**
       * This function will configure all the eventes for the delete buttons. This is similar to
       * oter functions. The event linked is a Delete API/Endpoint. The id of the article to delete
@@ -18,21 +20,69 @@ $(document).ready(function () {
           const deleteButtons = document.querySelectorAll('[id^="delete"]');
 
           deleteButtons.forEach(function (deleteArticle) {
+
                // Attach callback function to each button
                deleteArticle.addEventListener('click', async function () {
                     const postidnumber = deleteArticle.getAttribute('data-post');
 
-                    // call Delete api/endpoint
-                    const response = await fetch(`/api/articles/delete/${postidnumber}`, {
-                         method: 'DELETE',
-                         headers: { 'Content-Type': 'application/json' },
-                    });
+                    if (confirmDelete === true) {
 
-                    if (response) {
-                         document.location.reload(true);
+                         // call Delete api/endpoint
+                         const response = await fetch(`/api/articles/delete/${postidnumber}`, {
+                              method: 'DELETE',
+                              headers: { 'Content-Type': 'application/json' },
+                         });
+
+
+                         if (response.ok) {
+                              document.location.reload(true);
+                              showConfirmed('Your article has been deleted!','success');
+                         } else {
+                              showConfirmed('Something went wrong!','error');
+                         }
+
+                    } else {
+
                     }
                });
+
           });
+     }
+
+     /**
+      * This function will display a message on the screen.
+      * @param {string} value - Mesage to display
+      * @param {string} severity - message type
+      */
+     function showConfirmed(value, severity) {
+          Swal.fire({
+               position: 'top-end',
+               icon: severity,
+               title: value,
+               showConfirmButton: false,
+               timer: 1500
+          })
+     }
+
+     /**
+      * 
+      */
+     function confirmDelete() {
+          Swal.fire({
+               title: 'Are you sure?',
+               text: "You won't be able to revert this!",
+               icon: 'warning',
+               showCancelButton: true,
+               confirmButtonColor: '#3085d6',
+               cancelButtonColor: '#d33',
+               confirmButtonText: 'Yes, delete it!'
+          }).then((result) => {
+               if (result.isConfirmed) {
+                    return true;
+               } else {
+                    return false;
+               }
+          })
      }
 
      /**
@@ -45,7 +95,7 @@ $(document).ready(function () {
           postbuttons.forEach(function (posttag) {
                posttag.addEventListener('mouseover', async function () {
                     const currentUser = document.getElementById("dashboard").getAttribute('data-user');
-                    const postidnumber = posttag.getAttribute('data-post');
+                    postidnumber = posttag.getAttribute('data-post');
                     const userLoggedIn = posttag.getAttribute('data-owner');
                     const linkElement = document.getElementById("edit" + postidnumber)
                     const deleteElement = document.getElementById("delete" + postidnumber)
@@ -60,6 +110,7 @@ $(document).ready(function () {
                     const postidnumber = posttag.getAttribute('data-post');
                     const linkElement = document.getElementById("edit" + postidnumber)
                     const deleteElement = document.getElementById("delete" + postidnumber)
+
                     linkElement.setAttribute('hidden', true);
                     deleteElement.setAttribute('hidden', true);
                });

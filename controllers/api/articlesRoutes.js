@@ -13,7 +13,10 @@ const { Posts, Category } = require('../../models');
 const sequelize = require('../../config/connection');
 const dic = require("../../db/queries");
 
-router.delete('/delete/id', async (req, res) => {
+/**
+ * This API Endpoint will delete the selected Posts and all related information.
+ */
+router.delete('/delete/:id', async (req, res) => {
      try {
 
           // This will retrieve all Posts including all data from tables related. 
@@ -31,6 +34,7 @@ router.delete('/delete/id', async (req, res) => {
           res.status(400).json(error);
      }
 });
+
 /**
  * This API Endpoint will update the Posts information, this comes from the 
  * editarticles script that is attached to the edithandlebars. 

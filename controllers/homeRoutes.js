@@ -19,12 +19,23 @@ const dic = require("../db/queries");
  */
 router.get('/', async (req, res) => {
 
-     res.render('hero', {
-          logged_in: req.session.logged_in,
-          userid: req.session.user_id,
-          is_admin: req.session.is_admin,
-          user_name: req.session.user_name,
-     });
+     if (req.session.logged_in) {
+          res.render('homepage', {
+               logged_in: req.session.logged_in,
+               userid: req.session.user_id,
+               is_admin: req.session.is_admin,
+               user_name: req.session.user_name,
+               form_name: req.session.form_name,
+          });          
+     } else {
+          res.render('hero', {
+               logged_in: req.session.logged_in,
+               userid: req.session.user_id,
+               is_admin: req.session.is_admin,
+               user_name: req.session.user_name,
+               form_name: req.session.form_name,
+          });
+     }
 
 });
 
@@ -38,7 +49,9 @@ router.get('/login', (req, res) => {
           return;
      }
 
-     res.render('login');
+     res.render('login', {
+          form_name: req.session.form_name,
+     });
 });
 
 /**

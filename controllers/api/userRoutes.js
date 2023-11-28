@@ -38,6 +38,7 @@ router.post('/login', async (req, res) => {
                req.session.user_name = userData.name;
                req.session.is_admin = userData.is_admin;
                req.session.logged_in = true;
+               req.session.form_name = "/";
 
                res.json({ user: userData, message: 'You are now logged in!' });
           });
@@ -78,6 +79,7 @@ router.post('/register', async (req, res) => {
                req.session.user_name = dsData.name;
                req.session.is_admin = false,
                req.session.logged_in = true;
+               req.session.form_name = "/";
 
                res.json({ user: dsData, message: 'You are now logged in!' });
           });

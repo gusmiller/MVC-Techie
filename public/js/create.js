@@ -37,7 +37,20 @@ document.addEventListener("DOMContentLoaded", function () {
                });
 
                if (response.ok) {
-                    document.location.replace('/articles');
+
+                    Swal.fire({
+                         title: 'Great job!',
+                         text: "Your new article has been posted! You will see it next.",
+                         icon: 'success',
+                         showCancelButton: false,
+                         confirmButtonColor: '#3085d6',
+                         confirmButtonText: 'Ok!'
+                    }).then((result) => {
+                         if (result.isConfirmed) {
+                              document.location.replace('/articles');
+                         }
+                    })
+
                } else {
                     alert(response.statusText);
                }
