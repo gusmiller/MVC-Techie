@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
           const newURL = new URL(window.location.href); //Create new instance
           newURL.origin = ""; //Clear the origin -which only removes the tail end
 
-          const response = await fetch(newURL.origin + "/api/articles/categories", {
+          const response = await fetch("/api/categories/categories", {
                method: 'GET',
                headers: { 'Content-Type': 'application/json' },
           });
@@ -49,7 +49,12 @@ document.addEventListener("DOMContentLoaded", function () {
                }
 
           } else {
-               alert(response.statusText);
+               Swal.fire({
+                    icon: 'error',
+                    title: 'Yiakes!',
+                    text: `Something went wrong! we could not load the categories. ${response}`,
+                    timer: 3500
+                  })
           }
      };
 

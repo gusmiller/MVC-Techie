@@ -38,6 +38,7 @@ router.post('/login', async (req, res) => {
                req.session.user_name = userData.name;
                req.session.is_admin = userData.is_admin;
                req.session.logged_in = true;
+               req.session.form_name = "/";
 
                res.json({ user: userData, message: 'You are now logged in!' });
           });
@@ -49,13 +50,13 @@ router.post('/login', async (req, res) => {
 
 router.post('/logout', (req, res) => {
      if (req.session.logged_in) {
-          // Remove the session variables
           req.session.destroy(() => {
                res.status(204).end();
           });
      } else {
           res.status(404).end();
      }
+     res.redirect("/articles");
 });
 
 /**
@@ -78,6 +79,7 @@ router.post('/register', async (req, res) => {
                req.session.user_name = dsData.name;
                req.session.is_admin = false,
                req.session.logged_in = true;
+               req.session.form_name = "/";
 
                res.json({ user: dsData, message: 'You are now logged in!' });
           });
@@ -110,5 +112,21 @@ router.post('/validate', async (req, res) => {
           res.status(400).json(error);
      }
 });
+
+/**
+ * The root `/api/categories` endpoint. We return all records. Notice that we are 
+ * returning related information; using advantage of the relationships. Proper status is
+ * returned upon completion -either successfull or with error
+ */
+router.get('/list', async (req, res) => {
+     try {
+          
+         const data = await Users.findAll();
+         res.status(200).json(data); // Successfull transaction
+
+     } catch (error) {
+         res.status(500).json(error); // Fail process
+     }
+ });
 
 module.exports = router;

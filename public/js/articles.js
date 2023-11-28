@@ -13,6 +13,10 @@ document.addEventListener("DOMContentLoaded", function () {
      const selectedcat = document.getElementById("category_id");
      const selectedmem = document.getElementById("memberslist");
      const articles = document.querySelectorAll('[id^="articlespost"]');
+     const recycle = document.getElementById("refresharticles");
+
+     const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+     const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
 
      /**
       * This function will iterate through all the post elements and hide
@@ -29,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
                // data-attributes. This allows me to compare with what has been selected
                const value = articles[i].getAttribute('data-category');
 
-               if (value != selectedValue) {
+               if (value != selectedValue && selectedValue != 0) {
                     articles[i].setAttribute('hidden', true)
                } else {
                     if (articles[i].hasAttribute("hidden")) {
@@ -54,7 +58,7 @@ document.addEventListener("DOMContentLoaded", function () {
                // data-attributes. This allows me to compare with what has been selected
                const value = articles[i].getAttribute('data-memberid');
 
-               if (value != selectedValue) {
+               if (value != selectedValue && selectedValue != 0) {
                     articles[i].setAttribute('hidden', true)
                } else {
                     if (articles[i].hasAttribute("hidden")) {
@@ -89,7 +93,13 @@ document.addEventListener("DOMContentLoaded", function () {
                }
 
           } else {
-               alert(response.statusText);
+               Swal.fire({
+                    icon: 'error',
+                    title: 'Yiakes!',
+                    text: `Something went wrong! we could not load the categories. ${response}`,
+                    timer: 3500
+                  })
+
           }
      };
 
@@ -123,14 +133,84 @@ document.addEventListener("DOMContentLoaded", function () {
 
      }
 
+     /**
+      * This function will configure all the eventes for the delete buttons. This is similar to
+      * oter functions. The event linked is a Delete API/Endpoint. The id of the article to delete
+      * is stored in the button. This function uses the Sweet Alert dialog box to prompt user 
+      * for confirmation and it uses a async method, which waits for the fetch to return a value.
+      */
+     function configureDelete() {
+          const deleteButtons = document.querySelectorAll('[id^="delete"]');
+
+          deleteButtons.forEach(function (deleteArticle) {
+
+               // Attach callback function to each button
+               deleteArticle.addEventListener('click', async function () {
+                    const postidnumber = deleteArticle.getAttribute('data-post');
+
+                    Swal.fire({
+                         title: 'Are you sure?', text: "You won't be able to revert this!", icon: 'warning',
+                         showCancelButton: true,
+                         confirmButtonColor: '#d33',
+                         cancelButtonColor: '#3085d6',
+                         confirmButtonText: 'Yes, delete it!',
+                         
+                         preConfirm: () => {
+                              return fetch(`/api/articles/delete/${postidnumber}`, {
+                                   method: 'DELETE',
+                                   headers: { 'Content-Type': 'application/json' },
+                              }).then(response => {
+                                   if (!response.ok) {
+                                        throw new Error(response.statusText)
+                                   }
+                                   return response.json()
+                              }).catch(error => {
+                                   Swal.showValidationMessage(`Request failed: ${error}`)
+                              })
+                         },
+                         allowOutsideClick: () => !Swal.isLoading()
+                    }).then((result) => {
+                         if (result.isConfirmed) {
+                              showConfirmed('Your article has been deleted!', 'success');
+                              document.location.reload(true);
+                         }
+                    })
+
+               });
+
+          });
+     }
+
+     /**
+      * This function will display a message on the screen.
+      * @param {string} value - Mesage to display
+      * @param {string} severity - message type
+      */
+     function showConfirmed(value, severity, closein = 2500) {
+
+          Toast.fire({
+               icon: severity,
+               showConfirmButton: false,
+               timer: closein,
+               title: value
+          })
+
+     }
+
+     const refreshData = async () => {
+          window.location.reload();
+     }
+
      // Entry point start process
      function initialize() {
 
-          loadCategory();
-          loadMembers()
+          loadCategory(); // Load categories - only those used
+          loadMembers() // Load TechieBlog members
+          configureDelete(); //Initializes event for all Delete buttons
 
           selectedcat.addEventListener("change", filterCategory);
           selectedmem.addEventListener("change", filterMembers);
+          recycle.addEventListener("click", refreshData)
 
      }
 

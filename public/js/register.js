@@ -48,7 +48,6 @@ const registerUser = async (event) => {
      }
 
      if (username && useremail) {
-          debugger;
           
           const response = await fetch('/api/users/register', {
                method: 'POST',

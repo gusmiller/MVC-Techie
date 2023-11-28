@@ -10,34 +10,31 @@
  *******************************************************************/
 document.addEventListener("DOMContentLoaded", function () {
 
-     const loginFormHandler = async (event) => {
-          event.preventDefault();
-
-          const email = document.getElementById('email').value.trim();
-          const password = document.getElementById('password').value.trim();
-
-          if (email && password) {
-               debugger;
-               const response = await fetch('/api/users/login', {
-                    method: 'POST',
-                    body: JSON.stringify({ email, password }),
-                    headers: { 'Content-Type': 'application/json' },
-               });
-
-               console.log(response);
-               if (response.ok) {
-                    window.location.replace("/");
-                    setTimeout(function () { location.reload(); }, 6000);
-               } else {
-                    alert('Failed to log in');
-               }
-          }
-     };
-
      const initApplication = () => {
 
-          const dataentry = document.getElementById('login-form');
-          document.getElementById('login-form').addEventListener('submit', loginFormHandler);
+          document.getElementById('login-form').addEventListener('submit', async () => {
+               event.preventDefault();
+
+               const email = document.getElementById('email').value.trim();
+               const password = document.getElementById('password').value.trim();
+
+               if (email && password) {
+                    const response = await fetch('/api/users/login', {
+                         method: 'POST',
+                         body: JSON.stringify({ email, password }),
+                         headers: { 'Content-Type': 'application/json' },
+                    });
+
+                    console.log(response);
+                    if (response.ok) {
+                         window.history.pushState("","","/articles");
+                         window.location.reload;          
+                         window.location =  window.origin + "/articles";
+                    } else {
+                         alert('Failed to log in');
+                    }
+               }
+          });
      }
 
      initApplication();

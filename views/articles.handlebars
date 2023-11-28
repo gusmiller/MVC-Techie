@@ -2,14 +2,28 @@
      <div class="row">
           <div class="col-xs-6 col-md-3 col-xl-2 text-black mb-2">
                <select id="category_id" class="h-custom-2 ms-xl-4 form-select form-control-lg"
-                    aria-label="Select Article Category">
+                    aria-label="Select Article Category"
+                    data-bs-toggle="tooltip" 
+                    data-bs-placement="top"
+                    title="Please select a Category you wish to filter by...">
+                    <option value="0" id="categoryId2">Show All Categories</option>
 
                </select>
           </div>
           <div class="col-xs-6 col-md-3 col-xl-2 text-black mb-2">
                <select id="memberslist" class="h-custom-2 ms-xl-4 form-select form-control-lg"
-                    aria-label="Select a member">
+                    aria-label="Select a member" 
+                    data-bs-toggle="tooltip" 
+                    data-bs-placement="top"
+                    title="Please select a Member to filter by...">
+                    <option value="0" id="categoryId2">All Members</option>
                </select>
+          </div>
+          <div class="col-xs-6 col-md-3 col-xl-2 text-black mb-2">
+               <button id="refresharticles" type="button" class="btn btn-outline-success form-control-lg"
+                    data-bs-toggle="tooltip" data-bs-placement="top" title="Clear all selections!">
+                    <i class="bi bi-recycle"></i></button>
+               <span>Logged in as <a href="#" data-bs-toggle="tooltip" data-bs-title="Tip! You can only modify your own articles">{{user_name}}</a></span>
           </div>
      </div>
 
@@ -31,14 +45,9 @@
 
                                         <!-- Action buttons / break point -->
                                         <div class="col-md-5 text-right vertical-buttons">
-                                             <a id="edit{{item.id}}" class="btn btn-success mr-1"
-                                                  href="/articles/edit/{{item.id}}" hidden>
-                                                  <i class="bi bi-pencil"></i> Edit Post!</a>
-                                             <a id="delete{{item.id}}" class="btn btn-danger mr-1"
-                                                  data-post="{{item.id}}" href="/articles/delete/{{item.id}}" hidden>
-                                                  <i class="bi bi-trash-fill"></i> Delete Post!</a>
-                                             <a class="btn btn-primary-post mr-1" href="/reviews/{{item.id}}"><i
-                                                       class="bi bi-send"></i> Post a comment!</a>
+                                             <a id="edit{{item.id}}" class="btn btn-success mr-1" href="/articles/edit/{{item.id}}" hidden><i class="bi bi-pencil"></i> Edit Post!</a>
+                                             <button type="button" id="delete{{item.id}}" class="btn btn-danger mr-1" data-post="{{item.id}}" hidden><i class="bi bi-trash-fill"></i> Delete Post!</button>
+                                             <a class="btn btn-primary-post mr-1" href="/reviews/{{item.id}}"><i class="bi bi-send"></i> Post a comment!</a>
                                         </div>
 
                                    </div>
@@ -58,7 +67,7 @@
                               <div class="card-body">
                                    <div class="card-title card-post-background" style="background-color: #5c6d6b">
                                         <div style="display: flex;justify-content: space-between;">
-                                             <div>{{row.user.name}} - Commented on {{row.date_published}}</div>
+                                             <div>{{row.user.name}} - Commented on {{dateFormatted row.date_published}}</div>
                                         </div>
                                    </div>
                                    <p class="pl-2 card-text">{{row.comment}}</p>
@@ -75,4 +84,4 @@
      </div>
 </section>
 
-<script src="/js/category.js"></script>
+<script src="/js/articles.js"></script>

@@ -23,7 +23,8 @@ const sql = {
      retrievesql: `SELECT posts.id, title, description, category_id, category.name, posts.user_id, comment from posts join category on category.id=posts.category_id left join comments on comments.post_id=posts.id;`,
      getcategories: `select distinctrow category.id, name from category join posts on posts.category_id=category.id`,
      getmembers: `select id, name from users`,
-     editpost: `select id,title,description from posts where id=`
+     editpost: `select id,title,description from posts where id=`,
+     deleteselected: `Are you sure you want to delete selected record?`
 }
 
 const messages = {

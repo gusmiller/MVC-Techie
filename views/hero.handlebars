@@ -1,17 +1,9 @@
 <section id="hero">
      <div class="hero-container">
-          {{#if logged_in}}
-          <h1>Hey {{user_name}}! <br/>Welcome Back to Techie Blog</h1>
-          {{else}}
           <h1>Welcome to Techie Blog</h1>
-          {{/if}}
-          
+
           <h2>Where you can post your thoughts, ideas or Recipes!</h2>
-          {{#if logged_in}}
-          <a href="/create" class="btn-get-started">Create a New Article</a>
-          {{else}}
           <a href="/login" class="btn-get-started">Let's Get Started</a>
-          {{/if}}
           <img src="/images/carleton-u-logo-nb.png" alt="Carleton University - Login"
                style="object-fit: cover; object-position: left;">
      </div>

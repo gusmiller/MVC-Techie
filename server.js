@@ -1,3 +1,12 @@
+/*******************************************************************
+ * Carleton Bootcamp - 2023
+ * Copyright 2023 Gustavo Miller
+ * Licensed under Apache License
+ * Assignment # 14 Model-View-Controller (MVC)
+ * Tech Blog
+ * 
+ * Date : 11/9/2023 7:39:28 PM
+ *******************************************************************/
 require('dotenv').config();
 
 const path = require("path");
@@ -21,7 +30,12 @@ const PORT = process.env.PORT || 3001;
 
 // Instance of an Express Handlebars engine in a Node.js application using 
 // express-handlebars library. 
-const hbs = exphbs.create({ helpers });
+
+const hbs = exphbs.create({
+     helpers: helpers,
+     defaultLayout: 'main',
+     noCache : true,
+});
 
 // Configure and link a session object with the sequelize store
 const sess = {
