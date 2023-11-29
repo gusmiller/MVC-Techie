@@ -35,7 +35,6 @@ document.addEventListener("DOMContentLoaded", function () {
                          headers: { 'Content-Type': 'application/json' },
                     });
 
-                    console.log(response);
                     if (response.ok) {
                          window.history.pushState("","","/articles");
                          window.location.reload;          
