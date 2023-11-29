@@ -8,67 +8,68 @@
  * 
  * Date : 11/13/2023 12:53:04 PM
  *******************************************************************/
-const validateEmailAddress = async (event) => {
+document.addEventListener("DOMContentLoaded", function () {
+
+     const failedregister = "Something went wrong! User account was not registered.";
+     const useraccountcreated = "User account has been successfully created! You may have to refresh your browser. In some browsers the main page does not refresh."
      
-     if (event.key === 'Enter') {
-          event.preventDefault(); // Prevent form submission
-
-          const useremail = document.querySelector('#useremail').value.trim();
-          const errorSpan = document.querySelector('#errorMessage');
-
-          const response = await fetch('/api/users/validate', {
-               method: 'POST',
-               body: JSON.stringify({ useremail }),
-               headers: { 'Content-Type': 'application/json' },
-          });
-
-          if (response.ok) {
-               return true;
-          } else {
-               errorSpan.textContent = 'Invalid email address';
-               return false;
-          }     
-     }
-
-}
-
-const registerUser = async (event) => {
-     event.preventDefault();
-
-     const useremail = document.querySelector('#useremail').value.trim();
-     const userpassword = document.querySelector('#userpassword').value.trim();
-     const passwordvalidate = document.querySelector('#passwordvalidate').value.trim();
-     const username = document.querySelector('#username').value.trim();
-     const errorSpan = document.querySelector('#errorMessage');
-
-     if (userpassword && (userpassword !== passwordvalidate)) {
-          errorSpan.removeAttribute("hidden");
-          errorSpan.textContent = 'Invalid password! they need to match.';
-          return false;
-     }
-
-     if (username && useremail) {
-          
-          const response = await fetch('/api/users/register', {
-               method: 'POST',
-               body: JSON.stringify({ username, useremail, userpassword }),
-               headers: { 'Content-Type': 'application/json' },
-          });
-
-          if (response.ok) {
-
-               document.location.replace('/');
-               setInterval(function () {
-                    document.location.reload(true);
-              }, 1000);
-
-          } else {
-               errorSpan.removeAttribute("hidden");
-               errorSpan.textContent = 'Oh boy! Something went wrong. I am sorry please contact me. Urgh... hate when this happens';
+     const Toast = Swal.mixin({
+          toast: true, position: 'top-end', timer: 3000, timerProgressBar: true,
+          didOpen: (toast) => {
+               toast.addEventListener('mouseenter', Swal.stopTimer)
+               toast.addEventListener('mouseleave', Swal.resumeTimer)
           }
-     }
-};
+     })
 
-document
-     .querySelector('#registration')
-     .addEventListener('submit', registerUser);
+     const registerUser = async (event) => {
+          event.preventDefault();
+
+          const useremail = document.getElementById('useremail').value.trim();
+          const userpassword = document.getElementById('userpassword').value.trim();
+          const passwordvalidate = document.getElementById('passwordvalidate').value.trim();
+          const username = document.getElementById('username').value.trim();
+          const errorSpan = document.getElementById('errorMessage');
+
+          if (userpassword && (userpassword !== passwordvalidate)) {
+               errorSpan.removeAttribute("hidden");
+               errorSpan.textContent = 'Invalid password! they need to match.';
+               return false;
+          }
+
+          if (username && useremail) {
+
+               const response = await fetch('/api/users/register', {
+                    method: 'POST',
+                    body: JSON.stringify({ username, useremail, userpassword }),
+                    headers: { 'Content-Type': 'application/json' },
+               });
+
+               if (response.ok) {
+                    window.history.pushState("","","/");
+                    window.location.reload;
+
+                    Swal.fire({
+                         title: 'Welcome to Techie Blog!', text: useraccountcreated, icon: 'success', showCancelButton: false,
+                         confirmButtonColor: '#3085d6', confirmButtonText: 'Ok!'
+                    }).then((result) => {
+                         if (result.isConfirmed) {
+                              document.location.replace('/');
+                         }
+                    })
+
+               } else {
+                    Toast.fire({ icon: 'error', showConfirmButton: false, title: failedregister });
+               }
+
+          }
+     };
+
+     // Entry point start process
+     function initialize() {
+
+          document.querySelector('#registration').addEventListener('submit', registerUser);
+
+     }
+
+     initialize();
+});

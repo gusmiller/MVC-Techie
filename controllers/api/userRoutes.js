@@ -69,6 +69,7 @@ router.post('/register', async (req, res) => {
                {
                     name: req.body.username,
                     email: req.body.useremail,
+                    is_admin: false,
                     password: req.body.userpassword,
                }
           );
@@ -80,8 +81,6 @@ router.post('/register', async (req, res) => {
                req.session.is_admin = false,
                req.session.logged_in = true;
                req.session.form_name = "/";
-
-               res.json({ user: dsData, message: 'You are now logged in!' });
           });
 
           res.status(200).json(dsData);

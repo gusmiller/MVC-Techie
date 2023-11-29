@@ -21,7 +21,7 @@ router.post('/create', async (req, res) => {
                {
                     comment: req.body.replycomment,
                     post_id: parseInt(req.body.post_id),
-                    user_id: parseInt(req.body.user_id),
+                    user_id: parseInt(req.body.userid),
                }
           );
           res.status(200).json(dsData);
