@@ -15,16 +15,17 @@ document.addEventListener("DOMContentLoaded", function () {
      const createbutton = document.getElementById("submitreview");
      const formElements = postform.elements; // Retrieve the form elements
 
+     const reviewposted = "Your review has been posted! Author will be able to see it.";
+     const couldnotpost = "Something went wrong! Review could not be posted.";
+     const welcomepage = 'Welcome to Review Page!';
+
      let Values = {}; // Initial form values
 
      const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
      const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
 
      const Toast = Swal.mixin({
-          toast: true,
-          position: 'top-end',
-          timer: 4500,
-          timerProgressBar: true,
+          toast: true, position: 'top-end', timer: 4500, timerProgressBar: true,
           didOpen: (toast) => {
                toast.addEventListener('mouseenter', Swal.stopTimer)
                toast.addEventListener('mouseleave', Swal.resumeTimer)
@@ -52,25 +53,20 @@ document.addEventListener("DOMContentLoaded", function () {
           const replycomment = document.getElementById('replycomment').value.trim();
           const post_id = document.getElementById('post_id').value;
           const user_id = document.getElementById('user_id').value;
+          const userid = document.getElementById('userid').value;
 
-          if (replycomment && post_id && user_id) {
-               console.log(document.location);
+          if (replycomment && post_id && userid) {
                const response = await fetch(`${newURL.origin}/api/reviews/create`, {
                     method: 'POST',
-                    body: JSON.stringify({ replycomment, post_id, user_id }),
+                    body: JSON.stringify({ replycomment, post_id, userid }),
                     headers: { 'Content-Type': 'application/json' },
                });
 
                if (response.ok) {
 
                     Swal.fire({
-                         title: 'Fantastic!',
-                         text: "Your review has been posted! Author will be able to see it.",
-                         icon: 'success',
-                         showCancelButton: false,
-                         confirmButtonColor: '#3085d6',
-                         confirmButtonText: 'Ok!',
-                         timer: 3500
+                         title: 'Fantastic!', text: reviewposted, icon: 'success', showCancelButton: false,
+                         confirmButtonColor: '#3085d6', confirmButtonText: 'Ok!', timer: 3500
                     }).then((result) => {
                          if (result.isConfirmed) {
                               document.location.replace('/articles');
@@ -78,12 +74,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     })
 
                } else {
-                    Toast.fire({
-                         icon: 'error',
-                         showConfirmButton: true,
-                         confirmButtonText: "Got it!",
-                         title: 'Something went wrong!'
-                    })
+                    Toast.fire({ icon: 'error', showConfirmButton: true, confirmButtonText: "Got it!", title: couldnotpost })
                }
           }
      };
@@ -100,7 +91,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     }
                });
           }
-
      }
 
      // Entry point start process
@@ -116,11 +106,7 @@ document.addEventListener("DOMContentLoaded", function () {
           }
           registerEvents();
 
-          Toast.fire({
-               icon: 'info',
-               showConfirmButton: false,
-               title: 'Welcome to Review Page!'
-          })
+          Toast.fire({ icon: 'info', showConfirmButton: false, title: welcomepage })
 
      }
 

@@ -10,10 +10,15 @@
  *******************************************************************/
 document.addEventListener("DOMContentLoaded", function () {
 
-
      const postform = document.getElementById("create-post");
      const createbutton = document.getElementById("submitarticle");
      const formElements = postform.elements; // Retrieve the form elements
+
+     const articleposted = "Your new article has been posted! You will see it next.";
+     const articlenotposted = 'Something went wrong! Article was not posted';
+     const welcomepage = 'Welcome to New Article Page!';
+     const titlenoarticle = "Title but not the Article, please write your article an try again.";
+     const articlenotitle = "Article but not the Title, give your article a descriptive Title that can attract readers to read. Please try again.";
 
      let Values = {}; // Initial form values
 
@@ -21,16 +26,18 @@ document.addEventListener("DOMContentLoaded", function () {
      const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
 
      const Toast = Swal.mixin({
-          toast: true,
-          position: 'top-end',
-          timer: 3000,
-          timerProgressBar: true,
+          toast: true, position: 'top-end', timer: 3000, timerProgressBar: true,
           didOpen: (toast) => {
                toast.addEventListener('mouseenter', Swal.stopTimer)
                toast.addEventListener('mouseleave', Swal.resumeTimer)
           }
      })
 
+     /**
+      * This event will create the post record. It uses sweetalert to display a successfull
+      * transaction or error
+      * @param {*} event 
+      */
      const createpost = async (event) => {
           event.preventDefault();
 
@@ -45,12 +52,13 @@ document.addEventListener("DOMContentLoaded", function () {
                const errMess = "The information you have entered is not valid! You have entered the ";
 
                if (title !== "" && description === "") {
-                    errormessage.innerText = errMess + "Title but not the Article, please write your article an try again."
+                    errormessage.innerText = errMess + titlenoarticle;
                } else if (title === "" && description !== "") {
-                    errormessage.innerText = errMess + "Article but not the Title, give your article a descriptive Title that can attract readers to read. Please try again."
+                    errormessage.innerText = errMess + articlenotitle;
                }
 
                submitButton.click();
+               
           } else {
                const response = await fetch('/api/articles/create', {
                     method: 'POST',
@@ -61,14 +69,9 @@ document.addEventListener("DOMContentLoaded", function () {
                if (response.ok) {
 
                     Swal.fire({
-                         title: 'Great job!',
-                         text: "Your new article has been posted! You will see it next.",
-                         icon: 'success',
-                         showCancelButton: false,
-                         confirmButtonColor: '#3085d6',
-                         confirmButtonText: 'Ok!',
-                         timer: 3500,
-                    }).then((result) => {                         
+                         title: 'Great job!', text: articleposted, icon: 'success', showCancelButton: false,
+                         confirmButtonColor: '#3085d6', confirmButtonText: 'Ok!', timer: 3500,
+                    }).then((result) => {
                          if (result.isConfirmed) {
                               document.location.replace('/articles')
                          } else if (result.isDenied) {
@@ -77,14 +80,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     })
 
                } else {
-
-                    Toast.fire({
-                         icon: 'error',
-                         showConfirmButton: true,
-                         confirmButtonText: "Got it!",
-                         title: 'Something went wrong!'
-                    })
-
+                    Toast.fire({ icon: 'error', showConfirmButton: true, confirmButtonText: "Got it!", title: articlenotposted });
                }
           }
      };
@@ -117,11 +113,7 @@ document.addEventListener("DOMContentLoaded", function () {
           }
           registerEvents();
 
-          Toast.fire({
-               icon: 'info',
-               showConfirmButton: false,
-               title: 'Welcome to New Article Page!'
-          })
+          Toast.fire({ icon: 'info', showConfirmButton: false, title: welcomepage })
 
      }
 

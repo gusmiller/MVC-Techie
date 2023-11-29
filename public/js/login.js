@@ -10,6 +10,16 @@
  *******************************************************************/
 document.addEventListener("DOMContentLoaded", function () {
 
+     const failedlogin = 'Failed to log in';
+     
+     const Toast = Swal.mixin({
+          toast: true, position: 'top-end', timer: 3000, timerProgressBar: true,
+          didOpen: (toast) => {
+               toast.addEventListener('mouseenter', Swal.stopTimer)
+               toast.addEventListener('mouseleave', Swal.resumeTimer)
+          }
+     })
+
      const initApplication = () => {
 
           document.getElementById('login-form').addEventListener('submit', async () => {
@@ -31,7 +41,7 @@ document.addEventListener("DOMContentLoaded", function () {
                          window.location.reload;          
                          window.location =  window.origin + "/articles";
                     } else {
-                         alert('Failed to log in');
+                         Toast.fire({ icon: 'error', showConfirmButton: false, title: failedlogin });                         
                     }
                }
           });

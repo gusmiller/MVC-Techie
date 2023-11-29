@@ -15,8 +15,19 @@ document.addEventListener("DOMContentLoaded", function () {
      const articles = document.querySelectorAll('[id^="articlespost"]');
      const recycle = document.getElementById("refresharticles");
 
+     const categorynotloaded = 'Something went wrong! we could not load the categories.';
+     const membersnotloaded = 'Something went wrong! we could not load Members.';
+
      const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
      const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+
+     const Toast = Swal.mixin({
+          toast: true, position: 'top-end', timer: 3000, timerProgressBar: true,
+          didOpen: (toast) => {
+               toast.addEventListener('mouseenter', Swal.stopTimer)
+               toast.addEventListener('mouseleave', Swal.resumeTimer)
+          }
+     })
 
      /**
       * This function will iterate through all the post elements and hide
@@ -91,15 +102,8 @@ document.addEventListener("DOMContentLoaded", function () {
                     optionitem.setAttribute('id', 'categoryId' + data[i].id)
                     selectoptions.appendChild(optionitem);
                }
-
           } else {
-               Swal.fire({
-                    icon: 'error',
-                    title: 'Yiakes!',
-                    text: `Something went wrong! we could not load the categories. ${response}`,
-                    timer: 3500
-                  })
-
+               Toast.fire({ icon: 'error', showConfirmButton: false, title: categorynotloaded });
           }
      };
 
@@ -128,7 +132,7 @@ document.addEventListener("DOMContentLoaded", function () {
                }
 
           } else {
-               alert(response.statusText);
+               Toast.fire({ icon: 'error', showConfirmButton: false, title: membersnotloaded })
           }
 
      }
@@ -154,7 +158,7 @@ document.addEventListener("DOMContentLoaded", function () {
                          confirmButtonColor: '#d33',
                          cancelButtonColor: '#3085d6',
                          confirmButtonText: 'Yes, delete it!',
-                         
+
                          preConfirm: () => {
                               return fetch(`/api/articles/delete/${postidnumber}`, {
                                    method: 'DELETE',
@@ -187,14 +191,7 @@ document.addEventListener("DOMContentLoaded", function () {
       * @param {string} severity - message type
       */
      function showConfirmed(value, severity, closein = 2500) {
-
-          Toast.fire({
-               icon: severity,
-               showConfirmButton: false,
-               timer: closein,
-               title: value
-          })
-
+          Toast.fire({ icon: severity, showConfirmButton: false, timer: closein, title: value })
      }
 
      const refreshData = async () => {

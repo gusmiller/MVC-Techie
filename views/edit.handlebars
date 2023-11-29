@@ -39,23 +39,32 @@
                                    them.</p>
 
                               <div class="form-outline mb-4">
-                                   <label class="form-label" for="email-login">Post Title</label>
-                                   <input type="text" id="title" class="form-control form-control-lg"
-                                        value="{{dsData.title}}" />
+                                   <label 
+                                        class="form-label" 
+                                        for="title" 
+                                        data-bs-toggle="tooltip"
+                                        data-bs-placement="top" 
+                                        title="Give your article a descriptive name!">Post Title</label>
+                                   <input type="text" id="title" name="title" class="form-control form-control-lg" value="{{dsData.title}}" />
                               </div>
                               <div class="form-outline mb-4">
-                                   <select id="category_id" class="form-select form-control-lg"
+                                   <select 
+                                        id="category_id" 
+                                        name="category_id" 
+                                        data-bs-toggle="tooltip"
+                                        data-bs-placement="top" 
+                                        title="Select a category for your article!"
+                                        class="form-select form-control-lg" 
                                         aria-label="Select post Category">
                                    </select>
                               </div>
 
                               <div class="form-outline mb-4">
-                                   <textarea class="form-control" id="description"
-                                        rows="12">{{dsData.description}}</textarea>
+                                   <textarea class="form-control" id="description" name="description" rows="12">{{dsData.description}}</textarea>
                               </div>
 
                               <div class="pt-1 mb-2">
-                                   <button class="btn btn-info wide-button" type="submit">
+                                   <button id="submitarticle" class="btn btn-info wide-button" type="submit" disabled>
                                         <i class="bi bi-send" style="color: rgb(52, 52, 238);"></i> Update Article
                                    </button>
                                    <a class="btn btn-danger wide-button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
