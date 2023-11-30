@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                     Swal.fire({
                          title: 'Great job!', text: articleposted, icon: 'success', showCancelButton: false,
-                         confirmButtonColor: '#3085d6', confirmButtonText: 'Ok!', timer: 3500,
+                         confirmButtonColor: '#3085d6', confirmButtonText: 'Ok!',
                     }).then((result) => {
                          if (result.isConfirmed) {
                               document.location.replace('/articles')
