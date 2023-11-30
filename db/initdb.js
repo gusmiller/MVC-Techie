@@ -47,7 +47,6 @@ async function validateUsers(cnn, value) {
 exports.validateDB = async function (value) {
      const cnn = await connection.connectmysql(value); // Get connection to database
 
-     //if (!process.env.JAWSDB_URL || process.env.DB_SEED === "YES") {
      if (await validateUsers(cnn, value) === false) {
           messages.msg(Chalk.bgRed(dic.messages.emptyusers), null, null, 80);
           return { created: true, data: false };
