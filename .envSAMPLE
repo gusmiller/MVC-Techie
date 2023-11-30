@@ -1,0 +1,34 @@
+# *******************************************************************
+#  Carleton Bootcamp - 2023
+#  Copyright 2023 Gustavo Miller
+#  Licensed under MIT
+#  Assignment # 14 Model-View-Controller (MVC)
+#  Tech Blog
+ 
+#  Date : 11/30/2023 6:30:23 AM
+# 
+# Sample .env file to create new database. Configured to use local
+# MySQL Database (LocalHost)
+# *******************************************************************/
+
+# HEROKU DATABASE
+# JAWSDB_URL={your-heroku-connection-string}
+
+# NODE APP ENVIRONMENT VARIABLES
+NODE_ENV=development
+PORT=3002
+DB_SEED=NO
+
+# LOCAL DATABASE CONNECTION ENVIRONMENT VARIABLES
+DB_HOST=localhost
+DB_USER={localuser}
+DB_NAME=techblog
+DB_SYS=sys
+DB_PASSWORD={mySQL-your-password}
+
+# DATABASE CONNECTION ENVIRONMENT VARIABLES
+# DB_USER={heroku-use-name}
+# DB_PASSWORD={heroku-password}
+# DB_HOST={heroku-host-name}
+# DB_NAME={heroku-database-name}
+# DB_SYS={heroku-database-name-same-as-above}

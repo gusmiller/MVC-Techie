@@ -1,6 +1,6 @@
 <a id="readme-top" name="readme-top"></a>
 
-<p align="center"><img src="./assets/images/carleton-u-logo.jpg" height="250"></p>
+<p align="center"><img src="./public/images/carleton-u-logo.jpg" height="250"></p>
 
 <p align="center" style="margin-top:25px; margin-bottom:50px;">
 	<a href="https://developer.mozilla.org/en-US/docs/Web/javascript">
@@ -96,7 +96,22 @@ Once you have completed the configuration of MySQL then you can run manually the
 	source db/schema.sql
 ```
 
-The seeding of the tables will be performed by the application through Sequelize npm package.
+### Environment Variables
+I have included a .envSAMPLE to give you a start-up environmet file (you can create your own). This one in particular has a key DB_SEED that would instruct the application to re-seed the database. The seeding of the tables will be performed by the application through a combination of Sequelize npm package and MySQL2 package. The first one uses JSON files to BulkCreate records from JSON object, the second one relies on .SQL scripts.
+
+```
+# NODE APP ENVIRONMENT VARIABLES
+NODE_ENV=development 
+PORT=3002 
+DB_SEED=NO (Instructs application to run the seeding process when set to YES- NOTE: it must be turn to NO after done, otherwise it will run everytime)
+
+# LOCAL DATABASE CONNECTION ENVIRONMENT VARIABLES
+DB_HOST=localhost
+DB_USER={localuser}
+DB_NAME=techblog
+DB_SYS=sys
+DB_PASSWORD={mySQL-your-password}
+```
 
 Dependancies included in the package.json:
 
@@ -125,10 +140,70 @@ Dependancies included in the package.json:
 
 The application is pretty simple to use. Once you launch the website you will have to register and create an account. Once you have an account, you'll be able to post articles in the website and as new members post their articles, you'll be able to comment on them.
 
-The articles can be filtered by category or by the members of the site, making it simple to find the author you like the most or the category of preference.
+- The articles can be filtered by category or by the members of the site, making it simple to find the author you like the most or the category of preference.
+- Members will be able to modify their own articles, but not those who belong to a different author.
+- Members will be able to delete their own articles. Same as in the edit -only their own articles.
+- Application uses SweetAlert to display message in advance styled dialog boxes.
 
-Members will be able to modify their own articles, but not those who belong to a different author.
-I wanted to implement an option to reply to a comment. But, I run out of time so, that might be an idea for you to carry on.
+Importan NOTE: there is a slight **compatibility issue with Microsoft Edge** -after Login / Register <span style="color:red;">the page does not refresh</span>. I have done exhaustive research, but with no avail. It has something to do with "handlebars" - I have asked for help to Carleton AskBCS Learning Assistant and my teacher but we could not make it work. It works fine in <span style="color:green;">Chrome</span>.
+
+Dashboard: The blogs are presented in a dashboard style page. The blog has articles in a blue color heading and comments indented on a green color card-style element
+
+<p align="center">
+<img src="./public/images/TB0007.png">
+</p>
+
+
+<details style="margin-bottom: 25px; margin-top: 25px;">
+	<summary><span style="color:lightgreen">Login Prompt</span> - in order to use the application user needs to be logged in:</summary>
+
+<div style="margin-top: 15px;">
+     <p align="center">
+	<img src="./public/images/TB0006.png">
+     </p>
+</div>
+
+</details>
+
+<details style="margin-bottom: 25px; margin-top: 25px;">
+	<summary><span style="color:lightgreen">Registration form</span>: users need to register into the system in order to gain access to the blog. There is no two-step validation in this website since we have not looked into that yet.</summary>
+
+<div style="margin-top: 15px;">
+     <p align="center">
+	<img src="./public/images/TB0005.png">
+     </p>
+</div>
+</details>
+
+<details style="margin-bottom: 25px; margin-top: 25px;">
+	<summary><span style="color:lightgreen">Editing/Deleting Articles</span>: The articles can be edited or deleted only by their owners. But, anybody -who has register, can see and comment on all articles. The buttons to edit or delete, are activated as you hover your mouse over the articles. So, if you're logged in as a Mario Francis, it will only activate the buttons, when your mouse hovers over your article..</summary>
+
+<div style="margin-top: 15px;">
+     <p align="center">
+	<img src="./public/images/TB0008.png">
+     </p>
+</div>
+</details>
+
+<details style="margin-bottom: 25px; margin-top: 25px;">
+	<summary><span style="color:lightgreen">Editing an article</span>: This task is reserved for the owner of the article. Once you edit an article, it would be presented to you, on load the update article button is disabled, it only becomes enabled when changes detected on the form.</summary>
+
+<div style="margin-top: 15px;">
+     <p align="center">
+	<img src="./public/images/TB0009.png">
+     </p>
+</div>
+</details>
+
+<details style="margin-bottom: 25px; margin-top: 25px;">
+	<summary><span style="color:lightgreen">Dialog boxes</span>: The application makes use of SweetAlert, an npm package that allows developer to use advanced and styled dialog boxes to communicate with the user. This dialog boxes are very dynamic, advanced and make the application look very nice and elegant.</summary>
+
+<div style="margin-top: 15px;">
+     <p align="center">
+	<img src="./public/images/TB0010.png">
+     </p>
+</div>
+</details>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
