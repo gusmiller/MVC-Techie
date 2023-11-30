@@ -24,7 +24,7 @@ const dic = require("./queries");
 async function validateUsers(cnn, value) {
 
      // Validate whether or not we have the users table - minimum requirement for template
-     let sSQl = dic.sql.validatetables + `table_schema="${value}" and Table_name="users";`
+     let sSQl = dic.sql.validatetables + `Table_name="users";`
      const [rows, fields] = await cnn.execute(sSQl);
 
      if (rows[0].TablesCount === 0) {
