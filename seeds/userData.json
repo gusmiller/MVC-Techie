@@ -1,44 +1,10 @@
 [
-     {
-          "name": "Gustavo Miller",
-          "email": "gustavo.miller@miller-hs.com",
-          "is_admin": true,
-          "password": "CarletonUCoding"
-     },
-     {
-          "name": "Guest User",
-          "email": "guest@hotmail.com",
-          "is_admin": false,
-          "password": "password12345"
-     },
-     {
-          "name": "Kevin Miller",
-          "email": "Kevin.Miller@hotmail.com",
-          "is_admin": false,
-          "password": "password12345"
-     },
-     {
-          "name": "Christina Miller",
-          "email": "Christina.Miller@hotmail.com",
-          "is_admin": false,
-          "password": "password12345"
-     },
-     {
-          "name": "Felipe Miller",
-          "email": "Felipe.Miller@hotmail.com",
-          "is_admin": false,
-          "password": "password12345"
-     },
-     {
-          "name": "Camelia Miller",
-          "email": "Camelia.Miller@hotmail.com",
-          "is_admin": false,
-          "password": "password12345"
-     },
-     {
-          "name": "Sebastian Echegoyen",
-          "email": "Sebastian.Echegoyen@hotmail.com",
-          "is_admin": false,
-          "password": "password12345"
-     }
+     {"name": "Gustavo Miller","email": "gustavo.miller@miller-hs.com","is_admin": true,"password": "CarletonUCoding"},
+     {"name": "Frank Userso","email": "frank@hotmail.com","is_admin": false,"password": "password12345"},
+     {"name": "Carmen Torrelo","email": "carment@miller-hs.com","is_admin": false,"password": "password12345"},
+     {"name": "Felix McMillan","email": "felix@hotmail.com","is_admin": false,"password": "password12345"},
+     {"name": "Patricia Felix","email": "ptty@hotmail.com","is_admin": false,"password": "password12345"},
+     {"name": "Pepe Perking","email": "papa@hotmail.com","is_admin": false,"password": "password12345"},
+     {"name": "Jose Piolo","email": "jp@hotmail.com","is_admin": false,"password": "password12345"},
+     {"name": "Mario Frances","email": "mariof@hotmail.com","is_admin": false,"password": "password12345"}
 ]

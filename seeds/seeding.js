@@ -29,7 +29,7 @@ const fs = require("fs");
  * @returns true/false
  */
 async function executeSQL(value) {
-     const connection = await db.connectmysql(); // Get connection to database
+     const connection = await db.connectmysql(process.env.DB_NAME); // Get connection to database
 
      try {
           for (let x = 0; x <= value.length - 1; x++) {
