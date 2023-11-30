@@ -28,16 +28,17 @@
 <details style="margin-bottom: 25px; margin-top: 25px;">
 	<summary>Table of Contents</summary>
 	<ol>
-		<li><a href="#Description">MVC Techie</a></li>
+		<li><a href="#Description">MVC Techie Blog</a></li>
 		<li><a href="#installation">Installation</a></li>		
 		<li><a href="#usage">Application Usage</a></li>
+          <li><a href="#technology">Technology Stack</a></li>
 		<li><a href="#contactme">Questions? Contact Me!</a></li>
           <li><a href="#license">License</a></li>
 	</ol>
 </details>
 <div id="Description" style="margin-top: 25px;">
 
-## MVC Techie
+## MVC Techie Blog
 
 Week #14 another assignment form the ground up. This time it is a blog site. It will allows people to post articles and also comment on other artcles posted by other members. The key word on that statement is "members", only people who registered would be able to read and post articles. The application upon loading will display our frontal page, from there user will have to register. Creating a profile in the database, will allow them to start posting away.. 
 
@@ -72,6 +73,11 @@ Here is my product!
 <p align="center" style="margin-top:10px;">The process detects tables are missing, creates them and seeds them!</p>
 
 </details>
+
+<p align="center" style="margin-top:30px;padding-left:30px;padding-right:30px;">
+Most of times it is easier to have a better understanding when there is a video available. <span style="color:brown"> Warning! Depending on your internet speed it may be better to download the video rather than streaming it.</span> Here is a video presentation of the application:<br/> <a href="https://drive.google.com/file/d/1CJR5Y1DuDK06luTOHmhC09QvhtHUf1jH/view?usp=sharing">MVC Techie Blog</a>
+</p>
+
 
 </div>
 
@@ -129,6 +135,28 @@ Dependancies included in the package.json:
      sequelize version 6.3.5
 ```
 </div>
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+</div>
+
+<div id="technology" style="margin-top: 25px;">
+
+## Technology Stack
+
+The following should list any major frameworks/libraries used to in the designing and coding of **eCommerce Express Application**.
+This section  bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
+
+* <a href="https://www.npmjs.com/package/chalk"><img src="https://img.shields.io/static/v1.svg?label=npm&message=Chalk&color=yellow"/></a> Make message colorful and pleasing to the eye
+* <a href="https://www.mysql.com/products/workbench/"><img src="https://img.shields.io/static/v1.svg?label=Oracle&message=MySQL&color=blue"/></a> MySQL Server and Workbench application
+* <a href="https://www.npmjs.com/package/dotenv"><img src="https://img.shields.io/static/v1.svg?label=npm&message=dotenv&color=green"/></a> Dotenv environment variables
+* <a href="https://www.npmjs.com/package/express"><img src="https://img.shields.io/static/v1.svg?label=npm&message=Express&color=magenta"/></a> The Express philosophy is to provide small, robust tooling for HTTP servers, making it a great solution for single page applications, websites, hybrids, or public HTTP APIs.
+* <a href="https://www.tsql.info/"><img src="https://img.shields.io/static/v1.svg?label=MySQL&message=T-SQL&color=pink"/></a> Transac-SQL language to retrieve data from database - JOIN queries, Nested and aggregate queries 
+* <a href="https://developer.mozilla.org/en-US/docs/Web/javascript"><img src="https://img.shields.io/static/v1.svg?label=Javascrip&message=Coding&color=red"/></a> Use Javascript as the main language - used classes and module exports.
+* <a href="https://developer.mozilla.org/en-US/docs/Web/mysql2"><img src="https://img.shields.io/static/v1.svg?label=Database&message=MySQL 2&color=aero"/></a> MySQL2 project is a continuation of MySQL-Native. Protocol parser code was rewritten from scratch and api changed to match popular mysqljs/mysql.
+* <a href="https://www.npmjs.com/package/sequelize"><img src="https://img.shields.io/static/v1.svg?label=ORM&message=Sequelize&color=azure"/></a> Sequelize is an easy-to-use and promise-based Node.js ORM tool for Postgres, MySQL, MariaDB, SQLite, DB2, Microsoft SQL Server, and Snowflake. It features solid transaction support, relations, eager and lazy loading, read replication and more.. 
+* <a href="https://www.npmjs.com/package/sequelize"><img src="https://img.shields.io/static/v1.svg?label=VSCode&message=Thunder Client&color=blue"/></a> Hand-crafted lightweight and easy to use Rest Client for Testing APIs. Supports collections, environments and local storage.
+* <a href="https://www.heroku.com/what"><img src="https://img.shields.io/static/v1.svg?label=Heroku&message=Cloud&color=yellow"/></a> Hand-crafted lightweight and easy to use Rest Client for Testing APIs. Supports collections, environments and local storage.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -218,6 +246,9 @@ The purpose of this MVC-Tecie Application is to build a website, database driven
 Do not hesitate in contacting me, Gustavo Miller - gustavo.miller@miller-hs.com.
 
 You may find the application at: [https://github.com/gusmiller/MVC-Techie](https://github.com/gusmiller/MVC-Techie)
+You may find the application at: [https://github.com/gusmiller/MVC-Techie](https://github.com/gusmiller/MVC-Techie)
+
+For security reasons, I have not included the URL of the application, as ANYONE can register into the Blog. I cannot control if people might be entering unacceptable, unhealthy or prejudical messages. To avoid embarrasements or abuse, the URL is not available.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
