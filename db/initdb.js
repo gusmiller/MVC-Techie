@@ -10,6 +10,7 @@
 require('dotenv').config();
 
 const connection = require("../config/mysqlconnection");
+const sequelize = require('../config/connection');
 const Chalk = require('chalk');
 const messages = require("../utils/formatter")
 const dic = require("./queries");
@@ -25,13 +26,15 @@ async function validateUsers(cnn, value) {
 
      // Validate whether or not we have the users table - minimum requirement for template
      let sSQl = dic.sql.validatetables + `Table_name="users";`
-     const [rows, fields] = await cnn.execute(sSQl);
+     //const [rows, fields] = await cnn.execute(sSQl);
+     const [rows, fields] = await sequelize.query(sSQl);
 
      if (rows[0].TablesCount === 0) {
           return false; // Fail process
      } else {
           // Retrieve records from SQL
-          const [rows, fields] = await cnn.execute(dic.sql.totalusers);
+          //const [rows, fields] = await cnn.execute(dic.sql.totalusers);
+          const [rows, fields] = await sequelize.query(dic.sql.totalusers);
           if (rows.length === 0) return false; // Fail proces if no records
           if (rows[0].TotalUsers !== 0) return true; // Successfull return
 
