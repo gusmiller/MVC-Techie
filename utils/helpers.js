@@ -8,7 +8,6 @@
  * 
  * Date : 11/9/2023 7:39:28 PM
  *******************************************************************/
-
 const dateFormatted = (date) => {
      return `${new Date(date).getMonth() + 1}/${new Date(date).getDate()}/${new Date(date).getFullYear()} ${new Date(date).getHours()}:${new Date(date).getMinutes()}`;
 };

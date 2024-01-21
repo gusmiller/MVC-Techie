@@ -6,5 +6,6 @@
      {"name": "Patricia Felix","email": "ptty@hotmail.com","is_admin": false,"password": "password12345"},
      {"name": "Pepe Perking","email": "papa@hotmail.com","is_admin": false,"password": "password12345"},
      {"name": "Jose Piolo","email": "jp@hotmail.com","is_admin": false,"password": "password12345"},
-     {"name": "Mario Frances","email": "mariof@hotmail.com","is_admin": false,"password": "password12345"}
+     {"name": "Mario Frances","email": "mariof@hotmail.com","is_admin": false,"password": "password12345"},
+     {"name": "Tes French","email": "tesf@hotmail.com","is_admin": false,"password": "password12345"}
 ]
