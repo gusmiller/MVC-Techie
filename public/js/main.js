@@ -46,6 +46,9 @@ $(document).ready(function () {
                     if (userLoggedIn === currentUser) {
                          linkElement.removeAttribute('hidden');
                          deleteElement.removeAttribute('hidden');
+                    }
+
+                    if (currentUser.length > 0 && userLoggedIn !== currentUser) {
                          commentElement.removeAttribute('hidden');
                     }
 

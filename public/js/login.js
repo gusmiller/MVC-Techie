@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
                          headers: { 'Content-Type': 'application/json' },
                     });
 
-                    let loginProfile = await response.json(); //This will retrieve informatio returned from the login screen
+                    let loginProfile = await response.json(); //This will retrieve information returned from the login screen
                     //debugger;
                     
                     // loginasControl.removeAttribute('hidden');

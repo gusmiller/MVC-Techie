@@ -39,7 +39,6 @@ router.post('/login', async (req, res) => {
                res.json({ user: userData, message: 'You are now logged in!' });
           });
 
-
      } catch (err) {
           res.status(400).json(err);
      }
@@ -78,9 +77,9 @@ router.post('/register', async (req, res) => {
                req.session.is_admin = false,
                req.session.logged_in = true;
                req.session.form_name = "/";
-          });
 
-          res.status(200).json(dsData);
+               res.json({ user: dsData, message: 'User created and logged in!' });
+          });
 
      } catch (error) {
           res.status(400).json(error);
