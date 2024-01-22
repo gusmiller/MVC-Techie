@@ -62,23 +62,6 @@ Here is my product!
 
 </details>
 
-<details style="margin-top:25px;">
-<summary>When using the MVC-Techie application for the first time is more likely that tables do not exist. The application validates whether these tables are in place when loading, this to ensure you have working database. </summary>
-
-<p style="margin-top:5px;">This is to avoid having a manual seeding process. You still have the ability to run it manually (read instructions). This is a partial snapshot of the process of creating tables and seeding them!</p>
-
-<div style="margin-top: 15px;">
-	<img src="./public/images/TB0004.png">
-</div>
-<p align="center" style="margin-top:10px;">The process detects tables are missing, creates them and seeds them!</p>
-
-</details>
-
-<p align="center" style="margin-top:30px;padding-left:30px;padding-right:30px;">
-Most of times it is easier to have a better understanding when there is a video available. <span style="color:brown"> Warning! Depending on your internet speed it may be better to download the video rather than streaming it.</span> Here is a video presentation of the application:<br/> <a href="https://drive.google.com/file/d/1CJR5Y1DuDK06luTOHmhC09QvhtHUf1jH/view?usp=sharing">MVC Techie Blog</a>
-</p>
-
-
 </div>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -136,6 +119,32 @@ Dependancies included in the package.json:
 ```
 </div>
 
+<details style="margin-top:25px;">
+<summary>When downloading the MVC-Techie application for developiong there will be no tables. The application validates whether these tables are in place when loading, this to make sure you have working database.<br/> </summary>
+
+<p style="margin-top:15px;">This is to avoid having a manual seeding process. You will need to create an secrets .env file with the following configuration:</p>
+
+```
+# NODE APP ENVIRONMENT VARIABLES
+NODE_ENV=development
+PORT=4010
+DB_FORCE=false
+DB_COUNT=6
+DB_SEED=NO
+
+# LOCAL DATABASE CONNECTION ENVIRONMENT VARIABLES
+# DB_HOST=localhost
+# DB_USER=your-MySQL-user
+# DB_NAME=database-name
+# DB_SYS=sys
+# DB_PASSWORD=your-password
+```
+<p>You still have the ability to run it manually (npm run seed). The following image is a partial snapshot of the process of creating tables and seeding them!</p>
+
+<div style="margin-top: 15px;">
+	<img src="./public/images/TB0004.png">
+</div>
+</details>
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 </div>
