@@ -92,12 +92,13 @@ $(document).ready(function () {
                title: 'Your have been logged out!',
                showConfirmButton: false,
                timer: 2500
-          }).then((result) => {
-               const response = fetch('/api/users/logout', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-               });
           })
+          
+          const response = fetch('/api/users/logout', {
+               method: 'POST',
+               headers: { 'Content-Type': 'application/json' },
+          });
+
      }
 
      // Script entry point - start process
@@ -105,7 +106,7 @@ $(document).ready(function () {
 
           const logoutControl = document.querySelector("#logout");
           //document.querySelector("#login").addEventListener('click', logUserIn);
-          //logoutControl.addEventListener('click', logUserOut);
+          logoutControl.addEventListener('click', logUserOut);
 
           commentEvents();
           handleRespondLink(); //Initialize events for editable article

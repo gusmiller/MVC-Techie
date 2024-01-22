@@ -1,4 +1,5 @@
-<section id="dashboard" class="h-100" data-user="{{userid}}">
+{{log userid}}
+<section id="dashboard" class="h-100" data-validuser="{{validuser userid}}" data-user="{{userid}}">
      <div class="row">
           <div class="col-xs-6 col-md-3 col-xl-2 text-black mb-2">
                <select id="category_id" class="h-custom-2 ms-xl-4 form-select form-control-lg"
@@ -19,12 +20,14 @@
                     <option value="0" id="categoryId2">All Members</option>
                </select>
           </div>
+          {{#if logged_in}}
           <div class="col-xs-6 col-md-3 col-xl-2 text-black mb-2">
                <button id="refresharticles" type="button" class="btn btn-outline-success form-control-lg"
                     data-bs-toggle="tooltip" data-bs-placement="top" title="Clear all selections!">
                     <i class="bi bi-recycle"></i></button>
                <span>Logged in as <a href="#" data-bs-toggle="tooltip" data-bs-title="Tip! You can only modify your own articles">{{user_name}}</a></span>
           </div>
+          {{/if}}
      </div>
 
      <div class="row">
@@ -49,7 +52,7 @@
                                              <button type="button" id="delete{{item.id}}" class="btn btn-danger mr-1" data-post="{{item.id}}" hidden><i class="bi bi-trash-fill"></i> Delete Post!</button>
                                              <a class="btn btn-primary-post mr-1" href="/reviews/{{item.id}}"><i class="bi bi-send"></i> Post a comment!</a>
                                         </div>
-
+                                        
                                    </div>
                               </div>
                               <p id="categoryid{{item.category.id}}" class="pl-2"
