@@ -10,6 +10,10 @@
 $(document).ready(function () {
 
      let postidnumber = 0;
+     const logoutControl = document.querySelector("#logout");
+     const loginControl = document.querySelector("#login");
+     const loginasControl = document.querySelector("#loggeinas");
+     const createnewControl = document.querySelector("#createnew");
 
      const Toast = Swal.mixin({
           toast: true,
@@ -37,10 +41,12 @@ $(document).ready(function () {
                     const userLoggedIn = posttag.getAttribute('data-owner');
                     const linkElement = document.getElementById("edit" + postidnumber)
                     const deleteElement = document.getElementById("delete" + postidnumber)
+                    const commentElement = document.getElementById("comment" + postidnumber)
 
                     if (userLoggedIn === currentUser) {
                          linkElement.removeAttribute('hidden');
                          deleteElement.removeAttribute('hidden');
+                         commentElement.removeAttribute('hidden');
                     }
 
                });
@@ -48,9 +54,11 @@ $(document).ready(function () {
                     const postidnumber = posttag.getAttribute('data-post');
                     const linkElement = document.getElementById("edit" + postidnumber)
                     const deleteElement = document.getElementById("delete" + postidnumber)
+                    const commentElement = document.getElementById("comment" + postidnumber)
 
                     linkElement.setAttribute('hidden', true);
                     deleteElement.setAttribute('hidden', true);
+                    commentElement.setAttribute('hidden', true);
                });
           });
      }
@@ -86,6 +94,22 @@ $(document).ready(function () {
       */
      const logUserOut = async () => {
 
+          //Call the API REST route to destroy the session
+          const response = fetch('/api/users/logout', {
+               method: 'POST',
+               headers: { 'Content-Type': 'application/json' },
+          });
+
+          //Once we destroy the session we then swap the buttons by handling hidden
+          //attributes.
+          logoutControl.setAttribute('hidden', true);
+          loginasControl.setAttribute('hidden', true);
+          createnewControl.setAttribute('hidden', true);
+          loginControl.removeAttribute('hidden');
+
+          const currentUser = document.getElementById("dashboard")
+          currentUser.setAttribute('data-user', '');
+
           Swal.fire({
                position: 'top-end',
                icon: 'success',
@@ -93,24 +117,17 @@ $(document).ready(function () {
                showConfirmButton: false,
                timer: 2500
           })
-          
-          const response = fetch('/api/users/logout', {
-               method: 'POST',
-               headers: { 'Content-Type': 'application/json' },
-          });
 
      }
 
      // Script entry point - start process
      const initApplication = () => {
 
-          const logoutControl = document.querySelector("#logout");
-          //document.querySelector("#login").addEventListener('click', logUserIn);
           logoutControl.addEventListener('click', logUserOut);
 
           commentEvents();
           handleRespondLink(); //Initialize events for editable article
-          
+
      }
 
      initApplication();

@@ -65,12 +65,11 @@ router.get('/register', (req, res) => {
      res.render('register');
 })
 
-router.get('/logout', (req, res) => {
-     if (req.session.logged_in) {
-          req.session.destroy();
-     }
-     res.render('articles');
-})
+/**
+ * Logout API REST route - this will destroy the session only. We had the process
+ * to redirect to the articles page but it is not working.
+ */
+//router.get('/logout', (req, res) => { if (req.session.logged_in) { req.session.destroy(); } })
 
 //*************************** END OF LOGIN ROUTES **********************************/
 
@@ -205,7 +204,7 @@ router.get('/create', withAuth, async (req, res) => {
  * Article route - this will display the articles existing in the system. It includes the 
  * category and comments information.
  */
-router.get('/articles', withAuth, async (req, res) => {
+router.get('/articles', async (req, res) => {
 
      const sequelize = require('../config/connection');
      const { QueryTypes } = require('sequelize');

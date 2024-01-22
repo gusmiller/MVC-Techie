@@ -11,7 +11,9 @@
 document.addEventListener("DOMContentLoaded", function () {
 
      const failedlogin = 'Failed to log in';
-     
+     const loginasControl = document.querySelector("#loggeinas");
+     const userloggedinControl = document.querySelector("#userloggedin");
+
      const Toast = Swal.mixin({
           toast: true, position: 'top-end', timer: 3000, timerProgressBar: true,
           didOpen: (toast) => {
@@ -35,8 +37,14 @@ document.addEventListener("DOMContentLoaded", function () {
                          headers: { 'Content-Type': 'application/json' },
                     });
 
+                    let loginProfile = await response.json(); //This will retrieve informatio returned from the login screen
+                    //debugger;
+                    
+                    // loginasControl.removeAttribute('hidden');
+                    // userloggedinControl.innerHTML = loginProfile.user.name;
+                    
                     if (response.ok) {
-                         window.history.pushState("","","/articles");
+                         //window.history.pushState("","","/articles");
                          window.location.reload;          
                          window.location =  window.origin + "/articles";
                     } else {
