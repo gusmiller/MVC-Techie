@@ -12,8 +12,11 @@ const dateFormatted = (date) => {
      return `${new Date(date).getMonth() + 1}/${new Date(date).getDate()}/${new Date(date).getFullYear()} ${new Date(date).getHours()}:${new Date(date).getMinutes()}`;
 };
 
+const validuser = (v1) => {
+     return v1 !== null ? true : false;
+}
 const compareequal = (v1, v2) => {
      return v1 === v2 ? true : false;
 }
 
-module.exports = { dateFormatted, compareequal };
+module.exports = { dateFormatted, compareequal, validuser };

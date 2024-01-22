@@ -15,28 +15,25 @@ const dic = require("../db/queries");
 //****************************** LOGIN ROUTES **************************************/
 
 /**
- * Root landing page - show presentation
+ * Root landing page - show presentation. This is the initial page that is displayed
+ * when application is loaded. We had a hero page instead but it was not in compliance
+ * with requirements in TAC.
  */
 router.get('/', async (req, res) => {
 
-     if (req.session.logged_in) {
-          res.render('homepage', {
-               logged_in: req.session.logged_in,
-               userid: req.session.user_id,
-               is_admin: req.session.is_admin,
-               user_name: req.session.user_name,
-               form_name: req.session.form_name,
-          });          
-     } else {
-          res.render('hero', {
-               logged_in: req.session.logged_in,
-               userid: req.session.user_id,
-               is_admin: req.session.is_admin,
-               user_name: req.session.user_name,
-               form_name: req.session.form_name,
-          });
-     }
+     // This will retrieve all Posts including all data from tables related. 
+     const allLevels = await Posts.findAll({
+          include: { all: true, nested: true },
+          order: [["date_published", "DESC"]],
+     });
+     const postRecords = allLevels.map((list) => list.get({ plain: true }));
 
+     res.render('articles', {
+          postRecords,
+          logged_in: req.session.logged_in,
+          userid: req.session.user_id,
+          user_name: req.session.user_name,
+     });
 });
 
 /**
@@ -68,11 +65,11 @@ router.get('/register', (req, res) => {
      res.render('register');
 })
 
-router.get('/logout', (req, res) =>{
+router.get('/logout', (req, res) => {
      if (req.session.logged_in) {
           req.session.destroy();
-     }    
-     res.render('hero');
+     }
+     res.render('articles');
 })
 
 //*************************** END OF LOGIN ROUTES **********************************/
