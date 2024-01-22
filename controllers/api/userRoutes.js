@@ -16,9 +16,7 @@ router.post('/login', async (req, res) => {
           const userData = await Users.findOne({ where: { email: req.body.email } });
 
           if (!userData) {
-               res
-                    .status(400)
-                    .json({ message: 'Incorrect email or password, please try again' });
+               res.status(400).json({ message: 'Incorrect email or password, please try again' });
                return;
           }
 
@@ -26,9 +24,7 @@ router.post('/login', async (req, res) => {
           const validPassword = await userData.checkPassword(req.body.password);
 
           if (!validPassword) {
-               res
-                    .status(400)
-                    .json({ message: 'Incorrect email or password, please try again' });
+               res.status(400).json({ message: 'Incorrect email or password, please try again' });
                return;
           }
 
@@ -56,7 +52,7 @@ router.post('/logout', (req, res) => {
      } else {
           res.status(404).end();
      }
-     res.redirect("/articles");
+     //res.redirect("/");
 });
 
 /**
@@ -81,9 +77,9 @@ router.post('/register', async (req, res) => {
                req.session.is_admin = false,
                req.session.logged_in = true;
                req.session.form_name = "/";
-          });
 
-          res.status(200).json(dsData);
+               res.json({ user: dsData, message: 'User created and logged in!' });
+          });
 
      } catch (error) {
           res.status(400).json(error);

@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
      const failedregister = "Something went wrong! User account was not registered.";
      const useraccountcreated = "User account has been successfully created! You may have to refresh your browser. In some browsers the main page does not refresh."
-     
+
      const Toast = Swal.mixin({
           toast: true, position: 'top-end', timer: 3000, timerProgressBar: true,
           didOpen: (toast) => {
@@ -44,20 +44,31 @@ document.addEventListener("DOMContentLoaded", function () {
                     headers: { 'Content-Type': 'application/json' },
                });
 
-               if (response.ok) {
-                    window.history.pushState("","","/");
-                    window.location.reload;
+               debugger;
+               let loginProfile = await response.json(); //This will retrieve information 
 
-                    Swal.fire({
-                         title: 'Welcome to Techie Blog!', text: useraccountcreated, icon: 'success', showCancelButton: false,
-                         confirmButtonColor: '#3085d6', confirmButtonText: 'Ok!'
-                    }).then((result) => {
-                         if (result.isConfirmed) {
-                              document.location.replace('/');
-                         }
-                    })
+               if (response.ok) {
+
+                    // Swal.fire({
+                    //      title: 'New Account created!', text: 'Please login to start posting!', icon: 'success', showCancelButton: false,
+                    //      confirmButtonColor: '#3085d6', confirmButtonText: 'Ok!', timer: 23500,
+                    // }).then((result) => {
+                    //      if (result.isConfirmed) {
+                    //           console.log('OK');
+                    //      } else if (result.isDenied) {
+                    //           console.log('Not OK');
+                    //      }
+                    // });
+
+                    window.location.reload;
+                    window.location = window.origin + "/articles";
+
+                    debugger;
+                    const dashboardControl = document.querySelector('#dashboard');
+                    dashboardControl.setAttribute("data-user", loginProfile.username);
 
                } else {
+                    debugger;
                     Toast.fire({ icon: 'error', showConfirmButton: false, title: failedregister });
                }
 
